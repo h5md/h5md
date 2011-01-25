@@ -164,7 +164,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'MolecularSimulationdoc'
+htmlhelp_basename = 'MolecularSimulation'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -178,7 +178,7 @@ htmlhelp_basename = 'MolecularSimulationdoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'MolecularSimulation.tex', u'Molecular Simulation Documentation',
+  ('index', 'MolecularSimulation.tex', u'Molecular Simulation',
    u'Pierre de Buyl, Peter Colberg, Felix Höfling', 'manual'),
 ]
 
@@ -211,6 +211,6 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'molecularsimulation', u'Molecular Simulation Documentation',
+    ('index', 'molecularsimulation', u'Molecular Simulation',
      [u'Pierre de Buyl, Peter Colberg, Felix Höfling'], 1)
 ]
