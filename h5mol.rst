@@ -27,6 +27,7 @@ Standardized data elements
 
 * atomic coordinates in 1,2 or 3D
 * atomic velocities in 1,2 or 3D
+* atomic forces in 1,2 or 3D
 * species identifier (be it a number or a character ?) 
 
 
@@ -46,4 +47,8 @@ Data elements in discussion
 * Macroscopic variables
 
   These are variables that are computed during a simulation.
+
+* Simulation parameters
+
+  Box size, time step, used force field, per species mass, ...
 
