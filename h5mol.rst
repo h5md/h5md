@@ -31,7 +31,7 @@ Standardized data elements
 
 
 All arrays are stored in C-order as enforced by the HDF5 file format (see `§
-3.2.5 <http://www.hdfgroup.org/HDF5/doc/UG/12_Dataspaces.html#ProgModel>`_. A C
+3.2.5 <http://www.hdfgroup.org/HDF5/doc/UG/12_Dataspaces.html#ProgModel>`_). A C
 or C++ program may thus declare r\[N\]\[D\] for the coordinates array while the
 fortran program will declaire a r(D,N) array (appropriate index ordering for a
 N atoms D dimensions system) and the hdf5 file will be the same.
