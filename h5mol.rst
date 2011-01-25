@@ -30,7 +30,7 @@ Standardized data elements
 * species identifier (be it a number or a character ?) 
 
 
-All arrays are stored in C-order as enforced by the HDF5 file format (see `ง
+All arrays are stored in C-order as enforced by the HDF5 file format (see `ยง
 3.2.5 <http://www.hdfgroup.org/HDF5/doc/UG/12_Dataspaces.html#ProgModel>`_. A C
 or C++ program may thus declare r\[N\]\[D\] for the coordinates array while the
 fortran program will declaire a r(D,N) array (appropriate index ordering for a
