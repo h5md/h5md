@@ -35,3 +35,15 @@ All arrays are stored in C-order as enforced by the HDF5 file format (see `§
 or C++ program may thus declare r\[N\]\[D\] for the coordinates array while the
 fortran program will declaire a r(D,N) array (appropriate index ordering for a
 N atoms D dimensions system) and the hdf5 file will be the same.
+
+Data elements in discussion
+---------------------------
+
+* Topology
+
+  There is the need to store topology for rigid bodies, elastic networks or proteins. The topology may be a connectivity table, contain bond lengths, ...
+
+* Macroscopic variables
+
+  These are variables that are computed during a simulation.
+
