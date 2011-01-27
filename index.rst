@@ -11,7 +11,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   h5mol
+   h5md 
 
 Indices and tables
 ==================
