@@ -1,10 +1,10 @@
-Specifications for the h5mol file format
+Specifications for the h5md file format
 ========================================
 
 Objective
 ---------
 
-h5mol is aimed at becoming a specification to store molecular simulation data.
+h5md is aimed at becoming a specification to store molecular simulation data.
 It is based on the `HDF5 <http://www.hdfgroup.org/HDF5/>`_ file format.
 
 It should facilitate portability of said data amongst simulation and analysis
@@ -13,7 +13,7 @@ programs.
 General organization
 --------------------
 
-h5mol defines a HDF5 group structure. Inside a group, a number of required
+h5md defines a HDF5 group structure. Inside a group, a number of required
 fields exist and should possess a conforming name and shape.
 
 Several groups may exist in a file, allowing either the description of several
