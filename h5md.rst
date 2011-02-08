@@ -51,8 +51,27 @@ or C++ program may thus declare r\[N\]\[D\] for the coordinates array while the
 fortran program will declaire a r(D,N) array (appropriate index ordering for a
 N atoms D dimensions system) and the hdf5 file will be the same.
 
+Reserved names
+--------------
+
+Part of the h5md specification is a number of reserved names. This allows a data analysis package to handle adequately the datasets with reserved names.
+
+The present list of reserved names is:
+
+* r: positions
+* v: velocities
+* f: forces
+
 Data elements in discussion
 ---------------------------
+
+* Reserved names
+
+  At this times, r,v and f are reserved. Two elements to discuss:
+
+  * Keep short names or use full names (position, velocity, force, ...) ? Full names will not be appropriate for everyting: for instance, velocity autocorrelation function is a bit long for a variable name.
+
+  * How far should we specify? Other elements seem appropriate for reserved names: temperature - temp - T, time step - DT, ...
 
 * Topology
 
