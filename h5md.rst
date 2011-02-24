@@ -45,14 +45,25 @@ Trajectory group
 
   As for the coordinates in a dataset named "force"
   
-* species identifier (be it a number or a character ?) 
-
+* species
+  
+  A dataset of dimensions \[N\] if the species do not change in the course of
+  time, that is if there is no chemical reaction occurring, or of dimensions
+  \[variable\]\[N\] if the species of particles may change in the course of
+  time. The species are stored as 1-byte unsigned integers.
 
 All arrays are stored in C-order as enforced by the HDF5 file format (see `§
 3.2.5 <http://www.hdfgroup.org/HDF5/doc/UG/12_Dataspaces.html#ProgModel>`_). A C
 or C++ program may thus declare r\[N\]\[D\] for the coordinates array while the
 fortran program will declaire a r(D,N) array (appropriate index ordering for a
 N atoms D dimensions system) and the hdf5 file will be the same.
+
+The "position", "velocity" and "force" datasets possess an attribute that is a
+link to the time indices (the integer number of steps up to that point in the
+simulation) and a link to the time (time in physical units).
+
+The "position", "velocity" and "force" datasets possess an optional attribute
+that is the unit of their respective data ("nm" for the position, for instance).
 
 Observables group
 ^^^^^^^^^^^^^^^^^
@@ -108,3 +119,10 @@ Data elements in discussion
 
   May be used to store coarse grained or cell-based physical quantities.
 
+* Species information
+
+  Some simulations allow species to change in time via chemical reactions. The
+  species thus need their own time-dependent dataset. To simplify matters, it is
+  suggested to use a \[variable\]\[N\] dataset for such simulations but only a
+  \[N\] dataset when the species are fixed in the course of time. Species may be
+  specified by a 1-byte integer (8-bit, allowing 256 values).
