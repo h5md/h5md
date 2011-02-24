@@ -28,6 +28,9 @@ information such as simulation parameters.
 Standardized data elements
 --------------------------
 
+Trajectory group
+^^^^^^^^^^^^^^^^
+
 * atomic coordinates in 1,2 or 3D
 
   The coordinates are stored in the dataset named "position". The dataset has the
@@ -51,6 +54,17 @@ or C++ program may thus declare r\[N\]\[D\] for the coordinates array while the
 fortran program will declaire a r(D,N) array (appropriate index ordering for a
 N atoms D dimensions system) and the hdf5 file will be the same.
 
+Observables group
+^^^^^^^^^^^^^^^^^
+
+Macroscopic observables are stored as one-dimensional time series. Their length
+is variable to accumulate time-steps.
+
+* total_energy
+* interaction_energy
+* kinetic_energy
+* temperature
+
 Reserved names
 --------------
 
@@ -63,6 +77,10 @@ The present list of reserved names is:
 * position
 * velocity
 * force
+* total_energy
+* interaction_energy
+* kinetic_energy
+* temperature
 
 Data elements in discussion
 ---------------------------
