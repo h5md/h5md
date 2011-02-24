@@ -17,7 +17,7 @@ General organization
 h5md defines a HDF5 group structure. Inside a group, a number of required
 fields exist and should possess a conforming name and shape.
 
-Several groups may exist in a file, allowing either the description of several
+Several groups may exist in a file, allowing the description of several
 subsystems. Multiple time steps are found inside a single dataset. One can then
 obtain either a snapshot of the system at a given time or extract a single
 trajectory via dataset slicing.
@@ -30,17 +30,17 @@ Standardized data elements
 
 * atomic coordinates in 1,2 or 3D
 
-  The coordinates are stored in the dataset named "r". The dataset has the
+  The coordinates are stored in the dataset named "position". The dataset has the
   dimensions \[variable\]\[N\]\[D\] where the variable dimension is present to
   accumulate timesteps.
 
 * atomic velocities in 1,2 or 3D
 
-  As for the coordinates in a dataset name "v"
+  As for the coordinates in a dataset named "velocity"
   
 * atomic forces in 1,2 or 3D
 
-  As for the coordinates in a dataset name "f"
+  As for the coordinates in a dataset named "force"
   
 * species identifier (be it a number or a character ?) 
 
@@ -54,24 +54,24 @@ N atoms D dimensions system) and the hdf5 file will be the same.
 Reserved names
 --------------
 
-Part of the h5md specification is a number of reserved names. This allows a data analysis package to handle adequately the datasets with reserved names.
+Part of the h5md specification is a number of reserved names. This allows a data
+analysis package to handle adequately the datasets with reserved names. Future
+names should be kept concise but worded fully.
 
 The present list of reserved names is:
 
-* r: positions
-* v: velocities
-* f: forces
+* position
+* velocity
+* force
 
 Data elements in discussion
 ---------------------------
 
 * Reserved names
 
-  At this times, r,v and f are reserved. Two elements to discuss:
-
-  * Keep short names or use full names (position, velocity, force, ...) ? Full names will not be appropriate for everyting: for instance, velocity autocorrelation function is a bit long for a variable name.
-
-  * How far should we specify? Other elements seem appropriate for reserved names: temperature - temp - T, time step - DT, ...
+  At this time, position, velocity and force are reserved. How far should we
+  specify? Other elements seem appropriate for reserved names: temperature, time
+  step - DT, ...
 
 * Topology
 
