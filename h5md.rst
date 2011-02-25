@@ -65,6 +65,24 @@ simulation) and a link to the time (time in physical units).
 The "position", "velocity" and "force" datasets possess an optional attribute
 that is the unit of their respective data ("nm" for the position, for instance).
 
+Storage of the time information in the trajectory group
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To link data from the trajectory group datasets to a time in the simulation, two
+datasets containing the integer time step (number of simulation steps) and the
+physical time (the time in simulational or physical units, real-valued) are
+necessary. If all data are dump at similar times, in which case "step" is a
+dataset of dimension \[variable\] of type integer and "time" is a dataset of
+dimension \[variable\] and of type real. If data are sampled at different times
+(for instance, one needs the positions more frequently than the velocities),
+"step" and "time" are groups in which datasets with the same names as the
+trajectory datasets are found and contain the relevant data.
+
+In order to read the information, the procedure is similar in both cases: the
+trajectory datasets contain the attributes "step" and "time" that link to the
+appropriate dataset.
+
+
 Observables group
 ^^^^^^^^^^^^^^^^^
 
