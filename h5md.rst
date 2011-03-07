@@ -184,3 +184,16 @@ Data elements in discussion
   suggested to use a \[variable\]\[N\] dataset for such simulations but only a
   \[N\] dataset when the species are fixed in the course of time. Species may be
   specified by a 1-byte integer (8-bit, allowing 256 values).
+
+* Parallel issues
+
+  Altough not a specification in itself, one advantage of using HDF5 is the
+  Parallel-HDF5 extension for MPI environments. File written by parallel
+  programs should be identical to programs written by serial programs.
+
+  An issue remains however: as particles move in space, they may belong to
+  varying CPUs. A proposition to this problem is to send all particles, as a
+  copy, to their original CPU and to write them from there using collective IO
+  calls. Particles for which the ordering is not important (for instance solvent
+  particles that may be required for checkpointing only) could be written from
+  their actual CPU without recreating the original order.
