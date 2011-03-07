@@ -136,6 +136,10 @@ Data elements in discussion
   specify? Other elements seem appropriate for reserved names: temperature, time
   step - DT, ...
 
+* Simulation box information
+
+  Some information on the simulation box geometry could be included. As a minimal suggestion: box_origin = basis point in the D dimensions (lowest value reached by the position) , box_size (total linear size in each dimension)
+
 * Topology
 
   There is the need to store topology for rigid bodies, elastic networks or
