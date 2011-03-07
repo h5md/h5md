@@ -107,6 +107,24 @@ is variable to accumulate time-steps.
 * kinetic_energy
 * temperature
 
+Program-dependent groups
+------------------------
+
+Some informations do not adequately fit a strict specification and can be
+included in groups whose name is however specified. These names are listed here.
+
+Parameters
+^^^^^^^^^^
+
+The "parameters" group may contain all parameters passed to initialize the
+simulation. Example are: temperature, random number generator seed, ...
+
+Profiling
+^^^^^^^^^
+
+The "profiling" group may contain information related to the timing of various
+parts of the simulation.
+
 Reserved names
 --------------
 
@@ -126,6 +144,8 @@ The present list of reserved names is:
 * creator
 * h5md_version
 * datetime
+* parameters
+* profiling
 
 Data elements in discussion
 ---------------------------
