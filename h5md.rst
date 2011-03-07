@@ -25,6 +25,19 @@ trajectory via dataset slicing.
 The file is allowed to possess non-conforming groups that contain other
 information such as simulation parameters.
 
+Global attributes
+-----------------
+
+A few global attributes are defined for convenience. They should set for the
+file. 
+
+* creator: The name of the program that created the file.
+* h5md_version: The version of the h5md specification that the file conforms to.
+
+Optional global attributes:
+
+* datetime: date and time of creation.
+
 Standardized data elements
 --------------------------
 
@@ -110,6 +123,9 @@ The present list of reserved names is:
 * interaction_energy
 * kinetic_energy
 * temperature
+* creator
+* h5md_version
+* datetime
 
 Data elements in discussion
 ---------------------------
