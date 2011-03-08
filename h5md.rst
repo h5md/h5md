@@ -28,8 +28,8 @@ information such as simulation parameters.
 Global attributes
 -----------------
 
-A few global attributes are defined for convenience. They should set for the
-file. 
+A few global attributes are defined for convenience. They should be set at the
+file level. 
 
 * creator: The name of the program that created the file.
 * h5md_version: The version of the h5md specification that the file conforms to.
@@ -48,7 +48,7 @@ Trajectory group
 
   The coordinates are stored in the dataset named "position". The dataset has the
   dimensions \[variable\]\[N\]\[D\] where the variable dimension is present to
-  accumulate timesteps.
+  accumulate time steps.
 
 * atomic velocities in 1,2 or 3D
 
@@ -68,7 +68,7 @@ Trajectory group
 All arrays are stored in C-order as enforced by the HDF5 file format (see `§
 3.2.5 <http://www.hdfgroup.org/HDF5/doc/UG/12_Dataspaces.html#ProgModel>`_). A C
 or C++ program may thus declare r\[N\]\[D\] for the coordinates array while the
-fortran program will declaire a r(D,N) array (appropriate index ordering for a
+Fortran program will declare a r(D,N) array (appropriate index ordering for a
 N atoms D dimensions system) and the hdf5 file will be the same.
 
 The "position", "velocity" and "force" datasets possess an attribute that is a
@@ -83,7 +83,7 @@ Trajectory subgroups
 
 Some simulations effectively take into account different kind of particles. For
 example, a solvent (with a large number of particles) may only be needed for
-checkpointing only.
+checkpointing.
 In this situation, the 'trajectory' group will contain *only* subgroups. Each of
 these subgroups are then considered trajectory groups in themselves.
 
@@ -92,8 +92,8 @@ Storage of the time information in the trajectory group
 
 To link data from the trajectory group datasets to a time in the simulation, two
 datasets containing the integer time step (number of simulation steps) and the
-physical time (the time in simulational or physical units, real-valued) are
-necessary. If all data are dump at similar times, in which case "step" is a
+physical time (the time in simulation or physical units, real-valued) are
+necessary. If all data are dumped at equal times, "step" is a
 dataset of dimension \[variable\] of type integer and "time" is a dataset of
 dimension \[variable\] and of type real. If data are sampled at different times
 (for instance, one needs the positions more frequently than the velocities),
@@ -144,19 +144,19 @@ names should be kept concise but worded fully.
 
 The present list of reserved names is:
 
-* position
-* velocity
+* creator
+* datetime
 * force
-* total_energy
+* h5md_version
 * interaction_energy
 * kinetic_energy
-* temperature
-* creator
-* h5md_version
-* datetime
-* parameters
-* profiling
 * observables
+* parameters
+* position
+* profiling
+* temperature
+* total_energy
+* velocity
 
 Data elements in discussion
 ---------------------------
@@ -176,10 +176,6 @@ Data elements in discussion
   There is the need to store topology for rigid bodies, elastic networks or
   proteins. The topology may be a connectivity table, contain bond lengths, ...
 
-* Macroscopic variables
-
-  These are variables that are computed during a simulation.
-
 * Simulation parameters
 
   Box size, time step, used force field, per species mass, ...
@@ -198,7 +194,7 @@ Data elements in discussion
 
 * Parallel issues
 
-  Altough not a specification in itself, one advantage of using HDF5 is the
+  Although not a specification in itself, one advantage of using HDF5 is the
   Parallel-HDF5 extension for MPI environments. File written by parallel
   programs should be identical to programs written by serial programs.
 
