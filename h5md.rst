@@ -28,15 +28,12 @@ information such as simulation parameters.
 Global attributes
 -----------------
 
-A few global attributes are defined for convenience. They should be set at the
-file level. 
+A few global attributes are defined for convenience. These attributes are given
+to the 'h5md' group.
 
 * creator: The name of the program that created the file.
-* h5md_version: The version of the h5md specification that the file conforms to.
+* version: The version of the h5md specification that the file conforms to.
 
-Optional global attributes:
-
-* datetime: date and time of creation.
 
 Standardized data elements
 --------------------------
@@ -191,6 +188,15 @@ Data elements in discussion
   suggested to use a \[variable\]\[N\] dataset for such simulations but only a
   \[N\] dataset when the species are fixed in the course of time. Species may be
   specified by a 1-byte integer (8-bit, allowing 256 values).
+
+* Date and time tracking
+  
+  HDF5 allows to track creation times and more, via the H5Pset_obj_track_times
+  function. See the
+  `HDF5 Reference Manual
+  <http://www.hdfgroup.org/HDF5/doc/RM/RM_H5P.html#Property-SetObjTrackTimes>`_
+  .
+
 
 * Parallel issues
 
