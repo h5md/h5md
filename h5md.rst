@@ -78,6 +78,15 @@ simulation) and a link to the time (time in physical units).
 The "position", "velocity" and "force" datasets possess an optional attribute
 that is the unit of their respective data ("nm" for the position, for instance).
 
+Trajectory subgroups
+^^^^^^^^^^^^^^^^^^^^
+
+Some simulations effectively take into account different kind of particles. For
+example, a solvent (with a large number of particles) may only be needed for
+checkpointing only.
+In this situation, the 'trajectory' group will contain *only* subgroups. Each of
+these subgroups are then considered trajectory groups in themselves.
+
 Storage of the time information in the trajectory group
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
