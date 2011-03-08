@@ -109,7 +109,8 @@ Observables group
 ^^^^^^^^^^^^^^^^^
 
 Macroscopic observables are stored as one-dimensional time series. Their length
-is variable to accumulate time-steps.
+is variable to accumulate time-steps. The name of the group holding these
+datasets is "observables".
 
 * total_energy
 * interaction_energy
@@ -155,6 +156,7 @@ The present list of reserved names is:
 * datetime
 * parameters
 * profiling
+* observables
 
 Data elements in discussion
 ---------------------------
