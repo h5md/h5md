@@ -41,36 +41,32 @@ Standardized data elements
 Trajectory group
 ^^^^^^^^^^^^^^^^
 
-* atomic coordinates in 1,2 or 3D
+The trajectories are stored in the "trajectory" group. For each kind of
+trajectory information there is a group that contains a "coordinates" dataset, a
+"step" dataset and a "time" dataset.
 
-  The coordinates are stored in the dataset named "position". The dataset has the
-  dimensions \[variable\]\[N\]\[D\] where the variable dimension is present to
-  accumulate time steps.
+* The "coordinates" dataset has dimensions \[variable\]\[N\]\[D\] where the
+  variable dimension is present to accumulate time steps.
 
-* atomic velocities in 1,2 or 3D
+* The "step" dataset has dimensions \[variable\] and contains the integer step
+  corresponding to the time step at which the corresponding data has been
+  written to the "coordinates" dataset.
 
-  As for the coordinates in a dataset named "velocity"
+* The "time" dataset is as the "step" dataset, but contains the real value of
+  the time.
+
+* The coordinates are "position", "velocity", "force" and "species".
   
-* atomic forces in 1,2 or 3D
-
-  As for the coordinates in a dataset named "force"
-  
-* species
-  
-  A dataset of dimensions \[N\] if the species do not change in the course of
-  time, that is if there is no chemical reaction occurring, or of dimensions
-  \[variable\]\[N\] if the species of particles may change in the course of
-  time. The species are stored as 1-byte unsigned integers.
+* The "species" dataset has dimensions \[N\] if the species do not change in the
+  course of time, that is if there is no chemical reaction occurring, or of
+  dimensions \[variable\]\[N\] if the species of particles may change in the
+  course of time. The species are stored as 1-byte unsigned integers.
 
 All arrays are stored in C-order as enforced by the HDF5 file format (see `§
 3.2.5 <http://www.hdfgroup.org/HDF5/doc/UG/12_Dataspaces.html#ProgModel>`_). A C
 or C++ program may thus declare r\[N\]\[D\] for the coordinates array while the
 Fortran program will declare a r(D,N) array (appropriate index ordering for a
 N atoms D dimensions system) and the hdf5 file will be the same.
-
-The "position", "velocity" and "force" datasets possess an attribute that is a
-link to the time indices (the integer number of steps up to that point in the
-simulation) and a link to the time (time in physical units).
 
 The "position", "velocity" and "force" datasets possess an optional attribute
 that is the unit of their respective data ("nm" for the position, for instance).
@@ -90,16 +86,15 @@ Storage of the time information in the trajectory group
 To link data from the trajectory group datasets to a time in the simulation, two
 datasets containing the integer time step (number of simulation steps) and the
 physical time (the time in simulation or physical units, real-valued) are
-necessary. If all data are dumped at equal times, "step" is a
-dataset of dimension \[variable\] of type integer and "time" is a dataset of
-dimension \[variable\] and of type real. If data are sampled at different times
-(for instance, one needs the positions more frequently than the velocities),
-"step" and "time" are groups in which datasets with the same names as the
-trajectory datasets are found and contain the relevant data.
+necessary. They are present in the same group as a trajectory dataset. If all
+data are dumped at equal times, "step" and "time" may be hard links to the
+"step" and "time" datasets of another coordinates variable. If data are sampled
+at different times (for instance, one needs the positions more frequently than
+the velocities), "step" and "time" are unique to each coordinates variable.
 
 In order to read the information, the procedure is similar in both cases: the
-trajectory datasets contain the attributes "step" and "time" that link to the
-appropriate dataset.
+coordinate group contain the attributes either "step" and "time" as datasets or
+as hard links.
 
 
 Observables group
@@ -141,6 +136,7 @@ names should be kept concise but worded fully.
 
 The present list of reserved names is:
 
+* coordinates
 * creator
 * datetime
 * force
