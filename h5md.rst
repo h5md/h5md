@@ -33,6 +33,7 @@ to the 'h5md' group.
 
 * creator: The name of the program that created the file.
 * version: The version of the h5md specification that the file conforms to.
+* creation_time: The creation time of the file. It is a RFC 822 conforming string.
 
 
 Standardized data elements
