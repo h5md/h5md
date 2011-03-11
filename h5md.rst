@@ -32,7 +32,9 @@ A few global attributes are defined for convenience. These attributes are given
 to the 'h5md' group.
 
 * creator: The name of the program that created the file.
-* version: The version of the h5md specification that the file conforms to.
+* version: The version of the h5md specification that the file conforms
+  to. 'version' is a dimension \[2\] integer dataset. The first element is the
+  major version number and the second element the minor version number.
 * creation_time: The creation time of the file. It is a RFC 822 conforming string.
 
 
@@ -103,7 +105,9 @@ Observables group
 
 Macroscopic observables are stored as one-dimensional time series. Their length
 is variable to accumulate time-steps. The name of the group holding these
-datasets is "observables".
+datasets is "observables". This group has the same structure as "trajectory":
+for each observable there is a group containing three datasets: the actual data
+in "samples" and the step and time datasets.
 
 * total_energy
 * interaction_energy
