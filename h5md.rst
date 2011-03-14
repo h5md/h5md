@@ -1,12 +1,12 @@
-Specifications for the h5md file format
+Specifications for the H5MD file format
 ========================================
 
 Objective
 ---------
 
-h5md is aimed at becoming a specification to store molecular simulation data.
-It is based on the `HDF5 <http://www.hdfgroup.org/HDF5/>`_ file format. h5md
-stands for "hdf5 for molecular data".
+H5MD is aimed at becoming a specification to store molecular simulation data.
+It is based on the `HDF5 <http://www.hdfgroup.org/HDF5/>`_ file format. H5MD 
+stands for "HDF5 for molecular data".
 
 It should facilitate portability of said data amongst simulation and analysis
 programs.
@@ -14,7 +14,7 @@ programs.
 General organization
 --------------------
 
-h5md defines a HDF5 group structure. Inside a group, a number of required
+H5MD defines a HDF5 group structure. Inside a group, a number of required
 fields exist and should possess a conforming name and shape.
 
 Several groups may exist in a file, allowing the description of several
@@ -29,10 +29,10 @@ Global attributes
 -----------------
 
 A few global attributes are defined for convenience. These attributes are given
-to the 'h5md' group.
+to the 'H5MD' group.
 
 * creator: The name of the program that created the file.
-* version: The version of the h5md specification that the file conforms
+* version: The version of the H5MD specification that the file conforms
   to. 'version' is a dimension \[2\] integer dataset. The first element is the
   major version number and the second element the minor version number.
 * creation_time: The creation time of the file. It is a RFC 822 conforming string.
@@ -135,7 +135,7 @@ parts of the simulation.
 Reserved names
 --------------
 
-Part of the h5md specification is a number of reserved names. This allows a data
+Part of the H5MD specification is a number of reserved names. This allows a data
 analysis package to handle adequately the datasets with reserved names. Future
 names should be kept concise but worded fully.
 
@@ -145,7 +145,7 @@ The present list of reserved names is:
 * creator
 * datetime
 * force
-* h5md_version
+* version
 * interaction_energy
 * kinetic_energy
 * observables
