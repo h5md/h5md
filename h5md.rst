@@ -35,7 +35,8 @@ to the 'H5MD' group.
 * version: The version of the H5MD specification that the file conforms
   to. 'version' is a dimension \[2\] integer dataset. The first element is the
   major version number and the second element the minor version number.
-* creation_time: The creation time of the file. It is a RFC 822 conforming string.
+* creation_time: The creation time of the file. It is an integer scalar dataset
+  representing the number of seconds since the Epoch.
 
 
 Standardized data elements
