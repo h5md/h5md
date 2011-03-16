@@ -104,11 +104,12 @@ as hard links.
 Observables group
 ^^^^^^^^^^^^^^^^^
 
-Macroscopic observables are stored as one-dimensional time series. Their length
-is variable to accumulate time-steps. The name of the group holding these
-datasets is "observables". This group has the same structure as "trajectory":
-for each observable there is a group containing three datasets: the actual data
-in "samples" and the step and time datasets.
+Macroscopic observables are stored as \[variable\] time series for scalar
+observables and as \[variable\]\[d\] time series for d-dimensional vector
+observables. The variable dimension allows to accumulate time-steps. The name of
+the group holding these datasets is "observables". This group has the same
+structure as "trajectory": for each observable there is a group containing three
+datasets: the actual data in "samples" and the step and time datasets.
 
 * total_energy
 * interaction_energy
