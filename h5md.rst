@@ -75,6 +75,10 @@ N atoms D dimensions system) and the hdf5 file will be the same.
 The "position", "velocity" and "force" datasets possess an optional attribute
 that is the unit of their respective data ("nm" for the position, for instance).
 
+The "position" dataset possesses two mandatory attributes that are the minimum
+and maximum values of the simulation box. The attributes are named "minimum" and
+"maximum" and are of dimension \[D\].
+
 Trajectory subgroups
 ^^^^^^^^^^^^^^^^^^^^
 
