@@ -38,6 +38,13 @@ to the 'H5MD' group.
 * creation_time: The creation time of the file. It is an integer scalar dataset
   representing the number of seconds since the Epoch.
 
+The content of this group is::
+
+    H5MD
+       \-- creator
+       \-- version
+       \-- datetime
+
 
 Standardized data elements
 --------------------------
