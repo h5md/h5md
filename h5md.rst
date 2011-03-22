@@ -87,6 +87,27 @@ and maximum values of the simulation box. The attributes are named "minimum" and
 "maximum" and are of dimension \[D\]. If they are absent, the analysis program
 may still use the bounding box of the position dataset as a fallback.
 
+The content of the trajectory group is the following::
+
+    trajectory
+     \-- position
+     |    \-- coordinates
+     |    \-- step
+     |    \-- time
+     \-- velocity
+     |    \-- coordinates
+     |    \-- step
+     |    \-- time
+     \-- force
+     |    \-- coordinates
+     |    \-- step
+     |    \-- time
+     \-- species
+     |    \-- coordinates
+     |    \-- step
+     |    \-- time
+
+
 Trajectory subgroups
 ^^^^^^^^^^^^^^^^^^^^
 
