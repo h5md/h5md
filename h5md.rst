@@ -41,9 +41,9 @@ to the 'H5MD' group.
 The content of this group is::
 
     H5MD
-       \-- creator
-       \-- version
-       \-- datetime
+     \-- creator
+     \-- version
+     \-- datetime
 
 
 Standardized data elements
