@@ -149,6 +149,19 @@ datasets: the actual data in "samples" and the step and time datasets.
 * kinetic_energy
 * temperature
 
+The content of the observables group is the following::
+
+    observables
+     \-- OBS1
+     |    \-- samples
+     |    \-- step
+     |    \-- time
+     \-- OBS2
+     |    \-- samples
+     |    \-- step
+     |    \-- time
+     \-- ...
+
 Program-dependent groups
 ------------------------
 
