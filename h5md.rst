@@ -217,14 +217,6 @@ Data elements in discussion
 
   May be used to store coarse grained or cell-based physical quantities.
 
-* Species information
-
-  Some simulations allow species to change in time via chemical reactions. The
-  species thus need their own time-dependent dataset. To simplify matters, it is
-  suggested to use a \[variable\]\[N\] dataset for such simulations but only a
-  \[N\] dataset when the species are fixed in the course of time. Species may be
-  specified by a 1-byte integer (8-bit, allowing 256 values).
-
 * Date and time tracking
   
   HDF5 allows to track creation times and more, via the H5Pset_obj_track_times
