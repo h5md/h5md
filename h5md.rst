@@ -29,7 +29,7 @@ Global attributes
 -----------------
 
 A few global attributes are defined for convenience. These attributes are given
-to the 'H5MD' group.
+to the 'h5md' group.
 
 * creator: The name of the program that created the file.
 * version: The version of the H5MD specification that the file conforms
@@ -40,7 +40,7 @@ to the 'H5MD' group.
 
 The content of this group is::
 
-    H5MD
+    h5md
      \-- creator
      \-- version
      \-- datetime
