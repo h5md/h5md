@@ -202,7 +202,9 @@ Data elements in discussion
 
 * Simulation box information
 
-  Some information on the simulation box geometry could be included. As a minimal suggestion: box_origin = basis point in the D dimensions (lowest value reached by the position) , box_size (total linear size in each dimension)
+  Some information on the simulation box geometry could be included. The lower
+  and upper coordinates of the box are already found as attributes to the
+  position/coordinates dataset. More ?
 
 * Topology
 
