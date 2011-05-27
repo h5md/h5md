@@ -152,11 +152,11 @@ datasets: the actual data in "samples" and the step and time datasets.
 The content of the observables group is the following::
 
     observables
-     \-- OBS1
+     \-- obs1
      |    \-- samples
      |    \-- step
      |    \-- time
-     \-- OBS2
+     \-- obs2
      |    \-- samples
      |    \-- step
      |    \-- time
