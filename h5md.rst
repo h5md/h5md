@@ -43,7 +43,7 @@ The content of this group is::
     h5md
      \-- creator
      \-- version
-     \-- datetime
+     \-- creation_time
 
 
 Standardized data elements
@@ -87,11 +87,29 @@ and maximum values of the simulation box. The attributes are named "minimum" and
 "maximum" and are of dimension \[D\]. If they are absent, the analysis program
 may still use the bounding box of the position dataset as a fallback.
 
+Other informations that are not of the particle type may be stored in the
+"trajectory" group.
+
+* The "density" dataset has dimensions \[variable\]\[Nx\]\[Ny\]\[Nz\] where the
+  variable dimension allows to accumulate steps, and Nx, Ny and Nz are the
+  number of data points in each dimension. This dataset possesses the attributes
+  "x0" and "dx", both of dimension "D" (the dimensionality of the system). "x0"
+  stores the center of the 0-th cell (the \[0,0,0\] cell) and "dx" stores the
+  cell spacing. The notation from "x" to "z" is given as an example and other
+  ranks can be given for other dimensionalities.
+
+* The "velocity_fied" dataset has dimensions \[variable\]\[Nx\]\[Ny\]\[Nz\]\[D\]
+  where "D" is the dimensionality of the system. It stores a cell-baed velocity
+  field. The same remark as for the "x", "y" and "z" variables as for the
+  "density" dataset applies.
+
 The content of the trajectory group is the following::
 
     trajectory
      \-- position
      |    \-- coordinates
+     |         \-- minimum
+     |         \-- maximum
      |    \-- step
      |    \-- time
      \-- velocity
@@ -106,6 +124,10 @@ The content of the trajectory group is the following::
      |    \-- coordinates
      |    \-- step
      |    \-- time
+     \-- density
+     |    \-- x0
+     |    \-- dx
+     \-- velocity_field
 
 
 Trajectory subgroups
