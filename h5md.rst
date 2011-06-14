@@ -72,10 +72,13 @@ dataset.
 
 * The coordinates are "position", "velocity", "force" and "species".
   
-* The "species" dataset has dimensions \[N\] if the species do not change in the
-  course of time, that is if there is no chemical reaction occurring, or of
-  dimensions \[variable\]\[N\] if the species of particles may change in the
-  course of time. The species are stored as 1-byte unsigned integers.
+* The "species/coordinates" dataset has dimensions \[N\] if the species do not
+  change in the course of time, that is if there is no chemical reaction
+  occurring, or of dimensions \[variable\]\[N\] if the species of particles may
+  change in the course of time. The species dataset should be of an integer
+  datatype only. Also, as the species may change less often than other
+  variables, if the species data is absent for a given time step, the most
+  recent data for the species should be fetched instead.
 
 All arrays are stored in C-order as enforced by the HDF5 file format (see `§
 3.2.5 <http://www.hdfgroup.org/HDF5/doc/UG/12_Dataspaces.html#ProgModel>`_). A C
