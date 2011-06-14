@@ -144,8 +144,10 @@ the group holding these datasets is "observables". This group has the same
 structure as "trajectory": for each observable there is a group containing three
 datasets: the actual data in "samples" and the step and time datasets.
 
+The following names should be obeyed for the corresponding observables:
+
 * total_energy
-* interaction_energy
+* potential_energy
 * kinetic_energy
 * temperature
 
