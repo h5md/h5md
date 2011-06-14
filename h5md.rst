@@ -32,6 +32,8 @@ A few global attributes are defined for convenience. These attributes are given
 to the 'h5md' group.
 
 * creator: The name of the program that created the file.
+* creator_version: The version of the program that created the file, as a string
+  containing proper identification for the given program.
 * version: The version of the H5MD specification that the file conforms
   to. 'version' is a dimension \[2\] integer dataset. The first element is the
   major version number and the second element the minor version number.
@@ -42,6 +44,7 @@ The content of this group is::
 
     h5md
      \-- creator
+     \-- creator_version
      \-- version
      \-- creation_time
 
