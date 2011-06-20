@@ -1,4 +1,6 @@
-.. This file is part of H5MD.
+.. Copyright © 2011 Pierre de Buyl, Peter Colberg and Felix Höfling
+   
+   This file is part of H5MD.
    
    H5MD is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -98,7 +100,7 @@ dataset.
   variables, if the species data is absent for a given time step, the most
   recent data for the species should be fetched instead.
 
-All arrays are stored in C-order as enforced by the HDF5 file format (see `§
+All arrays are stored in C-order as enforced by the HDF5 file format (see `Â§
 3.2.5 <http://www.hdfgroup.org/HDF5/doc/UG/12_Dataspaces.html#ProgModel>`_). A C
 or C++ program may thus declare r\[N\]\[D\] for the coordinates array while the
 Fortran program will declare a r(D,N) array (appropriate index ordering for a

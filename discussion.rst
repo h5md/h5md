@@ -1,4 +1,6 @@
-.. This file is part of H5MD.
+.. Copyright © 2011 Pierre de Buyl, Peter Colberg and Felix Höfling
+   
+   This file is part of H5MD.
    
    H5MD is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
