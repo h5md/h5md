@@ -52,7 +52,7 @@ Data elements in discussion
   cell spacing. The notation from "x" to "z" is given as an example and other
   ranks can be given for other dimensionalities.
 
-* The "velocity_fied" dataset has dimensions \[variable\]\[Nx\]\[Ny\]\[Nz\]\[D\]
+* The "velocity_field" dataset has dimensions \[variable\]\[Nx\]\[Ny\]\[Nz\]\[D\]
   where "D" is the dimensionality of the system. It stores a cell-baed velocity
   field. The same remark as for the "x", "y" and "z" variables as for the
   "density" dataset applies.
