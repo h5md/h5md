@@ -1,0 +1,18 @@
+H5MD : HDF5 for molecular data
+==============================
+
+Copyright © 2011 Pierre de Buyl, Peter Colberg and Felix Höfling
+
+H5MD is a file format specification, based upon `HDF5
+<http://www.hdfgroup.org/HDF5/>`_, aimed at the efficient and portable storage
+of molecular data (e.g. simulation trajectories, molecular structures, ...).
+
+H5MD is developed by Pierre de Buyl, Peter Colberg and Felix Höfling and is
+available under the `GPL <http://www.gnu.org/licenses/gpl.html>`_. The GPL is
+found in the file LICENSE.
+
+The H5MD specification is found in the reStructuredText files index.rst,
+draft.rst and discussion.rst. It may be optionnally be built as html files with
+the `Sphinx <http://sphinx.pocoo.org/>`_ software by typing "make html" at a
+command prompt. The resulting files are stored in the _html directory.
+
