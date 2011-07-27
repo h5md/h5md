@@ -8,7 +8,8 @@ H5MD is a file format specification, based upon `HDF5
 of molecular data (e.g. simulation trajectories, molecular structures, ...).
 
 H5MD is developed by Pierre de Buyl, Peter Colberg and Felix Höfling and is
-available under the `GPL <http://www.gnu.org/licenses/gpl.html>`_. The GPL is
+available under the `GNU General Public License
+<http://www.gnu.org/licenses/gpl.html>`_. The GNU General Public License is
 found in the file LICENSE.
 
 The H5MD specification is found in the reStructuredText files index.rst,
