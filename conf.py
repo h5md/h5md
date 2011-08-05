@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+#
 # Copyright © 2011 Pierre de Buyl, Peter Colberg and Felix Höfling
 #
 # This file is part of H5MD.
@@ -15,8 +17,6 @@
 # You should have received a copy of the GNU General Public License
 # along with H5MD.  If not, see <http://www.gnu.org/licenses/>.
 
-# -*- coding: utf-8 -*-
-#
 # Molecular Simulation documentation build configuration file, created by
 # sphinx-quickstart on Tue Jan 25 13:16:28 2011.
 #
