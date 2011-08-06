@@ -58,7 +58,7 @@ Data elements in discussion
   "density" dataset applies.
 
 * Date and time tracking
-  
+
   HDF5 allows to track creation times and more, via the H5Pset_obj_track_times
   function. See the
   `HDF5 Reference Manual

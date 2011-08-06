@@ -22,7 +22,7 @@ Objective
 ---------
 
 H5MD is aimed at becoming a specification to store molecular simulation data.
-It is based on the `HDF5 <http://www.hdfgroup.org/HDF5/>`_ file format. H5MD 
+It is based on the `HDF5 <http://www.hdfgroup.org/HDF5/>`_ file format. H5MD
 stands for "HDF5 for molecular data".
 
 It should facilitate portability of said data amongst simulation and analysis
@@ -91,7 +91,7 @@ dataset.
   the time.
 
 * The coordinates are "position", "velocity", "force" and "species".
-  
+
 * The "species/coordinates" dataset has dimensions \[N\] if the species do not
   change in the course of time, that is if there is no chemical reaction
   occurring, or of dimensions \[variable\]\[N\] if the species of particles may
