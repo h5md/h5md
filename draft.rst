@@ -56,6 +56,8 @@ to the 'h5md' group.
   major version number and the second element the minor version number.
 * creation_time: The creation time of the file. It is an integer scalar dataset
   representing the number of seconds since the Epoch.
+* author: The name of the author of the simulation/experiment. It is of the 
+  form "Real Name <email@domain.tld>", where the email is optional.
 
 The content of this group is::
 
@@ -64,6 +66,7 @@ The content of this group is::
      \-- creator_version
      \-- version
      \-- creation_time
+     \-- author
 
 
 Standardized data elements
