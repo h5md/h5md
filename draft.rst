@@ -103,7 +103,7 @@ dataset.
   variables, if the species data is absent for a given time step, the most
   recent data for the species should be fetched instead.
 
-All arrays are stored in C-order as enforced by the HDF5 file format (see `Â§
+All arrays are stored in C-order as enforced by the HDF5 file format (see `§
 3.2.5 <http://www.hdfgroup.org/HDF5/doc/UG/12_Dataspaces.html#ProgModel>`_). A C
 or C++ program may thus declare r\[N\]\[D\] for the coordinates array while the
 Fortran program will declare a r(D,N) array (appropriate index ordering for a
