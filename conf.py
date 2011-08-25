@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with H5MD.  If not, see <http://www.gnu.org/licenses/>.
 
-# Molecular Simulation documentation build configuration file, created by
+# H5MD documentation build configuration file, created by
 # sphinx-quickstart on Tue Jan 25 13:16:28 2011.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -57,7 +57,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Molecular Simulation'
+project = u'H5MD'
 copyright = u'2011, Pierre de Buyl, Peter Colberg, Felix Höfling'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -181,7 +181,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'MolecularSimulation'
+htmlhelp_basename = 'h5md'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -195,7 +195,7 @@ htmlhelp_basename = 'MolecularSimulation'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'MolecularSimulation.tex', u'Molecular Simulation',
+  ('index', 'h5md.tex', u'H5MD',
    u'Pierre de Buyl, Peter Colberg, Felix Höfling', 'manual'),
 ]
 
@@ -228,6 +228,6 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'molecularsimulation', u'Molecular Simulation',
+    ('index', 'molecularsimulation', u'H5MD',
      [u'Pierre de Buyl, Peter Colberg, Felix Höfling'], 1)
 ]
