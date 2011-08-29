@@ -80,11 +80,13 @@ itself is only a container for groups that represent different parts of the
 system under consideration. There may be one or several groups in the trajectory
 group, as needed, but the trajectory group may only contain groups.
 Inside of these subgroups, for each kind of trajectory information there is a
-group that contains a "coordinates" dataset, a "step" dataset and a "time"
-dataset.
+group that contains datasets "sample", "step", and "time".
 
-* The "coordinates" dataset has dimensions \[variable\]\[N\]\[D\] where the
-  variable dimension is present to accumulate time steps.
+* Standardised subgroups are "position", "velocity", "force" and "species".
+
+* The "sample" dataset holds the actual data and has dimensions
+  \[variable\]\[N\]\[D\], where the variable dimension is present to accumulate
+  time steps.
 
 * The "step" dataset has dimensions \[variable\] and contains the integer step
   corresponding to the time step at which the corresponding data has been
@@ -93,9 +95,7 @@ dataset.
 * The "time" dataset is as the "step" dataset, but contains the real value of
   the time.
 
-* The coordinates are "position", "velocity", "force" and "species".
-
-* The "species/coordinates" dataset has dimensions \[N\] if the species do not
+* The "species/sample" dataset has dimensions \[N\] if the species do not
   change in the course of time, that is if there is no chemical reaction
   occurring, or of dimensions \[variable\]\[N\] if the species of particles may
   change in the course of time. The species dataset should be of an integer
@@ -123,21 +123,21 @@ The content of the trajectory group is the following::
     trajectory
      \-- group1
           \-- position
-          |    \-- coordinates
+          |    \-- sample
           |    |    \-- minimum
           |    |    \-- maximum
           |    \-- step
           |    \-- time
           \-- velocity
-          |    \-- coordinates
+          |    \-- sample
           |    \-- step
           |    \-- time
           \-- force
-          |    \-- coordinates
+          |    \-- sample
           |    \-- step
           |    \-- time
           \-- species
-          |    \-- coordinates
+          |    \-- sample
           |    \-- step
           |    \-- time
 
@@ -146,14 +146,14 @@ The content of the trajectory group is the following::
 Storage of the time information in the trajectory group
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To link data from the trajectory group datasets to a time in the simulation, two
-datasets containing the integer time step (number of simulation steps) and the
-physical time (the time in simulation or physical units, real-valued) are
+To link data from the trajectory group datasets to a time in the simulation,
+two datasets containing the integer time step (number of simulation steps) and
+the physical time (the time in simulation or physical units, real-valued) are
 necessary. They are present in the same group as a trajectory dataset. If all
 data are dumped at equal times, "step" and "time" may be hard links to the
-"step" and "time" datasets of another coordinates variable. If data are sampled
-at different times (for instance, one needs the positions more frequently than
-the velocities), "step" and "time" are unique to each coordinates variable.
+"step" and "time" datasets of another subgroup. If data are sampled at
+different times (for instance, one needs the positions more frequently than the
+velocities), "step" and "time" are unique to each subgroup.
 
 In order to read the information, the procedure is similar in both cases: the
 coordinate group contain the attributes either "step" and "time" as datasets or
@@ -168,7 +168,7 @@ observables and as \[variable\]\[d\] time series for d-dimensional vector
 observables. The variable dimension allows to accumulate time-steps. The name of
 the group holding these datasets is "observables". This group has the same
 structure as "trajectory": for each observable there is a group containing three
-datasets: the actual data in "samples" and the step and time datasets.
+datasets: the actual data in "sample" and the step and time datasets.
 
 The following names should be obeyed for the corresponding observables:
 
@@ -181,11 +181,11 @@ The content of the observables group is the following::
 
     observables
      \-- obs1
-     |    \-- samples
+     |    \-- sample
      |    \-- step
      |    \-- time
      \-- obs2
-     |    \-- samples
+     |    \-- sample
      |    \-- step
      |    \-- time
      \-- ...
@@ -217,7 +217,6 @@ names should be kept concise but worded fully.
 
 The present list of reserved names is:
 
-* coordinates
 * creator
 * datetime
 * force
