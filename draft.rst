@@ -62,11 +62,11 @@ to the 'h5md' group.
 The content of this group is::
 
     h5md
-     \-- creator
-     \-- creator_version
-     \-- version
-     \-- creation_time
-     \-- author
+     +-- creator
+     +-- creator_version
+     +-- version
+     +-- creation_time
+     +-- author
 
 
 Standardized data elements
@@ -124,8 +124,8 @@ The content of the trajectory group is the following::
      \-- group1
           \-- position
           |    \-- sample
-          |    |    \-- minimum
-          |    |    \-- maximum
+          |    |    +-- [minimum]
+          |    |    +-- [maximum]
           |    \-- step
           |    \-- time
           \-- velocity
