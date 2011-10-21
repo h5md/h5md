@@ -42,6 +42,15 @@ trajectory via dataset slicing.
 The file is allowed to possess non-conforming groups that contain other
 information such as simulation parameters.
 
+The groups that are part of the H5MD specifications are
+
+* h5md: Group containing, as attributes, information on the file itself.
+* parameters: Group containing the parameters for a simulation/dataset, such as
+  the spatial dimension of the system or simulation parameters.
+* trajectory: Group containing the trajectory of the system (positions, ...).
+* observables: Group containing all time-dependent variables in the system,
+  except the ones found in the "trajectory group".
+
 Global attributes
 -----------------
 
@@ -141,6 +150,56 @@ The content of the trajectory group is the following::
           |    \-- step
           |    \-- time
 
+Box specification
+^^^^^^^^^^^^^^^^^
+
+The box specification is stored in the observables group, as a group. The type
+of box is stored as an attribute to this box group ::
+
+  observables
+   \-- box
+        +-- type
+   ...
+
+The box type can be "cubic" or "triclinic". Depending on this information,
+additional data is stored.
+
+Cubic box
+"""""""""
+
+* edges: A vector specifying the length of the box in the D dimensions of
+    space.
+* offset: A vector specifying the lower coordinate for all directions.
+
+Triclinic box
+"""""""""""""
+
+* edges: A set of D D-dimensional vectors specifying the directions and
+  lengths of the sides of the box.
+* offset: A vector specifying the lower coordinate for all directions.
+
+Time dependence
+"""""""""""""""
+
+For all box kinds, if the data for edges,offset is stored as a single dataset,
+it is considered fixed in time. Else, it should comply to the step, time and
+value organization.
+
+For instance, a cubic box that changes in time would appear as ::
+
+  observables
+   \-- box
+        +-- type
+        \-- edges
+             \-- step [var]
+             \-- time [var]
+             \-- value [var][D]
+        \-- offset
+             \-- step [var]
+             \-- time [var]
+             \-- value [var][D]
+
+where "type" is set to "cubic".
 
 
 Storage of the time information in the trajectory group
