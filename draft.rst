@@ -51,6 +51,9 @@ The groups that are part of the H5MD specifications are
 * observables: Group containing all time-dependent variables in the system,
   except the ones found in the "trajectory group".
 
+All time dependent data (whether in "trajectory" or "observables") is organized
+into HDF5 groups that contain time information in addition to the data.
+
 Global attributes
 -----------------
 
