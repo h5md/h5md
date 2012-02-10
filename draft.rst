@@ -94,11 +94,11 @@ As an example, here is the data for the position in a group of particles::
     trajectory
       \-- group1
            \-- position
-                \-- sample
+                \-- value
                 \-- step
                 \-- time
 
-where the first dimension of "sample" must match the unique dimension of "step"
+where the first dimension of "value" must match the unique dimension of "step"
 and "time".
 
 The "step" dataset must be of integer datatype to allow exact temporal matching
@@ -120,11 +120,11 @@ itself is only a container for groups that represent different parts of the
 system under consideration. There may be one or several groups in the trajectory
 group, as needed, but the trajectory group may only contain groups.
 Inside of these subgroups, for each kind of trajectory information there is a
-group that contains datasets "sample", "step", and "time".
+group that contains datasets "value", "step", and "time".
 
 * Standardised subgroups are "position", "velocity", "force" and "species".
 
-* The "sample" dataset holds the actual data and has dimensions
+* The "value" dataset holds the actual data and has dimensions
   \[variable\]\[N\]\[D\], where the variable dimension is present to accumulate
   time steps.
 
@@ -135,7 +135,7 @@ group that contains datasets "sample", "step", and "time".
 * The "time" dataset is as the "step" dataset, but contains the real value of
   the time.
 
-* The "species/sample" dataset has dimensions \[N\] if the species do not
+* The "species/value" dataset has dimensions \[N\] if the species do not
   change in the course of time, that is if there is no chemical reaction
   occurring, or of dimensions \[variable\]\[N\] if the species of particles may
   change in the course of time. The species dataset should be of an integer
@@ -157,19 +157,19 @@ The content of the trajectory group is the following::
     trajectory
      \-- group1
           \-- position
-          |    \-- sample
+          |    \-- value
           |    \-- step
           |    \-- time
           \-- velocity
-          |    \-- sample
+          |    \-- value
           |    \-- step
           |    \-- time
           \-- force
-          |    \-- sample
+          |    \-- value
           |    \-- step
           |    \-- time
           \-- species
-          |    \-- sample
+          |    \-- value
           |    \-- step
           |    \-- time
 
@@ -233,7 +233,7 @@ observables and as \[variable\]\[d\] time series for d-dimensional vector
 observables. The variable dimension allows to accumulate time-steps. The name of
 the group holding these datasets is "observables". This group has the same
 structure as "trajectory": for each observable there is a group containing three
-datasets: the actual data in "sample" and the step and time datasets.
+datasets: the actual data in "value" and the step and time datasets.
 
 The following names should be obeyed for the corresponding observables:
 
@@ -246,11 +246,11 @@ The content of the observables group is the following::
 
     observables
      \-- obs1
-     |    \-- sample
+     |    \-- value
      |    \-- step
      |    \-- time
      \-- obs2
-     |    \-- sample
+     |    \-- value
      |    \-- step
      |    \-- time
      \-- ...
