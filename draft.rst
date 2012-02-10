@@ -265,7 +265,8 @@ Parameters
 ^^^^^^^^^^
 
 The "parameters" group may contain all parameters passed to initialize the
-simulation. Example are: temperature, random number generator seed, ...
+simulation. Example are: temperature, random number generator seed, initial box
+size, ...
 
 Profiling
 ^^^^^^^^^
