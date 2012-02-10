@@ -80,6 +80,34 @@ The content of this group is::
      +-- creation_time
      +-- author
 
+Storage of the time information for time-dependent datasets
+-----------------------------------------------------------
+
+To link data the data of a time dependent dataset to a time in the simulation,
+H5MD defines a group structure containing, in addition to the data, the
+corresponding integer time step information (number of simulation steps) and
+physical time information (the time in simulation or physical units,
+real-valued).
+
+As an example, here is the data for the position in a group of particles::
+
+    trajectory
+      \-- group1
+           \-- position
+                \-- sample
+                \-- step
+                \-- time
+
+where the first dimension of "sample" must match the unique dimension of "step"
+and "time".
+
+The "step" dataset must be of integer datatype to allow exact temporal matching
+of data from one data group to another within the same file.
+
+If several datasets are dumped at equal times, "step" and "time" may be hard
+links to the "step" and "time" datasets of one data group. If data are sampled
+at different times (for instance, one needs the positions more frequently than
+the velocities), "step" and "time" are unique to each data group.
 
 Standardized data elements
 --------------------------
@@ -203,23 +231,6 @@ For instance, a cubic box that changes in time would appear as ::
              \-- value [var][D]
 
 where "type" is set to "cubic".
-
-
-Storage of the time information in the trajectory group
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-To link data from the trajectory group datasets to a time in the simulation,
-two datasets containing the integer time step (number of simulation steps) and
-the physical time (the time in simulation or physical units, real-valued) are
-necessary. They are present in the same group as a trajectory dataset. If all
-data are dumped at equal times, "step" and "time" may be hard links to the
-"step" and "time" datasets of another subgroup. If data are sampled at
-different times (for instance, one needs the positions more frequently than the
-velocities), "step" and "time" are unique to each subgroup.
-
-In order to read the information, the procedure is similar in both cases: the
-coordinate group contain the attributes either "step" and "time" as datasets or
-as hard links.
 
 
 Observables group
