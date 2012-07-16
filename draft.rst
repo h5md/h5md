@@ -274,26 +274,3 @@ Profiling
 The "profiling" group may contain information related to the timing of various
 parts of the simulation.
 
-Reserved names
---------------
-
-Part of the H5MD specification is a number of reserved names. This allows a data
-analysis package to handle adequately the datasets with reserved names. Future
-names should be kept concise but worded fully.
-
-The present list of reserved names is:
-
-* creator
-* datetime
-* force
-* version
-* interaction_energy
-* kinetic_energy
-* observables
-* parameters
-* position
-* profiling
-* temperature
-* total_energy
-* velocity
-
