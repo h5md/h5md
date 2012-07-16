@@ -188,7 +188,7 @@ The box type can be "cuboid" or "triclinic". Depending on this information,
 additional data is stored.
 
 Cuboid box
-"""""""""
+""""""""""
 
 * edges: A vector specifying the length of the box in the D dimensions of
     space.
