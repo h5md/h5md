@@ -184,10 +184,10 @@ of box is stored as an attribute to this box group ::
         +-- type
    ...
 
-The box type can be "cubic" or "triclinic". Depending on this information,
+The box type can be "cuboid" or "triclinic". Depending on this information,
 additional data is stored.
 
-Cubic box
+Cuboid box
 """""""""
 
 * edges: A vector specifying the length of the box in the D dimensions of
@@ -208,7 +208,7 @@ For all box kinds, if the data for edges,offset is stored as a single dataset,
 it is considered fixed in time. Else, it should comply to the step, time and
 value organization.
 
-For instance, a cubic box that changes in time would appear as ::
+For instance, a cuboid box that changes in time would appear as ::
 
   observables
    \-- box
@@ -222,7 +222,7 @@ For instance, a cubic box that changes in time would appear as ::
              \-- time [var]
              \-- value [var][D]
 
-where "type" is set to "cubic".
+where "type" is set to "cuboid".
 
 
 Observables group
