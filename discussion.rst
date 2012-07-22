@@ -18,31 +18,20 @@
 Data elements in discussion
 ---------------------------
 
-* Reserved names
-
-  At this time, position, velocity and force are reserved. How far should we
-  specify? Other elements seem appropriate for reserved names: temperature, time
-  step - DT, ...
-
 * Simulation box information
 
-  Some information on the simulation box geometry could be included. The lower
-  and upper coordinates of the box are already found as attributes to the
-  position/coordinates dataset. More ?
+  Some information on the simulation box geometry could be included. For now,
+  the box size is included in the observables group. Symmetry groups could be
+  included in the future.
 
 * Topology
 
   There is the need to store topology for rigid bodies, elastic networks or
   proteins. The topology may be a connectivity table, contain bond lengths, ...
 
-* Simulation parameters
-
-  Box size, time step, used force field, per species mass, ...
-
 * Scalar and vector fields
 
   May be used to store coarse grained or cell-based physical quantities.
-
 
 * The "density" dataset has dimensions \[variable\]\[Nx\]\[Ny\]\[Nz\] where the
   variable dimension allows to accumulate steps, and Nx, Ny and Nz are the
