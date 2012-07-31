@@ -191,14 +191,14 @@ Cuboid box
 """"""""""
 
 * edges: A vector specifying the length of the box in the D dimensions of
-    space.
+  space.
 * offset: A vector specifying the lower coordinate for all directions.
 
 Triclinic box
 """""""""""""
 
-* edges: A set of D D-dimensional vectors specifying the directions and
-  lengths of the sides of the box.
+* edges: A set of D×D-dimensional matrices with the rows specifying the
+  directions and lengths of the edges of the box.
 * offset: A vector specifying the lower coordinate for all directions.
 
 Time dependence
@@ -230,16 +230,19 @@ Observables group
 
 Macroscopic observables are stored as \[variable\] time series for scalar
 observables and as \[variable\]\[d\] time series for d-dimensional vector
-observables. The variable dimension allows to accumulate time-steps. The name of
+observables. The variable dimension allows to accumulate time steps. The name of
 the group holding these datasets is "observables". This group has the same
 structure as "trajectory": for each observable there is a group containing three
 datasets: the actual data in "value" and the step and time datasets.
+Observables representing only a subset of the particles may be stored in
+appropriate subgroups similarly to the "trajectory" tree.
 
 The following names should be obeyed for the corresponding observables:
 
 * total_energy
 * potential_energy
 * kinetic_energy
+* pressure
 * temperature
 
 The content of the observables group is the following::
@@ -253,6 +256,11 @@ The content of the observables group is the following::
      |    \-- value
      |    \-- step
      |    \-- time
+     \-- group1
+     |    \-- obs3
+     |         \-- value
+     |         \-- step
+     |         \-- time
      \-- ...
 
 Program-dependent groups
