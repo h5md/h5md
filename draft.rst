@@ -40,7 +40,11 @@ obtain either a snapshot of the system at a given time or extract a single
 trajectory via dataset slicing.
 
 The file is allowed to possess non-conforming groups that contain other
-information such as simulation parameters.
+information such as simulation parameters. Only the "h5md" group is mandatory in
+a H5MD file. The other data groups are optional, allowing the user to store only
+relevant data. Inside each group, every dataset is again optional. Within
+time-dependent groups, the "step", "time" and "value" datasets are however
+mandatory as they form an important part of the specification.
 
 The groups that are part of the H5MD specifications are
 
