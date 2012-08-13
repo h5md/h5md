@@ -267,22 +267,15 @@ The content of the observables group is the following::
      |         \-- time
      \-- ...
 
-Program-dependent groups
-------------------------
 
-Some informations do not adequately fit a strict specification and can be
-included in groups whose name is however specified. These names are listed here.
-
-Parameters
-^^^^^^^^^^
+Parameters group
+----------------
 
 The "parameters" group may contain all parameters passed to initialize the
 simulation. Example are: temperature, random number generator seed, initial box
 size, ...
 
-Profiling
-^^^^^^^^^
+The "parameters" group does not fit a strict specification and is considered
+program-depedent.
 
-The "profiling" group may contain information related to the timing of various
-parts of the simulation.
 
