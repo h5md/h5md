@@ -154,7 +154,8 @@ Fortran program will declare a r(D,N) array (appropriate index ordering for a
 N atoms D dimensions system) and the hdf5 file will be the same.
 
 The "position", "velocity" and "force" datasets possess an optional attribute
-that is the unit of their respective data ("nm" for the position, for instance).
+"units" that gives the units of their respective data ("nm" for the position,
+for instance).
 
 The content of the trajectory group is the following::
 
