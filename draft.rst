@@ -279,4 +279,16 @@ size, ...
 The "parameters" group does not fit a strict specification and is considered
 program-depedent.
 
+Notation
+--------
+
+The following notation is used:
+
+* ``\-- item``: ``item`` is an element of a group. ``item`` can be a group
+  itself. The elements within a group are indented by five spaces with respect
+  to the group.
+* ``+-- att``: ``att`` is an attribute. ``att`` can relate to a group or a
+  dataset.
+* ``\-- value [dim1][dim2]``: ``value`` has dimensions ``dim1`` by ``dim2``.
+
 
