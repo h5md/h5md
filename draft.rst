@@ -98,7 +98,7 @@ The content of this group is::
 Storage of the time information for time-dependent datasets
 -----------------------------------------------------------
 
-To link data the data of a time dependent dataset to a time in the simulation,
+To link the data of a time dependent dataset to a time in the simulation,
 H5MD defines a group structure containing, in addition to the data, the
 corresponding integer time step information (number of simulation steps) and
 physical time information (the time in simulation or physical units,
@@ -159,7 +159,7 @@ All arrays are stored in C-order as enforced by the HDF5 file format (see `§
 3.2.5 <http://www.hdfgroup.org/HDF5/doc/UG/12_Dataspaces.html#ProgModel>`_). A C
 or C++ program may thus declare r\[N\]\[D\] for the coordinates array while the
 Fortran program will declare a r(D,N) array (appropriate index ordering for a
-N atoms D dimensions system) and the hdf5 file will be the same.
+N atoms D dimensions system) and the HDF5 file will be the same.
 
 The "position", "velocity" and "force" datasets possess an optional attribute
 "units" that gives the units of their respective data ("nm" for the position,
