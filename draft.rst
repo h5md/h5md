@@ -113,11 +113,8 @@ links to the "step" and "time" datasets of one data group. If data are sampled
 at different times (for instance, one needs the positions more frequently than
 the velocities), "step" and "time" are unique to each data group.
 
-Standardized data elements
---------------------------
-
 Trajectory group
-^^^^^^^^^^^^^^^^
+----------------
 
 The trajectories are stored in the "trajectory" group. The trajectory group
 itself is only a container for groups that represent different parts of the
@@ -179,7 +176,7 @@ The content of the trajectory group is the following::
           |    \-- time
 
 Box specification
-^^^^^^^^^^^^^^^^^
+-----------------
 
 The box specification is stored in the observables group, as a group. The type
 of box is stored as an attribute to this box group ::
@@ -193,21 +190,21 @@ The box type can be "cuboid" or "triclinic". Depending on this information,
 additional data is stored.
 
 Cuboid box
-""""""""""
+^^^^^^^^^^
 
 * edges: A vector specifying the length of the box in the D dimensions of
   space.
 * offset: A vector specifying the lower coordinate for all directions.
 
 Triclinic box
-"""""""""""""
+^^^^^^^^^^^^^
 
 * edges: A set of D×D-dimensional matrices with the rows specifying the
   directions and lengths of the edges of the box.
 * offset: A vector specifying the lower coordinate for all directions.
 
 Time dependence
-"""""""""""""""
+^^^^^^^^^^^^^^^
 
 For all box kinds, if the data for edges,offset is stored as a single dataset,
 it is considered fixed in time. Else, it should comply to the step, time and
@@ -231,7 +228,7 @@ where "type" is set to "cuboid".
 
 
 Observables group
-^^^^^^^^^^^^^^^^^
+-----------------
 
 Macroscopic observables are stored as \[variable\] time series for scalar
 observables and as \[variable\]\[d\] time series for d-dimensional vector
