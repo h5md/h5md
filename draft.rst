@@ -58,6 +58,17 @@ The groups that are part of the H5MD specifications are
 All time dependent data (whether in "trajectory" or "observables") is organized
 into HDF5 groups that contain time information in addition to the data.
 
+The root of the HDF5 file is organized as follows::
+
+    file root
+     \-- h5md
+     \-- trajectory
+     \-- observables
+     \-- parameters
+
+In the following, the examples of HDF5 organization may start at the group
+level, omitting to display ``file root``.
+
 Global attributes
 -----------------
 
