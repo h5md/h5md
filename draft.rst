@@ -237,6 +237,15 @@ For instance, a cuboid box that changes in time would appear as ::
 
 where "type" is set to "cuboid".
 
+A fixed-in-time triclinic box would appear as ::
+
+  observables
+   \-- box
+        +-- type
+        \-- edges [D][D]
+        \-- offset [D]
+
+where "type" is set to "triclinic"
 
 Observables group
 -----------------
