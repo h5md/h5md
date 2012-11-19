@@ -73,13 +73,13 @@ Global attributes
 -----------------
 
 A few global attributes (in the HDF5 sense) are defined for convenience. These attributes are given
-to the 'h5md' group.
+to the "h5md" group.
 
 * creator: The name of the program that created the file.
 * creator_version: The version of the program that created the file, as a string
   containing proper identification for the given program.
 * version: The version of the H5MD specification that the file conforms
-  to. 'version' is a dimension \[2\] integer dataset. The first element is the
+  to. "version" is a dimension \[2\] integer dataset. The first element is the
   major version number and the second element the minor version number.
 * creation_time: The creation time of the file. It is an integer scalar dataset
   representing the number of seconds since the Epoch.
