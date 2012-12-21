@@ -135,7 +135,7 @@ group, as needed, but the trajectory group may only contain groups.
 Inside of these subgroups, for each kind of trajectory information there is a
 group that contains datasets "value", "step", and "time".
 
-* Standardised subgroups are "position", "velocity", "force" and "species".
+* Standardized subgroups are "position", "velocity", "force" and "species".
 
 * The "value" dataset holds the actual data and has dimensions
   \[variable\]\[N\]\[D\], where the variable dimension is present to accumulate
