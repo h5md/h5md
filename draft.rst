@@ -314,6 +314,6 @@ The following notation is used:
   to the group.
 * ``+-- att``: ``att`` is an attribute. ``att`` can relate to a group or a
   dataset.
-* ``\-- value [dim1][dim2]``: ``value`` has dimensions ``dim1`` by ``dim2``.
+* ``\-- data [dim1][dim2]``: ``data`` has dimensions ``dim1`` by ``dim2``.
 
 
