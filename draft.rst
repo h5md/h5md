@@ -189,13 +189,16 @@ The content of the trajectory group is the following::
 Box specification
 -----------------
 
-The box specification is stored in the observables group, as a group. The type
-of box is stored as an attribute to this box group ::
+The box specification is stored in the trajectory group, within one of the
+trajectory subgroups. This way, box information remains associated to a group of
+particles. "box" stands at the same level as "position", for instance, and is a
+group. The type of box is stored as an attribute to this box group ::
 
-  observables
-   \-- box
-        +-- type
-   ...
+  trajectory
+   \-- group1
+        \-- box
+             +-- type
+        ...
 
 The box type can be "cuboid" or "triclinic". Depending on this information,
 additional data is stored.
@@ -219,31 +222,36 @@ Time dependence
 
 For all box kinds, if the data for edges,offset is stored as a single dataset,
 it is considered fixed in time. Else, it should comply to the step, time and
-value organization.
+value organization. A specific requirement is that the step and time datasets
+must match exactly those of the corresponding trajectory group's position step
+and time datasets. This can be accomplished by linking directly (in the HDF5
+sense) those datasets, for instance.
 
 For instance, a cuboid box that changes in time would appear as ::
 
-  observables
-   \-- box
-        +-- type
-        \-- edges
-             \-- step [var]
-             \-- time [var]
-             \-- value [var][D]
-        \-- offset
-             \-- step [var]
-             \-- time [var]
-             \-- value [var][D]
+  trajectory
+   \-- group1
+        \-- box
+             +-- type
+             \-- edges
+                  \-- step [var]
+                  \-- time [var]
+                  \-- value [var][D]
+             \-- offset
+                  \-- step [var]
+                  \-- time [var]
+                  \-- value [var][D]
 
 where "type" is set to "cuboid".
 
 A fixed-in-time triclinic box would appear as ::
 
-  observables
-   \-- box
-        +-- type
-        \-- edges [D][D]
-        \-- offset [D]
+  trajectory
+   \-- group1
+        \-- box
+             +-- type
+             \-- edges [D][D]
+             \-- offset [D]
 
 where "type" is set to "triclinic"
 
