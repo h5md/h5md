@@ -31,10 +31,11 @@ programs.
 General organization
 --------------------
 
-H5MD defines a HDF5 group structure. Inside a group, a number of required
-fields exist and should possess a conforming name and shape.
+H5MD defines an internal organization for an HDF5 file. A number of HDF5 groups
+are defined at the root level of the file. Within the data groups, a number of
+required fields exist and should possess a conforming name and shape.
 
-Several groups may exist in a file, allowing the description of several
+Several groups of particles may exist in a file, allowing the description of several
 subsystems. Multiple time steps are found inside a single HDF5 dataset. One can then
 obtain either a snapshot of the system at a given time or extract a single
 trajectory via dataset slicing.
