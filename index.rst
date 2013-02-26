@@ -27,8 +27,9 @@ trajectories (positions, velocities, forces and species) as well as
 thermodynamical observables. Afterwards, extensions will be considered on the
 basis of discussion with users of H5MD.
 
-H5MD is developed by Pierre de Buyl and Felix Höfling and is available under
-the `GNU General Public License <http://www.gnu.org/licenses/gpl.html>`_.
+H5MD is developed by Pierre de Buyl, Peter Colberg and Felix Höfling and is
+available under the `GNU General Public License
+<http://www.gnu.org/licenses/gpl.html>`_.
 
 The draft represents the current state of the specification.
 
