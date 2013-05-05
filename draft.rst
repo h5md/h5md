@@ -298,28 +298,16 @@ The content of the observables group is the following::
 Parameters group
 ----------------
 
-The "parameters" group stores essential system parameters that shall not depend
-on the presence of the optional groups. The group is intended further to
-contain all parameters passed to initialize the simulation, examples are
-temperature, random number generator seed, initial box size, ...
-
-Mandatory attributes of the "parameters" group:
-
-* dimension (integer value): space dimension of the particle motion
-
-The remaining layout of the group does not fit a strict specification and is
-considered user- and program-dependent.
+The "parameters" group stores user-defined simulation parameters.
 
 The content of the parameters group is the following::
 
     parameters
-     +-- dimension
-     \-- user_data1
+     +-- user_data1
      \-- user_group1
-     |    \-- user_data2
+     |    +-- user_data2
      |    \-- ...
      \-- ...
-
 
 Notation
 --------
