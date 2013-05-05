@@ -221,12 +221,12 @@ Triclinic box
 Time dependence
 ^^^^^^^^^^^^^^^
 
-For all box kinds, if the data for edges,offset is stored as a single dataset,
-it is considered fixed in time. Else, it should comply to the step, time and
-value organization. A specific requirement is that the step and time datasets
-must match exactly those of the corresponding trajectory group's position step
-and time datasets. This can be accomplished by linking directly (in the HDF5
-sense) those datasets, for instance.
+For all box kinds, if the box is fixed in time, edges and offset are stored as
+attributes of the box group. Else, edges and offset are stored as datasets
+following the step, time and value organization. A specific requirement is
+that the step and time datasets must match exactly those of the corresponding
+trajectory group's position step and time datasets. This can be accomplished
+by linking directly (in the HDF5 sense) those datasets, for instance.
 
 For instance, a cuboid box that changes in time would appear as ::
 
@@ -251,8 +251,8 @@ A fixed-in-time triclinic box would appear as ::
    \-- group1
         \-- box
              +-- type
-             \-- edges [D][D]
-             \-- offset [D]
+             +-- edges [D][D]
+             +-- offset [D]
 
 where "type" is set to "triclinic"
 
