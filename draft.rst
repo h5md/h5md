@@ -128,33 +128,34 @@ the velocities), "step" and "time" are unique to each data group.
 Trajectory group
 ----------------
 
-The trajectories are stored in the "trajectory" group. The trajectory group
-itself is only a container for groups that represent different parts of the
-system under consideration. There may be one or several groups in the trajectory
-group, as needed, but the trajectory group may only contain groups.
-Inside of these subgroups, for each kind of trajectory information there is a
-group that contains datasets "value", "step", and "time".
+System trajectories, or more generally, time-dependent information for each
+particle, are stored in the "/trajectory" group. The trajectory group itself
+is only a container for groups that represent different subsets of the system
+under consideration; it may hold one or several groups in "/trajectory", as
+needed.  Inside of these subgroups, each kind of trajectory information is
+stored in a group that contains the datasets "value", "step", and "time".
 
 * Standardized subgroups are "position", "velocity", "force" and "species".
 
 * The "value" dataset holds the actual data and has dimensions
-  \[variable\]\[N\]\[D\], where the variable dimension is present to accumulate
-  time steps.
+  ``\[variable\]\[N\]\[D\]``, where the first dimension is variable and serves
+  to accumulate samples during the course of the simulation.
 
-* The "step" dataset has dimensions \[variable\] and contains the integer step
-  corresponding to the time step at which the corresponding data has been
-  written to the "coordinates" dataset.
+* The "step" dataset has dimensions ``\[variable\]`` and contains the integer
+  step corresponding to the simulation step at which the corresponding data has
+  been written to the dataset.
 
-* The "time" dataset is as the "step" dataset, but contains the real value of
-  the time.
+* The "time" dataset is as the "step" dataset, but contains the simulation time
+  in physical units.
 
-* The "species/value" dataset has dimensions \[N\] if the species do not
-  change in the course of time, that is if there is no chemical reaction
-  occurring, or of dimensions \[variable\]\[N\] if the species of particles may
-  change in the course of time. The species dataset should be of an integer
-  datatype only. Also, as the species may change less often than other
-  variables, if the species data is absent for a given time step, the most
-  recent data for the species should be fetched instead.
+* The "species/value" dataset describes the species of the particles or their
+  atomic identity and is of an integer datatype. It has dimensions ``\[N\]`` if
+  the species do not change, or of dimensions ``\[variable\]\[N\]`` if the
+  species may change in the course of time, e.g., if chemical reactions occur
+  or in semi-grandcanonical Monte-Carlo simulations.
+  Also, as the species may change less often than other variables, if the
+  species data is absent for a given time step, the most recent data for the
+  species should be fetched instead.
 
 All arrays are stored in C-order as enforced by the HDF5 file format (see `§
 3.2.5 <http://www.hdfgroup.org/HDF5/doc/UG/12_Dataspaces.html#ProgModel>`_). A C
