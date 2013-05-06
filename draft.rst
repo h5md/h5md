@@ -260,14 +260,19 @@ where "type" is set to "triclinic"
 Observables group
 -----------------
 
-Macroscopic observables are stored as \[variable\] time series for scalar
-observables and as \[variable\]\[d\] time series for d-dimensional vector
-observables. The variable dimension allows to accumulate time steps. The name of
-the group holding these datasets is "observables". This group has the same
-structure as "trajectory": for each observable there is a group containing three
-datasets: the actual data in "value" and the step and time datasets.
-Observables representing only a subset of the particles may be stored in
-appropriate subgroups similarly to the "trajectory" tree.
+Macroscopic observables, or more generally, averages over many particles, are
+stored as time series in the root group ``/observable``.  Observables
+representing only a subset of the particles may be stored in appropriate
+subgroups similarly to the ``/trajectory`` tree.  Each observable is stored as
+a group containing three datasets: the actual data in ``value`` and the
+``step`` and ``time`` datasets as for trajectory data.  The shape of ``value``
+depends on the tensor rank of the observable prepended by a ``\[variable\]``
+dimension allowing the accumulation of samples during the course of time. For
+scalar observables, ``value`` has the shape ``[\variable\]``, observables
+representing ``D``-dimensional vectors have shape ``\[variable\]\[D\]``, and so
+on.  In addition, each group carries an integer attribute ``count`` stating the
+number of particles involved in the average.  If this number varies, the
+attribute is replaced by a dataset ``count`` of ``[\variable]`` dimension.
 
 The following names should be obeyed for the corresponding observables:
 
@@ -277,22 +282,28 @@ The following names should be obeyed for the corresponding observables:
 * pressure
 * temperature
 
-The content of the observables group is the following::
+Note that "temperature" refers to the instantaneous temperature as obtained
+from the kinetic energy, not to the thermodynamic quantity.
+
+The content of the observables group has the following structure ::
 
     observables
      \-- obs1
-     |    \-- value
-     |    \-- step
-     |    \-- time
+     |    +-- count
+     |    \-- value [var]
+     |    \-- step [var]
+     |    \-- time [var]
      \-- obs2
-     |    \-- value
-     |    \-- step
-     |    \-- time
+     |    \-- count [var]
+     |    \-- value [var][D]
+     |    \-- step [var]
+     |    \-- time [var]
      \-- group1
      |    \-- obs3
-     |         \-- value
-     |         \-- step
-     |         \-- time
+     |         +-- count
+     |         \-- value [var][D][D]
+     |         \-- step [var]
+     |         \-- time [var]
      \-- ...
 
 
