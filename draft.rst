@@ -219,7 +219,7 @@ to the ``box`` group, e.g., ::
           \-- box
           |    +-- dimension
           |    +-- type
-          |    \ ...
+          |    \-- ...
           \-- position
                \-- value
                \-- step
@@ -296,18 +296,18 @@ Observables group
 -----------------
 
 Macroscopic observables, or more generally, averages over many particles, are
-stored as time series in the root group ``/observable``.  Observables
+stored as time series in the root group ``/observables``.  Observables
 representing only a subset of the particles may be stored in appropriate
 subgroups similarly to the ``/trajectory`` tree.  Each observable is stored as
-a group containing three datasets: the actual data in ``value`` and the
-``step`` and ``time`` datasets as for trajectory data.  The shape of ``value``
-depends on the tensor rank of the observable prepended by a ``\[variable\]``
-dimension allowing the accumulation of samples during the course of time. For
-scalar observables, ``value`` has the shape ``\[variable\]``, observables
-representing ``D``-dimensional vectors have shape ``\[variable\]\[D\]``, and so
-on.  In addition, each group carries an integer attribute ``particles`` stating
-the number of particles involved in the average.  If this number varies, the
-attribute is replaced by a dataset ``particles`` of ``\[variable]`` dimension.
+a group obeying the ``value``, ``step``, ``time`` organization outlined above.
+The shape of ``value`` depends on the tensor rank of the observable prepended
+by a ``[variable]`` dimension allowing the accumulation of samples during the
+course of time. For scalar observables, ``value`` has the shape ``[variable]``,
+observables representing ``D``-dimensional vectors have shape
+``[variable][D]``, and so on.  In addition, each group carries an integer
+attribute ``particles`` stating the number of particles involved in the
+average.  If this number varies, the attribute is replaced by a dataset
+``particles`` of ``[variable]`` dimension.
 
 The following names should be obeyed for the corresponding observables:
 
@@ -323,6 +323,10 @@ from the kinetic energy, not to the thermodynamic quantity.
 The content of the observables group has the following structure ::
 
     observables
+     \-- box
+          +-- dimension
+          +-- type
+          \-- ...
      \-- obs1
      |    +-- particles
      |    \-- value [var]
