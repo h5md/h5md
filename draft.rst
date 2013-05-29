@@ -144,37 +144,49 @@ Trajectory group
 ----------------
 
 System trajectories, or more generally, time-dependent information for each
-particle, are stored in the "/trajectory" group. The trajectory group itself
+particle, are stored in the ``/trajectory`` group. The trajectory group itself
 is only a container for groups that represent different subsets of the system
-under consideration; it may hold one or several groups in "/trajectory", as
+under consideration; it may hold one or several groups in ``/trajectory``, as
 needed.  Inside of these subgroups, each kind of trajectory information is
-stored in a group that contains the datasets "value", "step", and "time".
+stored in a group following the ``value``, ``step``, ``time`` scheme for
+time-dependent data.
 
-* Standardized subgroups are "position", "image", "velocity", "force" and "species".
+Standardized subgroups are ``position``, ``image``, ``velocity``, ``force``,
+``mass``, and ``species``.
 
-* The "value" dataset holds the actual data and has dimensions
-  ``\[variable\]\[N\]\[D\]``, where the first dimension is variable and serves
-  to accumulate samples during the course of the simulation.
+* The ``value`` dataset in ``position``, ``image``, ``velocity``, and ``force``
+  has dimensions ``[variable][N][D]``.
 
-* The "step" dataset has dimensions ``\[variable\]`` and contains the integer
-  step corresponding to the simulation step at which the corresponding data has
-  been written to the dataset.
+* The group ``position`` describes the particle positions within the (possibly
+  periodic) simulation box.
 
-* The "time" dataset is as the "step" dataset, but contains the simulation time
-  in physical units.
+* The ``image`` group represents the periodic image of the box in which each
+  particle is actually located and allows one to unwrap periodically reduced
+  positions. The ``image/value`` dataset is of the same shape as
+  ``position/value`` and can be either of integer or real kind. If the
+  ``image`` group is absent, non-periodic boundary conditions are assumed.
 
-* The "species/value" dataset describes the species of the particles or their
-  atomic identity and is of an integer datatype. It has dimensions ``\[N\]`` if
-  the species do not change, or of dimensions ``\[variable\]\[N\]`` if the
-  species may change in the course of time, e.g., if chemical reactions occur
-  or in semi-grandcanonical Monte-Carlo simulations.
+  Example: for a cuboid box with periodic boundaries, let :math:`\vec r_i` be
+  the reduced position of particle :math:`i` taken from ``position``,
+  :math:`\vec a_i` its image vector from ``image``, and :math:`\vec L` the
+  space diagonal of the box, then component :math:`j` of the extended particle
+  position is given by :math:`R_{ij} = r_{ij} + L_j a_{ij}`.
+
+* The ``velocity`` and ``force`` groups contain the velocities and total forces
+  (i.e., the accelerations multiplied by the particle mass) for each particle.
+
+* The ``mass`` group holds the mass for each particle. Its ``value`` dataset
+  has dimensions ``[N]`` if the masses do not change with time, or dimensions
+  ``[variable][N]`` else.
+
+* The ``species`` group describes the species of the particles, i.e., their
+  atomic or chemical identity, and is of an integer datatype. Its ``value``
+  dataset has dimensions ``[N]`` if the species do not change, or of dimensions
+  ``[variable][N]`` if the species may change in the course of time, e.g., if
+  chemical reactions occur or in semi-grandcanonical Monte-Carlo simulations.
   Also, as the species may change less often than other variables, if the
   species data is absent for a given time step, the most recent data for the
   species should be fetched instead.
-
-* The "image" dataset represents the periodic image of the box in which the
-  particles are located. It is of the same shape as "position" and can be either
-  of integer or real kind.
 
 All arrays are stored in C-order as enforced by the HDF5 file format (see `§
 3.2.5 <http://www.hdfgroup.org/HDF5/doc/UG/12_Dataspaces.html#ProgModel>`_). A C
@@ -186,26 +198,23 @@ The content of the trajectory group is the following::
 
     trajectory
      \-- group1
+          \-- box
+          |    +-- dimension
+          |    +-- type
+          |    \-- ...
           \-- position
-          |    \-- value
-          |    \-- step
-          |    \-- time
+          |    \-- value [var][N][D]
+          |    \-- step [var]
+          |    \-- time [var]
           \-- image
-          |    \-- value
-          |    \-- step
-          |    \-- time
-          \-- velocity
-          |    \-- value
-          |    \-- step
-          |    \-- time
-          \-- force
-          |    \-- value
-          |    \-- step
-          |    \-- time
+          |    \-- value [var][N][D]
+          |    \-- step [var]
+          |    \-- time [var]
           \-- species
-          |    \-- value
-          |    \-- step
-          |    \-- time
+          |    \-- value [var][N]
+          |    \-- step [var]
+          |    \-- time [var]
+          \-- ...
 
 
 Specification of the simulation box
@@ -241,8 +250,7 @@ to the ``box`` group, e.g., ::
 
   **Cuboid box**
 
-  + edges: A ``D``-dimensional vector specifying the longest diagonal of
-    the box.
+  + edges: A ``D``-dimensional vector specifying the space diagonal of the box.
 
   + offset: A ``D``-dimensional vector specifying the lower coordinate
     for all directions.
