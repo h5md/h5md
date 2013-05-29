@@ -205,16 +205,21 @@ Box specification
 The box specification is stored in the trajectory group, within one of the
 trajectory subgroups. This way, box information remains associated to a group of
 particles. "box" stands at the same level as "position", for instance, and is a
-group. The type of box is stored as an attribute to this box group ::
+group. The spatial dimension and the type of the box are stored as attributes
+to the box group ::
 
   trajectory
    \-- group1
         \-- box
+             +-- dimension
              +-- type
         ...
 
-The box type can be "cuboid" or "triclinic". Depending on this information,
-additional data is stored.
+* The ``dimension`` attribute stores the spatial dimension of the simulation
+box and is of integer type.
+
+* The ``type`` attribute can be "cuboid" or "triclinic". Depending on this
+information, additional data is stored.
 
 Cuboid box
 ^^^^^^^^^^
@@ -245,6 +250,7 @@ For instance, a cuboid box that changes in time would appear as ::
   trajectory
    \-- group1
         \-- box
+             +-- dimension
              +-- type
              \-- edges
                   \-- step [var]
@@ -262,6 +268,7 @@ A fixed-in-time triclinic box would appear as ::
   trajectory
    \-- group1
         \-- box
+             +-- dimension
              +-- type
              +-- edges [D][D]
              +-- offset [D]
