@@ -276,11 +276,11 @@ a group containing three datasets: the actual data in ``value`` and the
 ``step`` and ``time`` datasets as for trajectory data.  The shape of ``value``
 depends on the tensor rank of the observable prepended by a ``\[variable\]``
 dimension allowing the accumulation of samples during the course of time. For
-scalar observables, ``value`` has the shape ``[\variable\]``, observables
+scalar observables, ``value`` has the shape ``\[variable\]``, observables
 representing ``D``-dimensional vectors have shape ``\[variable\]\[D\]``, and so
-on.  In addition, each group carries an integer attribute ``count`` stating the
-number of particles involved in the average.  If this number varies, the
-attribute is replaced by a dataset ``count`` of ``[\variable]`` dimension.
+on.  In addition, each group carries an integer attribute ``particles`` stating
+the number of particles involved in the average.  If this number varies, the
+attribute is replaced by a dataset ``particles`` of ``\[variable]`` dimension.
 
 The following names should be obeyed for the corresponding observables:
 
@@ -297,18 +297,18 @@ The content of the observables group has the following structure ::
 
     observables
      \-- obs1
-     |    +-- count
+     |    +-- particles
      |    \-- value [var]
      |    \-- step [var]
      |    \-- time [var]
      \-- obs2
-     |    \-- count [var]
+     |    \-- particles [var]
      |    \-- value [var][D]
      |    \-- step [var]
      |    \-- time [var]
      \-- group1
      |    \-- obs3
-     |         +-- count
+     |         +-- particles
      |         \-- value [var][D][D]
      |         \-- step [var]
      |         \-- time [var]
