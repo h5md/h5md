@@ -135,7 +135,7 @@ under consideration; it may hold one or several groups in "/trajectory", as
 needed.  Inside of these subgroups, each kind of trajectory information is
 stored in a group that contains the datasets "value", "step", and "time".
 
-* Standardized subgroups are "position", "velocity", "force" and "species".
+* Standardized subgroups are "position", "image", "velocity", "force" and "species".
 
 * The "value" dataset holds the actual data and has dimensions
   ``\[variable\]\[N\]\[D\]``, where the first dimension is variable and serves
@@ -157,6 +157,10 @@ stored in a group that contains the datasets "value", "step", and "time".
   species data is absent for a given time step, the most recent data for the
   species should be fetched instead.
 
+* The "image" dataset represents the periodic image of the box in which the
+  particles are located. It is of the same shape as "position" and can be either
+  of integer or real kind.
+
 All arrays are stored in C-order as enforced by the HDF5 file format (see `§
 3.2.5 <http://www.hdfgroup.org/HDF5/doc/UG/12_Dataspaces.html#ProgModel>`_). A C
 or C++ program may thus declare r\[N\]\[D\] for the coordinates array while the
@@ -172,6 +176,10 @@ The content of the trajectory group is the following::
     trajectory
      \-- group1
           \-- position
+          |    \-- value
+          |    \-- step
+          |    \-- time
+          \-- image
           |    \-- value
           |    \-- step
           |    \-- time
