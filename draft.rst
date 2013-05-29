@@ -199,81 +199,98 @@ The content of the trajectory group is the following::
           |    \-- step
           |    \-- time
 
-Box specification
------------------
 
-The box specification is stored in the trajectory group, within one of the
-trajectory subgroups. This way, box information remains associated to a group of
-particles. "box" stands at the same level as "position", for instance, and is a
-group. The spatial dimension and the type of the box are stored as attributes
-to the box group ::
+Specification of the simulation box
+-----------------------------------
 
-  trajectory
-   \-- group1
-        \-- box
-             +-- dimension
-             +-- type
-        ...
+The specification of the simulation box is stored in a group ``box`` inside the
+``/trajectory`` group, within each of its subgroups. The group ``box`` is
+further stored in (or hard-linked to) the ``/observables`` group if present.
+Storing the box information at several places reflects the fact that all root
+groups are optional (except for ``/h5md``), different subgroups may further be
+sampled at different time grids. This way, the box information remains
+associated to a group of particles or the collection of observables.
 
-* The ``dimension`` attribute stores the spatial dimension of the simulation
-box and is of integer type.
+The spatial dimension and the type of the box are stored as attributes
+to the ``box`` group, e.g., ::
+
+    trajectory
+     \-- group1
+          \-- box
+          |    +-- dimension
+          |    +-- type
+          |    \ ...
+          \-- position
+               \-- value
+               \-- step
+               \-- time
+
+* The ``dimension`` attribute stores the spatial dimension ``D`` of the
+  simulation box and is of integer type.
 
 * The ``type`` attribute can be "cuboid" or "triclinic". Depending on this
-information, additional data is stored.
+  information, additional data is stored:
 
-Cuboid box
-^^^^^^^^^^
+  **Cuboid box**
 
-* edges: A vector specifying the length of the box in the D dimensions of
-  space.
-* offset: A vector specifying the lower coordinate for all directions.
+  + edges: A ``D``-dimensional vector specifying the longest diagonal of
+    the box.
 
-Triclinic box
-^^^^^^^^^^^^^
+  + offset: A ``D``-dimensional vector specifying the lower coordinate
+    for all directions.
 
-* edges: A set of D×D-dimensional matrices with the rows specifying the
-  directions and lengths of the edges of the box.
-* offset: A vector specifying the lower coordinate for all directions.
+  **Triclinic box**
+
+  + edges: A ``D`` × ``D`` matrix with the rows specifying the edge vectors
+    of the box.
+
+  + offset: A ``D``-dimensional vector specifying the lower coordinate
+    for all directions.
+
 
 Time dependence
 ^^^^^^^^^^^^^^^
 
-For all box kinds, if the box is fixed in time, edges and offset are stored as
-attributes of the box group. Else, edges and offset are stored as datasets
-following the step, time and value organization. A specific requirement is
-that the step and time datasets must match exactly those of the corresponding
-trajectory group's position step and time datasets. This can be accomplished
-by linking directly (in the HDF5 sense) those datasets, for instance.
+If the simulation box is fixed in time, ``edges`` and ``offset`` are stored as
+attributes of the ``box`` group for all box kinds. Else, ``edges`` and
+``offset`` are stored as datasets following the ``value``, ``step``, ``time``
+organization.  A specific requirement for ``box`` groups inside ``/trajecory``
+is that the ``step`` and ``time`` datasets must match exactly those of the
+corresponding ``position`` datasets; this may be accomplished by hard linking
+in the HDF5 sense.
 
-For instance, a cuboid box that changes in time would appear as ::
+Examples:
 
-  trajectory
-   \-- group1
-        \-- box
-             +-- dimension
-             +-- type
-             \-- edges
-                  \-- step [var]
-                  \-- time [var]
-                  \-- value [var][D]
-             \-- offset
-                  \-- step [var]
-                  \-- time [var]
-                  \-- value [var][D]
+* A cuboid box that changes in time would appear as ::
 
-where "type" is set to "cuboid".
+    trajectory
+     \-- group1
+          \-- box
+               +-- dimension
+               +-- type
+               \-- edges
+                    \-- value [var][D]
+                    \-- step [var]
+                    \-- time [var]
+               \-- offset
+                    \-- value [var][D]
+                    \-- step [var]
+                    \-- time [var]
 
-A fixed-in-time triclinic box would appear as ::
+where ``dimension`` is equal to ``D`` and ``type`` is set to "cuboid".
 
-  trajectory
-   \-- group1
-        \-- box
-             +-- dimension
-             +-- type
-             +-- edges [D][D]
-             +-- offset [D]
+* A fixed-in-time triclinic box would appear as ::
 
-where "type" is set to "triclinic"
+    trajectory
+     \-- group1
+          \-- box
+               +-- dimension
+               +-- type
+               +-- edges [D][D]
+               +-- offset [D]
+
+where ``dimension`` is equal to ``D`` and ``type`` is set to "triclinic".
+
 
 Observables group
 -----------------
