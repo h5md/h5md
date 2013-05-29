@@ -96,40 +96,48 @@ The content of this group is::
      +-- creation_time
      +-- author
 
-Storage of the time information for time-dependent datasets
------------------------------------------------------------
 
-To link the data of a time dependent dataset to a time in the simulation,
-H5MD defines a group structure containing, in addition to the data, the
-corresponding integer time step information (number of simulation steps) and
-physical time information (the time in simulation or physical units,
-real-valued).
+Storage of time-dependent data
+------------------------------
 
-As an example, here is the data for the position in a group of particles::
+To link time-dependent data to the time axis of the simulation, H5MD defines a
+group structure containing, in addition to the data, the corresponding integer
+time step information and physical time information.
 
-    trajectory
-      \-- group1
-           \-- position
-                \-- value
-                     +-- (unit)
-                \-- step
-                \-- time
-                     +-- (unit)
+The structure of such groups is ::
 
-where the first dimension of "value" must match the unique dimension of "step"
-and "time".
+    data_group
+     \-- value [var][...]
+          +-- (unit)
+     \-- step [var]
+     \-- time [var]
+          +-- (unit)
 
-The "step" dataset must be of integer datatype to allow exact temporal matching
-of data from one data group to another within the same file.
+* The ``value`` dataset holds the actual data of the time series. Its
+  dimensions depend on the type of data, ``[variable]`` for scalars and
+  ``[variable][D]`` for vectors, etc.  The first dimension is variable and
+  serves to accumulate samples during the course of the simulation.
 
-If several datasets are dumped at equal times, "step" and "time" may be hard
-links to the "step" and "time" datasets of one data group. If data are sampled
-at different times (for instance, one needs the positions more frequently than
-the velocities), "step" and "time" are unique to each data group.
+* The ``step`` dataset has dimensions ``[variable]`` and contains the number of
+  simulation steps (since a user-defined origin) when the corresponding data
+  have been sampled. It is of integer datatype to allow exact temporal matching
+  of data from one data group to another within the same file.
 
-The datasets "value" and "time" may possess an optional attribute "unit" that
-gives the physical unit of their respective data ("nm" for the position, for
-instance).
+* The ``time`` dataset is as the ``step`` dataset, but is real-valued and
+  contains the simulation time in simulation or physical units.
+
+The first dimension of ``value`` must match the unique dimension of ``step``
+and ``time``.
+
+The datasets ``value`` and ``time`` may possess an optional string attribute
+``unit`` that gives the physical unit of their respective data ("nm" for the
+position, for instance).
+
+If several data are sampled at equal times, ``step`` and ``time`` may be HDF5
+hard links to the ``step`` and ``time`` datasets of a different data group. If
+data are sampled at different times (for instance, one needs the positions more
+frequently than the velocities), ``step`` and ``time`` are unique to each data
+group.
 
 
 Trajectory group
