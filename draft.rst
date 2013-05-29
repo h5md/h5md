@@ -324,9 +324,9 @@ The content of the observables group has the following structure ::
 
     observables
      \-- box
-          +-- dimension
-          +-- type
-          \-- ...
+     |    +-- dimension
+     |    +-- type
+     |    \-- ...
      \-- obs1
      |    +-- particles
      |    \-- value [var]
