@@ -33,7 +33,13 @@ available under the `GNU General Public License
 
 The draft represents the current state of the specification.
 
-Contents:
+If you want to know more about or contribute to H5MD, please visit the
+project page of H5MD at https://savannah.nongnu.org/p/h5md/ or join
+the mailing list at
+https://lists.nongnu.org/mailman/listinfo/h5md-user.
+
+Contents
+--------
 
 .. toctree::
    :maxdepth: 2
