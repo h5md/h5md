@@ -1,4 +1,4 @@
-.. Copyright © 2011 Pierre de Buyl, Peter Colberg and Felix Höfling
+.. Copyright © 2011-2013 Pierre de Buyl, Peter Colberg and Felix Höfling
    
    This file is part of H5MD.
    
@@ -192,7 +192,7 @@ All arrays are stored in C-order as enforced by the HDF5 file format (see `§
 3.2.5 <http://www.hdfgroup.org/HDF5/doc/UG/12_Dataspaces.html#ProgModel>`_). A C
 or C++ program may thus declare r\[N\]\[D\] for the coordinates array while the
 Fortran program will declare a r(D,N) array (appropriate index ordering for a
-N atoms D dimensions system) and the HDF5 file will be the same.
+system of N atoms in D dimensions) and the HDF5 file will be the same.
 
 The content of the trajectory group is the following::
 
