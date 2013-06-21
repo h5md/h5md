@@ -135,6 +135,11 @@ Further suggestions
   <http://www.hdfgroup.org/HDF5/doc/RM/RM_H5P.html#Property-SetObjTrackTimes>`_
   .
 
+  Moreover, it would be desirable to also track authors and creator programs.
+  This could be achieved by replacing the respective attributes in ``/hm5d`` by
+  datasets of variable dimension. The object tracking of these datasets may
+  then be matched (approximately) with the creation/modification times of other
+  datasets.
 
 * Parallel issues
 
