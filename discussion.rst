@@ -1,4 +1,4 @@
-.. Copyright © 2011 Pierre de Buyl, Peter Colberg and Felix Höfling
+.. Copyright © 2011-2013 Pierre de Buyl, Peter Colberg and Felix Höfling
    
    This file is part of H5MD.
    
@@ -17,6 +17,87 @@
 
 Data elements in discussion
 ---------------------------
+
+Extensions: Storage of time-dependent data
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Time-averaged data
+==================
+
+Time-averaged data are stored for some applications, for example the potential
+energy is computed every 200 simulation steps but only the average of 50 such
+computations is stored (every 10⁴ steps). Additional statistical information
+along with the mean value is stored by extending the triple ``value``,
+``step``, ``time``:
+
+The structure of such a data group is ::
+
+    data_group
+     \-- value [var][...]
+          +-- (unit)
+     \-- error [var][...]
+     \-- count [var]
+     \-- step [var]
+     \-- time [var]
+          +-- (unit)
+
+* The ``value`` dataset is as before, but stores the arithmetic mean of the
+  data sampled since the last output to this group.
+
+* The ``error`` dataset stores the statistical error of the mean value, given
+  by :math:`\sqrt{\sigma^2/(N-1)}` with the variance :math:`\sigma^2` and the
+  number of sampled data points :math:`N`. The error is 0 in case of :math:`N=1`.
+  The dimension of the dataset must agree with those of ``value`` and its
+  (optional) unit is inferred from ``value``.
+
+* The ``count`` dataset is of integer type and stores the number :math:`N` of
+  sampled data points used.  The dimension of the dataset is variable and must
+  agree with the first dimension of ``value``.
+
+Note that the statistical variance and the standard deviation are easily
+obtained from combining the datasets ``error`` and ``count`` and need not to be
+stored explicitly.
+
+
+Extensions: Observables group
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Particle number
+===============
+
+The data stored in ``/observable`` represent averages over all particles or
+subsets thereof. The root group or each subgroup carries an integer attribute
+``particles`` stating the number of particles involved in the average. If this
+number varies, the attribute is replaced by a group ``particles`` obeying the
+``value``, ``step``, ``time`` scheme.
+
+The content of the observables group has the following structure ::
+
+    observables
+     \-- box
+     \-- particles
+     |    \-- value [var]
+     |    \-- step [var]
+     |    \-- time [var]
+     \-- obs1
+     |    \-- value [var]
+     |    \-- step [var]
+     |    \-- time [var]
+     \-- obs2
+     |    \-- value [var][D]
+     |    \-- step [var]
+     |    \-- time [var]
+     \-- group1
+     |    +-- particles
+     |    \-- obs3
+     |         \-- value [var][D][D]
+     |         \-- step [var]
+     |         \-- time [var]
+     \-- ...
+
+
+Further suggestions
+^^^^^^^^^^^^^^^^^^^
 
 * Simulation box information
 
