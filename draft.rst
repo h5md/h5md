@@ -176,8 +176,7 @@ Standardized subgroups are ``position``, ``image``, ``velocity``, ``force``,
 * The ``image`` group represents the periodic image of the box in which each
   particle is actually located and allows one to unwrap periodically reduced
   positions. The ``image/value`` dataset is of the same shape as
-  ``position/value`` and can be either of integer or real kind. If the
-  ``image`` group is absent, non-periodic boundary conditions are assumed.
+  ``position/value`` and can be either of integer or real kind.
 
   Example: for a cuboid box with periodic boundaries, let :math:`\vec r_i` be
   the reduced position of particle :math:`i` taken from ``position``,
