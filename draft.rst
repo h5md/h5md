@@ -28,6 +28,19 @@ stands for "HDF5 for molecular data".
 It should facilitate portability of said data amongst simulation and analysis
 programs.
 
+Notation
+--------
+
+The following notation is used:
+
+* ``\-- item``: ``item`` is an element of a group. ``item`` can be a group
+  itself. The elements within a group are indented by five spaces with respect
+  to the group.
+* ``+-- att``: ``att`` is an attribute. ``att`` can relate to a group or a
+  dataset.
+* ``\-- data [dim1][dim2]``: ``data`` has dimensions ``dim1`` by ``dim2``.
+
+
 General organization
 --------------------
 
@@ -387,17 +400,4 @@ The content of the parameters group is the following::
      |    +-- user_data2
      |    \-- ...
      \-- ...
-
-Notation
---------
-
-The following notation is used:
-
-* ``\-- item``: ``item`` is an element of a group. ``item`` can be a group
-  itself. The elements within a group are indented by five spaces with respect
-  to the group.
-* ``+-- att``: ``att`` is an attribute. ``att`` can relate to a group or a
-  dataset.
-* ``\-- data [dim1][dim2]``: ``data`` has dimensions ``dim1`` by ``dim2``.
-
 
