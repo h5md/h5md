@@ -201,7 +201,7 @@ Standardized subgroups are ``position``, ``image``, ``velocity``, ``force``,
   species data is absent for a given time step, the most recent data for the
   species should be fetched instead.
 
-* The ``id`` group holds a unique identifier for the particles.
+* The ``id`` group holds a unique identifier for each particle.
 
 All arrays are stored in C-order as enforced by the HDF5 file format (see `§
 3.2.5 <http://www.hdfgroup.org/HDF5/doc/UG/12_Dataspaces.html#ProgModel>`_). A C
