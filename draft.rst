@@ -202,7 +202,8 @@ The content of the trajectory group is the following::
      \-- group1
           \-- box
           |    +-- dimension
-          |    +-- type
+          |    +-- geometry
+          |    +-- boundary
           |    \-- ...
           \-- position
           |    \-- value [var][N][D]
@@ -230,14 +231,15 @@ groups are optional (except for ``/h5md``), different subgroups may further be
 sampled at different time grids. This way, the box information remains
 associated to a group of particles or the collection of observables.
 
-The spatial dimension and the type of the box are stored as attributes
-to the ``box`` group, e.g., ::
+The spatial dimension, the geometry and the boundary of the box are stored as
+attributes to the ``box`` group, e.g., ::
 
     trajectory
      \-- group1
           \-- box
           |    +-- dimension
-          |    +-- type
+          |    +-- geometry
+          |    +-- boundary [D]
           |    \-- ...
           \-- position
                \-- value
@@ -247,12 +249,14 @@ to the ``box`` group, e.g., ::
 * The ``dimension`` attribute stores the spatial dimension ``D`` of the
   simulation box and is of integer type.
 
-* The ``type`` attribute can be "cuboid" or "triclinic". Depending on this
+* The ``geometry`` attribute can be "cuboid" or "triclinic". Depending on this
   information, additional data is stored:
 
   **Cuboid box**
 
-  + edges: A ``D``-dimensional vector specifying the space diagonal of the box.
+  + edges: A ``D``-dimensional vector specifying the space diagonal of the
+  box. The box is not restricted to having the same edges in the different
+  dimensions.
 
   + offset: A ``D``-dimensional vector specifying the lower coordinate
     for all directions.
@@ -265,6 +269,9 @@ to the ``box`` group, e.g., ::
   + offset: A ``D``-dimensional vector specifying the lower coordinate
     for all directions.
 
+* The ``boundary`` attribute is a vector of length ``D`` that specifies the
+  boundary of the box in each dimension. The elements of ``boundary`` can be
+  either "open" or "periodic".
 
 Time dependence
 ^^^^^^^^^^^^^^^
@@ -285,7 +292,8 @@ Examples:
      \-- group1
           \-- box
                +-- dimension
-               +-- type
+               +-- geometry
+               +-- boundary
                \-- edges
                     \-- value [var][D]
                     \-- step [var]
@@ -295,7 +303,7 @@ Examples:
                     \-- step [var]
                     \-- time [var]
 
-where ``dimension`` is equal to ``D`` and ``type`` is set to "cuboid".
+where ``dimension`` is equal to ``D`` and ``geometry`` is set to "cuboid".
 
 * A fixed-in-time triclinic box would appear as ::
 
@@ -303,11 +311,12 @@ where ``dimension`` is equal to ``D`` and ``type`` is set to "cuboid".
      \-- group1
           \-- box
                +-- dimension
-               +-- type
+               +-- geometry
+               +-- boundary
                +-- edges [D][D]
                +-- offset [D]
 
-where ``dimension`` is equal to ``D`` and ``type`` is set to "triclinic".
+where ``dimension`` is equal to ``D`` and ``geometry`` is set to "triclinic".
 
 
 Observables group
@@ -343,7 +352,8 @@ The content of the observables group has the following structure ::
     observables
      \-- box
      |    +-- dimension
-     |    +-- type
+     |    +-- geometry
+     |    +-- boundary
      |    \-- ...
      \-- obs1
      |    +-- particles
