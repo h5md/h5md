@@ -344,7 +344,7 @@ The shape of ``value`` depends on the tensor rank of the observable prepended
 by a ``[variable]`` dimension allowing the accumulation of samples during the
 course of time. For scalar observables, ``value`` has the shape ``[variable]``,
 observables representing ``D``-dimensional vectors have shape
-``[variable][D]``, and so on.  In addition, each group carries an integer
+``[variable][D]``, and so on.  In addition, each group may carry an optional integer
 attribute ``particles`` stating the number of particles involved in the
 average.  If this number varies, the attribute is replaced by a dataset
 ``particles`` of ``[variable]`` dimension.
@@ -369,18 +369,18 @@ The content of the observables group has the following structure ::
      |    +-- boundary
      |    \-- ...
      \-- obs1
-     |    +-- particles
+     |    +-- (particles)
      |    \-- value [var]
      |    \-- step [var]
      |    \-- time [var]
      \-- obs2
-     |    \-- particles [var]
+     |    \-- (particles) [var]
      |    \-- value [var][D]
      |    \-- step [var]
      |    \-- time [var]
      \-- group1
      |    \-- obs3
-     |         +-- particles
+     |         +-- (particles)
      |         \-- value [var][D][D]
      |         \-- step [var]
      |         \-- time [var]
