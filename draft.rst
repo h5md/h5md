@@ -268,8 +268,8 @@ attributes to the ``box`` group, e.g., ::
   **Cuboid box**
 
   + edges: A ``D``-dimensional vector specifying the space diagonal of the
-  box. The box is not restricted to having the same edges in the different
-  dimensions.
+    box. The box is not restricted to having the same edges in the different
+    dimensions.
 
   + offset: A ``D``-dimensional vector specifying the lower coordinate
     for all directions.
