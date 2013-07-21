@@ -168,23 +168,20 @@ System trajectories, or more generally, time-dependent information for each
 particle, are stored in the ``/trajectory`` group. The trajectory group itself
 is only a container for groups that represent different subsets of the system
 under consideration; it may hold one or several groups in ``/trajectory``, as
-needed.  Inside of these subgroups, each kind of trajectory information is
-stored in a group following the ``value``, ``step``, ``time`` scheme for
-time-dependent data.
+needed. Those subgroups then contain the trajectory data as time-dependent or
+time-independent data, depending on the situation.
 
 Standardized subgroups are ``position``, ``image``, ``velocity``, ``force``,
 ``mass``, ``species`` and ``id``.
-
-* The ``value`` dataset in ``position``, ``image``, ``velocity``, and ``force``
-  has dimensions ``[variable][N][D]``.
 
 * The group ``position`` describes the particle positions within the (possibly
   periodic) simulation box.
 
 * The ``image`` group represents the periodic image of the box in which each
   particle is actually located and allows one to unwrap periodically reduced
-  positions. The ``image/value`` dataset is of the same shape as
-  ``position/value`` and can be either of integer or real kind.
+  positions. For the case of time-dependent data, the ``image/value`` dataset is
+  of the same shape as ``position/value`` and can be either of integer or real
+  kind.
 
   Example: for a cuboid box with periodic boundaries, let :math:`\vec r_i` be
   the reduced position of particle :math:`i` taken from ``position``,
@@ -195,15 +192,12 @@ Standardized subgroups are ``position``, ``image``, ``velocity``, ``force``,
 * The ``velocity`` and ``force`` groups contain the velocities and total forces
   (i.e., the accelerations multiplied by the particle mass) for each particle.
 
-* The ``mass`` group holds the mass for each particle. Its ``value`` dataset
-  has dimensions ``[N]`` if the masses do not change with time, or dimensions
-  ``[variable][N]`` else.
+* The ``mass`` group holds the mass for each particle.
 
 * The ``species`` group describes the species of the particles, i.e., their
-  atomic or chemical identity, and is of an integer datatype. Its ``value``
-  dataset has dimensions ``[N]`` if the species do not change, or of dimensions
-  ``[variable][N]`` if the species may change in the course of time, e.g., if
-  chemical reactions occur or in semi-grandcanonical Monte-Carlo simulations.
+  atomic or chemical identity, and is of an integer datatype. ``species`` is
+  typically time-dependent if chemical reactions occur or in semi-grandcanonical
+  Monte-Carlo simulations.
   Also, as the species may change less often than other variables, if the
   species data is absent for a given time step, the most recent data for the
   species should be fetched instead.
