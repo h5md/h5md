@@ -211,7 +211,7 @@ or C++ program may thus declare r\[N\]\[D\] for the coordinates array while the
 Fortran program will declare a r(D,N) array (appropriate index ordering for a
 system of N atoms in D dimensions) and the HDF5 file will be the same.
 
-The content of the trajectory group is the following::
+An example of content for the trajectory group is the following::
 
     trajectory
      \-- group1
@@ -228,10 +228,7 @@ The content of the trajectory group is the following::
           |    \-- value [var][N][D]
           |    \-- step [var]
           |    \-- time [var]
-          \-- species
-          |    \-- value [var][N]
-          |    \-- step [var]
-          |    \-- time [var]
+          \-- species [N]
           \-- ...
 
 
