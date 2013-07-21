@@ -284,7 +284,7 @@ attributes to the ``box`` group, e.g., ::
 
 * The ``boundary`` attribute is a vector of length ``D`` that specifies the
   boundary of the box in each dimension. The elements of ``boundary`` can be
-  either "open" or "periodic".
+  either "periodic" or "nonperiodic".
 
 Time dependence
 ^^^^^^^^^^^^^^^
