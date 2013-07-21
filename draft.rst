@@ -110,8 +110,15 @@ The content of this group is::
      +-- author
 
 
-Storage of time-dependent data
-------------------------------
+Storage of time-dependent and time-independant data
+---------------------------------------------------
+
+Data in H5MD is stored either as regular HDF5 datasets, for time-independent
+data, or as a group structure that is defined below, for time-dependent data.
+The choice of storage type is not made explicit for the elements in the
+specification, it is made according to the situation. For instance, most often
+the particles' mass and species are fixed in time but in reactive systems this
+might not be appropriate.
 
 To link time-dependent data to the time axis of the simulation, H5MD defines a
 group structure containing, in addition to the data, the corresponding integer
@@ -144,7 +151,8 @@ and ``time``.
 
 The datasets ``value`` and ``time`` may possess an optional string attribute
 ``unit`` that gives the physical unit of their respective data ("nm" for the
-position, for instance).
+position, for instance). In the case of time-independent data, ``unit`` is
+attached to the dataset itself.
 
 If several data are sampled at equal times, ``step`` and ``time`` may be HDF5
 hard links to the ``step`` and ``time`` datasets of a different data group. If
