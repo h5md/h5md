@@ -40,6 +40,15 @@ The following notation is used:
   dataset.
 * ``\-- data [dim1][dim2]``: ``data`` has dimensions ``dim1`` by ``dim2``.
 
+File format
+-----------
+
+An H5MD file is stored in the `HDF5 file format`_.
+It is recommended to store H5MD files in the HDF5 file format version 2,
+which includes automatic tracking of creation and modification times
+tracking of the file and its objects.
+
+.. _HDF5 file format: http://www.hdfgroup.org/HDF5/doc/H5.format.html
 
 General organization
 --------------------
@@ -95,8 +104,6 @@ to the "h5md" group.
 * version: The version of the H5MD specification that the file conforms
   to. "version" is a dimension \[2\] integer dataset. The first element is the
   major version number and the second element the minor version number.
-* creation_time: The creation time of the file. It is an integer scalar dataset
-  representing the number of seconds since the Epoch.
 * author: The name of the author of the simulation/experiment. It is of the
   form "Real Name <email@domain.tld>", where the email is optional.
 
@@ -106,7 +113,6 @@ The content of this group is::
      +-- creator
      +-- creator_version
      +-- version
-     +-- creation_time
      +-- author
 
 

@@ -127,15 +127,9 @@ Further suggestions
   field. The same remark as for the "x", "y" and "z" variables as for the
   "density" dataset applies.
 
-* Date and time tracking
+* Tracking history of authors and creator programs
 
-  HDF5 allows to track creation times and more, via the H5Pset_obj_track_times
-  function. See the
-  `HDF5 Reference Manual
-  <http://www.hdfgroup.org/HDF5/doc/RM/RM_H5P.html#Property-SetObjTrackTimes>`_
-  .
-
-  Moreover, it would be desirable to also track authors and creator programs.
+  It would be desirable to track authors and creator programs.
   This could be achieved by replacing the respective attributes in ``/hm5d`` by
   datasets of variable dimension. The object tracking of these datasets may
   then be matched (approximately) with the creation/modification times of other
