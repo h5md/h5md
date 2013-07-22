@@ -18,3 +18,15 @@
 */
 
 @import "sphinxdoc.css";
+
+body {
+  margin: 0em 2em 0em 2em;
+}
+
+div.bodywrapper {
+  margin: 0 14em 0 0;
+}
+
+div.sphinxsidebar {
+  width: 12em;
+}
