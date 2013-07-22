@@ -294,7 +294,7 @@ Time dependence
 If the simulation box is fixed in time, ``edges`` and ``offset`` are stored as
 attributes of the ``box`` group for all box kinds. Else, ``edges`` and
 ``offset`` are stored as datasets following the ``value``, ``step``, ``time``
-organization.  A specific requirement for ``box`` groups inside ``/trajecory``
+organization.  A specific requirement for ``box`` groups inside ``/trajectory``
 is that the ``step`` and ``time`` datasets must match exactly those of the
 corresponding ``position`` datasets; this may be accomplished by hard linking
 in the HDF5 sense.
