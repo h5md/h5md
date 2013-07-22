@@ -65,7 +65,7 @@ Extensions: Observables group
 Particle number
 ===============
 
-The data stored in ``/observable`` represent averages over all particles or
+The data stored in ``/observables`` represent averages over all particles or
 subsets thereof. The root group or each subgroup carries an integer attribute
 ``particles`` stating the number of particles involved in the average. If this
 number varies, the attribute is replaced by a group ``particles`` obeying the
