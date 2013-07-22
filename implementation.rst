@@ -22,8 +22,8 @@ While the H5MD specification is agnostic towards the software used to write and
 read H5MD files, this document provides implementation hints for common HDF5
 libraries.
 
-HDF5 C library
-^^^^^^^^^^^^^^
+C
+^
 
 This section describes the usage of the `HDF5 C API`_.
 
@@ -72,8 +72,8 @@ the epoch.
    printf("ctime %ld\n", info.ctime);
    printf("btime %ld\n", info.btime);
 
-HDF5 for Python
-^^^^^^^^^^^^^^^
+Python
+^^^^^^
 
 This section describes the usage of `HDF5 for Python`_.
 
