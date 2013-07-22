@@ -43,6 +43,15 @@ writing H5MD files.
 
 .. _pyh5md: https://github.com/pdebuyl/pyh5md
 
+Simulation
+----------
+
+`HAL's MD package`_ by Felix Höfling and Nicolas Höft is a high-precision
+molecular dynamics package for the large-scale simulation of simple and complex
+liquids.
+
+.. _HAL's MD package: http://halmd.org/
+
 Analysis and plotting
 ---------------------
 
