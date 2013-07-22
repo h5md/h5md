@@ -72,11 +72,11 @@ mandatory as they form an important part of the specification.
 The groups that are part of the H5MD specifications are
 
 * h5md: Group containing, as attributes, information on the file itself.
-* parameters: Group containing the parameters for a simulation/dataset, such as
-  the spatial dimension of the system or simulation parameters.
 * trajectory: Group containing the trajectory of the system (positions, ...).
 * observables: Group containing all time-dependent variables in the system,
   except the ones found in the "trajectory group".
+* parameters: Group containing the parameters for a simulation/dataset, such as
+  the spatial dimension of the system or simulation parameters.
 
 All time dependent data (whether in "trajectory" or "observables") is organized
 into HDF5 groups that contain time information in addition to the data.
