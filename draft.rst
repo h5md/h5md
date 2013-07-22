@@ -204,9 +204,6 @@ Standardized subgroups are ``position``, ``image``, ``velocity``, ``force``,
   atomic or chemical identity, and is of an integer datatype. ``species`` is
   typically time-dependent if chemical reactions occur or in semi-grandcanonical
   Monte-Carlo simulations.
-  Also, as the species may change less often than other variables, if the
-  species data is absent for a given time step, the most recent data for the
-  species should be fetched instead.
 
 * The ``id`` group holds a unique identifier for each particle, which is of
   integer kind.
