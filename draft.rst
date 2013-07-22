@@ -46,7 +46,7 @@ File format
 An H5MD file is stored in the `HDF5 file format`_.
 It is recommended to store H5MD files in the HDF5 file format version 2,
 which includes automatic tracking of creation and modification times
-tracking of the file and its objects.
+of the file and its objects.
 
 .. _HDF5 file format: http://www.hdfgroup.org/HDF5/doc/H5.format.html
 
