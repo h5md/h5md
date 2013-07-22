@@ -116,7 +116,7 @@ The content of this group is::
      +-- author
 
 
-Storage of time-dependent and time-independant data
+Storage of time-dependent and time-independent data
 ---------------------------------------------------
 
 Data in H5MD is stored either as regular HDF5 datasets, for time-independent
