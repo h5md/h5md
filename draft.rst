@@ -72,20 +72,20 @@ mandatory as they form an important part of the specification.
 The groups that are part of the H5MD specifications are
 
 * h5md: Group containing, as attributes, information on the file itself.
-* trajectory: Group containing the trajectory of the system (positions, ...).
+* particles: Group containing the trajectory of particles in the system (positions, ...).
 * observables: Group containing all time-dependent variables in the system,
-  except the ones found in the "trajectory group".
+  except the ones found in the "particles" group.
 * parameters: Group containing the parameters for a simulation/dataset, such as
   the spatial dimension of the system or simulation parameters.
 
-All time dependent data (whether in "trajectory" or "observables") is organized
+All time dependent data (whether in "particles" or "observables") is organized
 into HDF5 groups that contain time information in addition to the data.
 
 The root of the HDF5 file is organized as follows::
 
     file root
      \-- h5md
-     \-- trajectory
+     \-- particles
      \-- observables
      \-- parameters
 
@@ -167,15 +167,15 @@ frequently than the velocities), ``step`` and ``time`` are unique to each data
 group.
 
 
-Trajectory group
-----------------
+Particles group
+---------------
 
 System trajectories, or more generally, time-dependent information for each
-particle, are stored in the ``/trajectory`` group. The trajectory group itself
+particle, are stored in the ``/particles`` group. The particles group itself
 is only a container for groups that represent different subsets of the system
-under consideration; it may hold one or several groups in ``/trajectory``, as
-needed. Those subgroups then contain the trajectory data as time-dependent or
-time-independent data, depending on the situation.
+under consideration; it may hold one or several groups in ``/particles``, as
+needed. Those subgroups then contain the trajectory data per particle as
+time-dependent or time-independent data, depending on the situation.
 
 Standardized subgroups are ``position``, ``image``, ``velocity``, ``force``,
 ``mass``, ``species`` and ``id``.
@@ -214,9 +214,9 @@ or C++ program may thus declare r\[N\]\[D\] for the coordinates array while the
 Fortran program will declare a r(D,N) array (appropriate index ordering for a
 system of N atoms in D dimensions) and the HDF5 file will be the same.
 
-An example of content for the trajectory group is the following::
+An example of content for the particles group is the following::
 
-    trajectory
+    particles
      \-- group1
           \-- box
           |    +-- dimension
@@ -239,7 +239,7 @@ Specification of the simulation box
 -----------------------------------
 
 The specification of the simulation box is stored in a group ``box`` inside the
-``/trajectory`` group, within each of its subgroups. The group ``box`` is
+``/particles`` group, within each of its subgroups. The group ``box`` is
 further stored in (or hard-linked to) the ``/observables`` group if present.
 Storing the box information at several places reflects the fact that all root
 groups are optional (except for ``/h5md``), different subgroups may further be
@@ -249,7 +249,7 @@ associated to a group of particles or the collection of observables.
 The spatial dimension, the geometry and the boundary of the box are stored as
 attributes to the ``box`` group, e.g., ::
 
-    trajectory
+    particles
      \-- group1
           \-- box
           |    +-- dimension
@@ -294,7 +294,7 @@ Time dependence
 If the simulation box is fixed in time, ``edges`` and ``offset`` are stored as
 attributes of the ``box`` group for all box kinds. Else, ``edges`` and
 ``offset`` are stored as datasets following the ``value``, ``step``, ``time``
-organization.  A specific requirement for ``box`` groups inside ``/trajectory``
+organization.  A specific requirement for ``box`` groups inside ``/particles``
 is that the ``step`` and ``time`` datasets must match exactly those of the
 corresponding ``position`` datasets; this may be accomplished by hard linking
 in the HDF5 sense.
@@ -303,7 +303,7 @@ Examples:
 
 * A cuboid box that changes in time would appear as ::
 
-    trajectory
+    particles
      \-- group1
           \-- box
                +-- dimension
@@ -322,7 +322,7 @@ where ``dimension`` is equal to ``D`` and ``geometry`` is set to "cuboid".
 
 * A fixed-in-time triclinic box would appear as ::
 
-    trajectory
+    particles
      \-- group1
           \-- box
                +-- dimension
@@ -340,7 +340,7 @@ Observables group
 Macroscopic observables, or more generally, averages over many particles, are
 stored as time series in the root group ``/observables``.  Observables
 representing only a subset of the particles may be stored in appropriate
-subgroups similarly to the ``/trajectory`` tree.  Each observable is stored as
+subgroups similarly to the ``/particles`` tree.  Each observable is stored as
 a group obeying the ``value``, ``step``, ``time`` organization outlined above.
 The shape of ``value`` depends on the tensor rank of the observable prepended
 by a ``[variable]`` dimension allowing the accumulation of samples during the
