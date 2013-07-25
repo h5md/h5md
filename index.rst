@@ -33,10 +33,9 @@ available under the `GNU General Public License
 
 The draft represents the current state of the specification.
 
-If you want to know more about or contribute to H5MD, please visit the
-project page of H5MD at https://savannah.nongnu.org/p/h5md/ or join
-the mailing list at
-https://lists.nongnu.org/mailman/listinfo/h5md-user.
+If you want to know more about or contribute to H5MD, please visit the `project
+page <https://savannah.nongnu.org/p/h5md/>`_ of H5MD or join the `mailing list
+<https://lists.nongnu.org/mailman/listinfo/h5md-user>`_.
 
 Contents
 --------
