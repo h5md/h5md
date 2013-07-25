@@ -75,8 +75,7 @@ The groups that are part of the H5MD specifications are
 * particles: Group containing the trajectory of particles in the system (positions, ...).
 * observables: Group containing all time-dependent variables in the system,
   except the ones found in the "particles" group.
-* parameters: Group containing the parameters for a simulation/dataset, such as
-  the spatial dimension of the system or simulation parameters.
+* parameters: Group containing user-defined simulation parameters.
 
 All time dependent data (whether in "particles" or "observables") is organized
 into HDF5 groups that contain time information in addition to the data.
