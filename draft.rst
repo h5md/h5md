@@ -57,28 +57,30 @@ H5MD defines an internal organization for an HDF5 file. A number of HDF5 groups
 are defined at the root level of the file. Within the data groups, a number of
 required fields exist and should possess a conforming name and shape.
 
-Several groups of particles may exist in a file, allowing the description of several
-subsystems. Multiple time steps are found inside a single HDF5 dataset. One can then
-obtain either a snapshot of the system at a given time or extract a single
-trajectory via dataset slicing.
+Several groups of particles may exist in a file, allowing the description of
+several subsystems. Multiple time steps are found inside a single HDF5 dataset.
+One can then obtain either a snapshot of the system at a given time or extract a
+single trajectory via dataset slicing.
 
 The file is allowed to possess non-conforming groups that contain other
-information such as simulation parameters. Only the ``h5md`` group is mandatory in
-a H5MD file. The other data groups are optional, allowing the user to store only
-relevant data. Inside each group, every dataset is again optional. Within
+information such as simulation parameters. Only the ``h5md`` group is mandatory
+in a H5MD file. The other data groups are optional, allowing the user to store
+only relevant data. Inside each group, every dataset is again optional. Within
 time-dependent groups, the ``step``, ``time`` and ``value`` datasets are however
 mandatory as they form an important part of the specification.
 
 The groups that are part of the H5MD specifications are
 
 * ``h5md``: Group containing, as attributes, information on the file itself.
-* ``particles``: Group containing the trajectory of particles in the system (positions, ...).
+* ``particles``: Group containing the trajectory of particles in the system
+  (positions, ...).
 * ``observables``: Group containing all time-dependent variables in the system,
   except the ones found in the ``particles`` group.
 * ``parameters``: Group containing user-defined simulation parameters.
 
-All time dependent data (whether in ``particles`` or ``observables``) is organized
-into HDF5 groups that contain time information in addition to the data.
+All time dependent data (whether in ``particles`` or ``observables``) is
+organized into HDF5 groups that contain time information in addition to the
+data.
 
 The root of the HDF5 file is organized as follows::
 
@@ -94,12 +96,12 @@ level, omitting to display ``file root``.
 Global attributes
 -----------------
 
-A few global attributes (in the HDF5 sense) are defined for convenience. These attributes are given
-to the ``h5md`` group.
+A few global attributes (in the HDF5 sense) are defined for convenience. These
+attributes are given to the ``h5md`` group.
 
 * ``creator``: The name of the program that created the file.
-* ``creator_version``: The version of the program that created the file, as a string
-  containing proper identification for the given program.
+* ``creator_version``: The version of the program that created the file, as a
+  string containing proper identification for the given program.
 * ``version``: The version of the H5MD specification that the file conforms
   to. ``version`` is a dimension \[2\] integer dataset. The first element is the
   major version number and the second element the minor version number.
@@ -263,8 +265,8 @@ attributes to the ``box`` group, e.g., ::
 * The ``dimension`` attribute stores the spatial dimension ``D`` of the
   simulation box and is of integer type.
 
-* The ``geometry`` attribute can be ``cuboid`` or ``triclinic``. Depending on this
-  information, additional data is stored:
+* The ``geometry`` attribute can be ``cuboid`` or ``triclinic``. Depending on
+  this information, additional data is stored:
 
   **Cuboid box**
 
@@ -345,8 +347,8 @@ The shape of ``value`` depends on the tensor rank of the observable prepended
 by a ``[variable]`` dimension allowing the accumulation of samples during the
 course of time. For scalar observables, ``value`` has the shape ``[variable]``,
 observables representing ``D``-dimensional vectors have shape
-``[variable][D]``, and so on.  In addition, each group may carry an optional integer
-attribute ``particles`` stating the number of particles involved in the
+``[variable][D]``, and so on.  In addition, each group may carry an optional
+integer attribute ``particles`` stating the number of particles involved in the
 average.  If this number varies, the attribute is replaced by a dataset
 ``particles`` of ``[variable]`` dimension.
 
