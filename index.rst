@@ -21,6 +21,9 @@ H5MD : HDF5 for molecular data
 H5MD is a file format specification, based upon `HDF5
 <http://www.hdfgroup.org/HDF5/>`_, aimed at the efficient and portable storage
 of molecular data (e.g. simulation trajectories, molecular structures, ...).
+H5MD implements data models for a variety of computational problems, e.g.,
+molecular simulation using molecular dynamics, or computational fluid dynamics
+using multi-particle collision dynamics.
 
 The first official release of the specification will contain particle
 trajectories (positions, velocities, forces and species) as well as
