@@ -15,8 +15,8 @@
    You should have received a copy of the GNU General Public License
    along with H5MD.  If not, see <http://www.gnu.org/licenses/>.
 
-Specifications for the H5MD file format
-=======================================
+Specifications for the H5MD file format version 1.0
+===================================================
 
 Objective
 ---------
@@ -159,8 +159,8 @@ The content of this group is::
   string containing proper identification for the given program.
 * ``version``: The version of the H5MD specification that the file conforms
   to. ``version`` is a dimension \[2\] integer dataset, with the first element
-  as the major version number and the second element as the minor version
-  number.
+  as the major version number ``1`` and the second element as the minor version
+  number ``0``.
 * ``author``: The author of the simulation, or experiment, of the
   form ``Real Name``.
 * ``author_email``: An email address of the author, of the form
