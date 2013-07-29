@@ -21,20 +21,20 @@ Specifications for the H5MD file format
 Objective
 ---------
 
-H5MD is aimed at becoming a specification to store molecular simulation data.
-It is based on the `HDF5 <http://www.hdfgroup.org/HDF5/>`_ file format. H5MD
-stands for "HDF5 for molecular data".
+H5MD stands for "HDF5 for molecular data". H5MD is aimed at becoming a
+specification to store molecular simulation data. It is based on the `HDF5`_
+file format. It should facilitate portability of said data amongst simulation
+and analysis programs.
 
-It should facilitate portability of said data amongst simulation and analysis
-programs.
+.. _HDF5: http://www.hdfgroup.org/HDF5/
 
 
 File format
 -----------
 
-An H5MD file is stored in the `HDF5 file format`_.
+A H5MD file is stored in the `HDF5 file format`_ version 0 or later.
 It is recommended to store H5MD files in the HDF5 file format version 2,
-which includes automatic tracking of creation and modification times
+which includes the implicit tracking of the creation and modification times
 of the file and its objects.
 
 .. _HDF5 file format: http://www.hdfgroup.org/HDF5/doc/H5.format.html
@@ -68,8 +68,8 @@ single trajectory via dataset slicing.
 The file is allowed to possess non-conforming groups that contain other
 information such as simulation parameters. Only the ``h5md`` group is mandatory
 in a H5MD file. The other data groups are optional, allowing the user to store
-only relevant data. Inside each group, every dataset is again optional. Within
-time-dependent groups, the ``step``, ``time`` and ``value`` datasets are however
+only relevant data. Inside each group, every dataset is again optional. However,
+within time-dependent groups, the ``step``, ``time``, and ``value`` datasets are
 mandatory as they form an important part of the specification.
 
 The root of the HDF5 file is organized as follows::
@@ -80,18 +80,14 @@ The root of the HDF5 file is organized as follows::
      \-- observables
      \-- parameters
 
-* ``h5md``: Group containing, as attributes, information on the file itself.
+* ``h5md``: Group containing information on the file itself, as attributes.
 * ``particles``: Group containing the trajectory of particles in the system
   (positions, ...).
 * ``observables``: Group containing all time-dependent variables in the system,
   except the ones found in the ``particles`` group.
 * ``parameters``: Group containing user-defined simulation parameters.
 
-All time dependent data (whether in ``particles`` or ``observables``) is
-organized into HDF5 groups that contain time information in addition to the
-data.
-
-In the following, the examples of HDF5 organization may start at the group
+In subsequent sections, the examples of HDF5 organization may start at the group
 level, omitting to display ``file root``.
 
 
@@ -101,56 +97,55 @@ Storage of time-dependent and time-independent data
 Data in H5MD is stored either as regular HDF5 datasets, for time-independent
 data, or as a group structure that is defined below, for time-dependent data.
 The choice between those storage types is not made explicit for the elements in
-the specification, it is made according to the situation. For instance, most
-often the particles' mass and species are fixed in time but in reactive systems
+the specification, but rather according to the situation. For instance, the
+particles' mass and species are often fixed in time, but in reactive systems,
 this might not be appropriate.
 
-To link time-dependent data to the time axis of the simulation, H5MD defines a
-group structure containing, in addition to the data, the corresponding integer
-time step information and physical time information.
-
-The structure of such groups is ::
+In order to link time-dependent data to the time axis of the simulation, H5MD
+defines a group structure containing, in addition to the data, the corresponding
+integer time step information and physical time information.
+The structure of such groups is::
 
     data_group
-     \-- value [variable][...]
-          +-- (unit)
      \-- step [variable]
      \-- time [variable]
           +-- (unit)
+     \-- value [variable][...]
+          +-- (unit)
 
-* The ``value`` dataset holds the actual data of the time series. Its
-  dimensions depend on the type of data, ``[variable]`` for scalars and
-  ``[variable][D]`` for vectors, etc.  The first dimension is variable and
-  serves to accumulate samples during the course of the simulation.
+* The ``step`` dataset has dimensions ``[variable]`` and contains the time steps
+  at which the corresponding data were sampled. It is of integer datatype to
+  allow exact temporal matching of data from one data group to another within
+  the same file.
 
-* The ``step`` dataset has dimensions ``[variable]`` and contains the number of
-  simulation steps (since a user-defined origin) when the corresponding data
-  have been sampled. It is of integer datatype to allow exact temporal matching
-  of data from one data group to another within the same file.
+* The ``time`` dataset is the same as the ``step`` dataset, except it is
+  real-valued and contains the simulation time in simulation or physical units.
 
-* The ``time`` dataset is as the ``step`` dataset, but is real-valued and
-  contains the simulation time in simulation or physical units.
+* The ``value`` dataset holds the data of the time series. Its dimensions depend
+  on the type of data (``[variable]`` for scalars, ``[variable][D]`` for
+  vectors, etc.). The first dimension of ``value`` must match the unique
+  dimension of ``step`` and ``time``, and serves to accumulate samples during
+  the course of the simulation.
 
-The first dimension of ``value`` must match the unique dimension of ``step``
-and ``time``.
-
-The datasets ``value`` and ``time`` may possess an optional string attribute
+The datasets ``time`` and ``value`` may possess an optional string attribute
 ``unit`` that gives the physical unit of their respective data (``nm`` for the
 position, for instance). In the case of time-independent data, ``unit`` is
 attached to the dataset itself.
 
-If several data are sampled at equal times, ``step`` and ``time`` may be HDF5
-hard links to the ``step`` and ``time`` datasets of a different data group. If
-data are sampled at different times (for instance, one needs the positions more
-frequently than the velocities), ``step`` and ``time`` are unique to each data
-group.
+If several data groups are sampled at equal times, ``step`` and ``time`` of one
+data group may be HDF5 hard links to the ``step`` and ``time`` datasets of a
+different data group. If data groups are sampled at different times (for
+instance, one needs the positions more frequently than the velocities), ``step``
+and ``time`` are unique to each data group.
 
 
 Global attributes
 -----------------
 
 A few global attributes (in the HDF5 sense) are defined for convenience. These
-attributes are given to the ``h5md`` group. The content of this group is::
+attributes are given to the ``h5md`` group.
+
+The content of this group is::
 
     h5md
      +-- creator
@@ -163,8 +158,9 @@ attributes are given to the ``h5md`` group. The content of this group is::
 * ``creator_version``: The version of the program that created the file, as a
   string containing proper identification for the given program.
 * ``version``: The version of the H5MD specification that the file conforms
-  to. ``version`` is a dimension \[2\] integer dataset. The first element is the
-  major version number and the second element the minor version number.
+  to. ``version`` is a dimension \[2\] integer dataset, with the first element
+  as the major version number and the second element as the minor version
+  number.
 * ``author``: The author of the simulation, or experiment, of the
   form ``Real Name``.
 * ``author_email``: An email address of the author, of the form
@@ -174,15 +170,15 @@ attributes are given to the ``h5md`` group. The content of this group is::
 Particles group
 ---------------
 
-System trajectories, or more generally, time-dependent information for each
-particle, are stored in the ``particles`` group. The ``particles`` group itself
-is only a container for groups that represent different subsets of the system
-under consideration; it may hold one or several groups in ``particles``, as
-needed. Those subgroups then contain the trajectory data per particle as
-time-dependent or time-independent data, depending on the situation.
+Information on each particle, i.e., particle trajectories, is stored in the
+``particles`` group. The ``particles`` group is a container for subgroups that
+represent different subsets of the system under consideration, and it may hold
+one or several subgroups, as needed. These subgroups contain the trajectory data
+per particle as time-dependent or time-independent data, depending on the
+situation.
 
 Standardized subgroups are ``position``, ``image``, ``velocity``, ``force``,
-``mass``, ``species`` and ``id``. An example of content for the ``particles``
+``mass``, ``species``, and ``id``. An example of content for the ``particles``
 group is the following::
 
     particles
@@ -198,14 +194,13 @@ group is the following::
           \-- species [N]
           \-- ...
 
-* The group ``position`` describes the particle positions within the (possibly
-  periodic) simulation box.
+* The group ``position`` describes the particle positions within the simulation
+  box, as periodically wrapped or unwrapped coordinates.
 
 * The ``image`` group represents the periodic image of the box in which each
-  particle is actually located and allows one to unwrap periodically reduced
+  particle is actually located and allows one to unwrap periodically wrapped
   positions. For the case of time-dependent data, the ``image/value`` dataset is
-  of the same shape as ``position/value`` and can be either of integer or real
-  kind.
+  of the same shape as ``position/value`` and is either of integer or real kind.
 
   Example: for a cuboid box with periodic boundaries, let :math:`\vec r_i` be
   the reduced position of particle :math:`i` taken from ``position``,
@@ -236,12 +231,13 @@ system of N atoms in D dimensions) and the HDF5 file will be the same.
 Specification of the simulation box
 -----------------------------------
 
-The specification of the simulation box is stored in a group ``box`` inside the
-``particles`` group, within each of its subgroups. The group ``box`` is
-further stored in (or hard-linked to) the ``observables`` group if present.
+The specification of the simulation box is stored in the group ``box``,
+which is contained within each of the subgroups of the ``particles`` group.
+The group ``box`` is further stored in (or hard-linked to) the ``observables``
+group, if present.
 Storing the box information at several places reflects the fact that all root
-groups are optional (except for ``h5md``), different subgroups may further be
-sampled at different time grids. This way, the box information remains
+groups are optional (except for ``h5md``), and different subgroups may further
+be sampled at different time grids. This way, the box information remains
 associated to a group of particles or the collection of observables.
 
 The spatial dimension, the geometry and the boundary of the box are stored as
@@ -251,36 +247,35 @@ attributes to the ``box`` group, e.g., ::
      \-- group1
           \-- box
                +-- dimension
-               +-- geometry
                +-- boundary [D]
+               +-- geometry
                \-- ...
 
 * The ``dimension`` attribute stores the spatial dimension ``D`` of the
   simulation box and is of integer type.
 
-* The ``geometry`` attribute can be ``cuboid`` or ``triclinic``. Depending on
-  this information, additional data is stored:
-
-  **Cuboid box**
-
-  + ``edges``: A ``D``-dimensional vector specifying the space diagonal of the
-    box. The box is not restricted to having the same edges in the different
-    dimensions.
-
-  + ``offset``: A ``D``-dimensional vector specifying the lower coordinate
-    for all directions.
-
-  **Triclinic box**
-
-  + ``edges``: A ``D`` × ``D`` matrix with the rows specifying the edge vectors
-    of the box.
-
-  + ``offset``: A ``D``-dimensional vector specifying the lower coordinate
-    for all directions.
-
 * The ``boundary`` attribute is a vector of length ``D`` that specifies the
   boundary of the box in each dimension. The elements of ``boundary`` can be
   either ``periodic`` or ``nonperiodic``.
+
+* The ``geometry`` attribute can be ``cuboid`` or ``triclinic``.
+
+For a cuboid box, the following additional data is stored:
+
+* ``edges``: A ``D``-dimensional vector specifying the space diagonal of the
+  box. The box is not restricted to having the same edges in the different
+  dimensions.
+
+* ``offset``: A ``D``-dimensional vector specifying the lower coordinate
+  for all directions.
+
+For a triclinic box, the following additional data is stored:
+
+* ``edges``: A ``D`` × ``D`` matrix with the rows specifying the edge vectors
+  of the box.
+
+* ``offset``: A ``D``-dimensional vector specifying the lower coordinate
+  for all directions.
 
 Time dependence
 ^^^^^^^^^^^^^^^
@@ -288,8 +283,8 @@ Time dependence
 If the simulation box is fixed in time, ``edges`` and ``offset`` are stored as
 attributes of the ``box`` group for all box kinds. Else, ``edges`` and
 ``offset`` are stored as datasets following the ``value``, ``step``, ``time``
-organization.  A specific requirement for ``box`` groups inside ``particles``
-is that the ``step`` and ``time`` datasets must match exactly those of the
+organization. A specific requirement for ``box`` groups inside ``particles``
+is that the ``step`` and ``time`` datasets exactly match those of the
 corresponding ``position`` datasets; this may be accomplished by hard linking
 in the HDF5 sense.
 
@@ -332,20 +327,20 @@ Observables group
 -----------------
 
 Macroscopic observables, or more generally, averages over many particles, are
-stored as time series in the root group ``observables``.  Observables
+stored as time series in the root group ``observables``. Observables
 representing only a subset of the particles may be stored in appropriate
-subgroups similarly to the ``particles`` tree.  Each observable is stored as
+subgroups similarly to the ``particles`` tree. Each observable is stored as
 a group obeying the ``value``, ``step``, ``time`` organization outlined above.
 The shape of ``value`` depends on the tensor rank of the observable prepended
 by a ``[variable]`` dimension allowing the accumulation of samples during the
 course of time. For scalar observables, ``value`` has the shape ``[variable]``,
 observables representing ``D``-dimensional vectors have shape
-``[variable][D]``, and so on.  In addition, each group may carry an optional
+``[variable][D]``, and so on. In addition, each group may carry an optional
 integer attribute ``particles`` stating the number of particles involved in the
-average.  If this number varies, the attribute is replaced by a dataset
+average. If this number varies, the attribute is replaced by a dataset
 ``particles`` of ``[variable]`` dimension.
 
-The content of the observables group has the following structure ::
+The content of the observables group has the following structure::
 
     observables
      \-- obs1
