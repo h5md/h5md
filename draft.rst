@@ -157,6 +157,7 @@ attributes are given to the ``h5md`` group. The content of this group is::
      +-- creator_version
      +-- version
      +-- author
+     +-- (author_email)
 
 * ``creator``: The name of the program that created the file.
 * ``creator_version``: The version of the program that created the file, as a
@@ -164,8 +165,10 @@ attributes are given to the ``h5md`` group. The content of this group is::
 * ``version``: The version of the H5MD specification that the file conforms
   to. ``version`` is a dimension \[2\] integer dataset. The first element is the
   major version number and the second element the minor version number.
-* ``author``: The author of the simulation/experiment of the
-  form ``Real Name <email@domain.tld>``, where the email is optional.
+* ``author``: The author of the simulation, or experiment, of the
+  form ``Real Name``.
+* ``author_email``: An email address of the author, of the form
+  ``email@domain.tld``. This attribute is optional.
 
 
 Particles group
