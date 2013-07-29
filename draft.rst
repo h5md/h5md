@@ -112,10 +112,10 @@ time step information and physical time information.
 The structure of such groups is ::
 
     data_group
-     \-- value [var][...]
+     \-- value [variable][...]
           +-- (unit)
-     \-- step [var]
-     \-- time [var]
+     \-- step [variable]
+     \-- time [variable]
           +-- (unit)
 
 * The ``value`` dataset holds the actual data of the time series. Its
@@ -190,13 +190,13 @@ group is the following::
           |    +-- boundary
           |    \-- ...
           \-- position
-          |    \-- value [var][N][D]
-          |    \-- step [var]
-          |    \-- time [var]
+          |    \-- value [variable][N][D]
+          |    \-- step [variable]
+          |    \-- time [variable]
           \-- image
-          |    \-- value [var][N][D]
-          |    \-- step [var]
-          |    \-- time [var]
+          |    \-- value [variable][N][D]
+          |    \-- step [variable]
+          |    \-- time [variable]
           \-- species [N]
           \-- ...
 
@@ -310,13 +310,13 @@ Examples:
                +-- geometry
                +-- boundary
                \-- edges
-                    \-- value [var][D]
-                    \-- step [var]
-                    \-- time [var]
+                    \-- value [variable][D]
+                    \-- step [variable]
+                    \-- time [variable]
                \-- offset
-                    \-- value [var][D]
-                    \-- step [var]
-                    \-- time [var]
+                    \-- value [variable][D]
+                    \-- step [variable]
+                    \-- time [variable]
 
 where ``dimension`` is equal to ``D`` and ``geometry`` is set to ``cuboid``.
 
@@ -361,20 +361,20 @@ The content of the observables group has the following structure ::
      |    \-- ...
      \-- obs1
      |    +-- (particles)
-     |    \-- value [var]
-     |    \-- step [var]
-     |    \-- time [var]
+     |    \-- value [variable]
+     |    \-- step [variable]
+     |    \-- time [variable]
      \-- obs2
-     |    \-- (particles) [var]
-     |    \-- value [var][D]
-     |    \-- step [var]
-     |    \-- time [var]
+     |    \-- (particles) [variable]
+     |    \-- value [variable][D]
+     |    \-- step [variable]
+     |    \-- time [variable]
      \-- group1
      |    \-- obs3
      |         +-- (particles)
-     |         \-- value [var][D][D]
-     |         \-- step [var]
-     |         \-- time [var]
+     |         \-- value [variable][D][D]
+     |         \-- step [variable]
+     |         \-- time [variable]
      \-- ...
 
 The following names should be obeyed for the corresponding observables:
