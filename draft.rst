@@ -184,11 +184,6 @@ group is the following::
 
     particles
      \-- group1
-          \-- box
-          |    +-- dimension
-          |    +-- geometry
-          |    +-- boundary
-          |    \-- ...
           \-- position
           |    \-- value [variable][N][D]
           |    \-- step [variable]
@@ -252,14 +247,10 @@ attributes to the ``box`` group, e.g., ::
     particles
      \-- group1
           \-- box
-          |    +-- dimension
-          |    +-- geometry
-          |    +-- boundary [D]
-          |    \-- ...
-          \-- position
-               \-- value
-               \-- step
-               \-- time
+               +-- dimension
+               +-- geometry
+               +-- boundary [D]
+               \-- ...
 
 * The ``dimension`` attribute stores the spatial dimension ``D`` of the
   simulation box and is of integer type.
@@ -354,11 +345,6 @@ average.  If this number varies, the attribute is replaced by a dataset
 The content of the observables group has the following structure ::
 
     observables
-     \-- box
-     |    +-- dimension
-     |    +-- geometry
-     |    +-- boundary
-     |    \-- ...
      \-- obs1
      |    +-- (particles)
      |    \-- value [variable]
