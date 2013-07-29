@@ -72,7 +72,13 @@ only relevant data. Inside each group, every dataset is again optional. Within
 time-dependent groups, the ``step``, ``time`` and ``value`` datasets are however
 mandatory as they form an important part of the specification.
 
-The groups that are part of the H5MD specifications are
+The root of the HDF5 file is organized as follows::
+
+    file root
+     \-- h5md
+     \-- particles
+     \-- observables
+     \-- parameters
 
 * ``h5md``: Group containing, as attributes, information on the file itself.
 * ``particles``: Group containing the trajectory of particles in the system
@@ -84,14 +90,6 @@ The groups that are part of the H5MD specifications are
 All time dependent data (whether in ``particles`` or ``observables``) is
 organized into HDF5 groups that contain time information in addition to the
 data.
-
-The root of the HDF5 file is organized as follows::
-
-    file root
-     \-- h5md
-     \-- particles
-     \-- observables
-     \-- parameters
 
 In the following, the examples of HDF5 organization may start at the group
 level, omitting to display ``file root``.
@@ -152,7 +150,13 @@ Global attributes
 -----------------
 
 A few global attributes (in the HDF5 sense) are defined for convenience. These
-attributes are given to the ``h5md`` group.
+attributes are given to the ``h5md`` group. The content of this group is::
+
+    h5md
+     +-- creator
+     +-- creator_version
+     +-- version
+     +-- author
 
 * ``creator``: The name of the program that created the file.
 * ``creator_version``: The version of the program that created the file, as a
@@ -162,14 +166,6 @@ attributes are given to the ``h5md`` group.
   major version number and the second element the minor version number.
 * ``author``: The author of the simulation/experiment of the
   form ``Real Name <email@domain.tld>``, where the email is optional.
-
-The content of this group is::
-
-    h5md
-     +-- creator
-     +-- creator_version
-     +-- version
-     +-- author
 
 
 Particles group
@@ -183,7 +179,26 @@ needed. Those subgroups then contain the trajectory data per particle as
 time-dependent or time-independent data, depending on the situation.
 
 Standardized subgroups are ``position``, ``image``, ``velocity``, ``force``,
-``mass``, ``species`` and ``id``.
+``mass``, ``species`` and ``id``. An example of content for the ``particles``
+group is the following::
+
+    particles
+     \-- group1
+          \-- box
+          |    +-- dimension
+          |    +-- geometry
+          |    +-- boundary
+          |    \-- ...
+          \-- position
+          |    \-- value [var][N][D]
+          |    \-- step [var]
+          |    \-- time [var]
+          \-- image
+          |    \-- value [var][N][D]
+          |    \-- step [var]
+          |    \-- time [var]
+          \-- species [N]
+          \-- ...
 
 * The group ``position`` describes the particle positions within the (possibly
   periodic) simulation box.
@@ -218,26 +233,6 @@ All arrays are stored in C-order as enforced by the HDF5 file format (see `§
 or C++ program may thus declare r\[N\]\[D\] for the coordinates array while the
 Fortran program will declare a r(D,N) array (appropriate index ordering for a
 system of N atoms in D dimensions) and the HDF5 file will be the same.
-
-An example of content for the ``particles`` group is the following::
-
-    particles
-     \-- group1
-          \-- box
-          |    +-- dimension
-          |    +-- geometry
-          |    +-- boundary
-          |    \-- ...
-          \-- position
-          |    \-- value [var][N][D]
-          |    \-- step [var]
-          |    \-- time [var]
-          \-- image
-          |    \-- value [var][N][D]
-          |    \-- step [var]
-          |    \-- time [var]
-          \-- species [N]
-          \-- ...
 
 
 Specification of the simulation box
@@ -356,17 +351,6 @@ integer attribute ``particles`` stating the number of particles involved in the
 average.  If this number varies, the attribute is replaced by a dataset
 ``particles`` of ``[variable]`` dimension.
 
-The following names should be obeyed for the corresponding observables:
-
-* ``total_energy``
-* ``potential_energy``
-* ``kinetic_energy``
-* ``pressure``
-* ``temperature``
-
-Note that ``temperature`` refers to the instantaneous temperature as obtained
-from the kinetic energy, not to the thermodynamic quantity.
-
 The content of the observables group has the following structure ::
 
     observables
@@ -392,6 +376,17 @@ The content of the observables group has the following structure ::
      |         \-- step [var]
      |         \-- time [var]
      \-- ...
+
+The following names should be obeyed for the corresponding observables:
+
+* ``total_energy``
+* ``potential_energy``
+* ``kinetic_energy``
+* ``pressure``
+* ``temperature``
+
+Note that ``temperature`` refers to the instantaneous temperature as obtained
+from the kinetic energy, not to the thermodynamic quantity.
 
 
 Parameters group
