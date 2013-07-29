@@ -28,6 +28,18 @@ stands for "HDF5 for molecular data".
 It should facilitate portability of said data amongst simulation and analysis
 programs.
 
+
+File format
+-----------
+
+An H5MD file is stored in the `HDF5 file format`_.
+It is recommended to store H5MD files in the HDF5 file format version 2,
+which includes automatic tracking of creation and modification times
+of the file and its objects.
+
+.. _HDF5 file format: http://www.hdfgroup.org/HDF5/doc/H5.format.html
+
+
 Notation
 --------
 
@@ -40,15 +52,6 @@ The following notation is used:
   dataset.
 * ``\-- data [dim1][dim2]``: ``data`` has dimensions ``dim1`` by ``dim2``.
 
-File format
------------
-
-An H5MD file is stored in the `HDF5 file format`_.
-It is recommended to store H5MD files in the HDF5 file format version 2,
-which includes automatic tracking of creation and modification times
-of the file and its objects.
-
-.. _HDF5 file format: http://www.hdfgroup.org/HDF5/doc/H5.format.html
 
 General organization
 --------------------
@@ -92,29 +95,6 @@ The root of the HDF5 file is organized as follows::
 
 In the following, the examples of HDF5 organization may start at the group
 level, omitting to display ``file root``.
-
-Global attributes
------------------
-
-A few global attributes (in the HDF5 sense) are defined for convenience. These
-attributes are given to the ``h5md`` group.
-
-* ``creator``: The name of the program that created the file.
-* ``creator_version``: The version of the program that created the file, as a
-  string containing proper identification for the given program.
-* ``version``: The version of the H5MD specification that the file conforms
-  to. ``version`` is a dimension \[2\] integer dataset. The first element is the
-  major version number and the second element the minor version number.
-* ``author``: The author of the simulation/experiment of the
-  form ``Real Name <email@domain.tld>``, where the email is optional.
-
-The content of this group is::
-
-    h5md
-     +-- creator
-     +-- creator_version
-     +-- version
-     +-- author
 
 
 Storage of time-dependent and time-independent data
@@ -166,6 +146,30 @@ hard links to the ``step`` and ``time`` datasets of a different data group. If
 data are sampled at different times (for instance, one needs the positions more
 frequently than the velocities), ``step`` and ``time`` are unique to each data
 group.
+
+
+Global attributes
+-----------------
+
+A few global attributes (in the HDF5 sense) are defined for convenience. These
+attributes are given to the ``h5md`` group.
+
+* ``creator``: The name of the program that created the file.
+* ``creator_version``: The version of the program that created the file, as a
+  string containing proper identification for the given program.
+* ``version``: The version of the H5MD specification that the file conforms
+  to. ``version`` is a dimension \[2\] integer dataset. The first element is the
+  major version number and the second element the minor version number.
+* ``author``: The author of the simulation/experiment of the
+  form ``Real Name <email@domain.tld>``, where the email is optional.
+
+The content of this group is::
+
+    h5md
+     +-- creator
+     +-- creator_version
+     +-- version
+     +-- author
 
 
 Particles group
