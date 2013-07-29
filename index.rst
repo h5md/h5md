@@ -31,8 +31,8 @@ thermodynamical observables. Afterwards, extensions will be considered on the
 basis of discussion with users of H5MD.
 
 H5MD is developed by Pierre de Buyl, Peter Colberg and Felix Höfling and is
-available under the `GNU General Public License
-<http://www.gnu.org/licenses/gpl.html>`_.
+available under the `GNU General Public License version 3
+<https://www.gnu.org/licenses/gpl.html>`_, or any later version.
 
 The draft represents the current state of the specification.
 
