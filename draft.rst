@@ -343,18 +343,18 @@ average. If this number varies, the attribute is replaced by a dataset
 The content of the observables group has the following structure::
 
     observables
-     \-- obs1
+     \-- observable1
      |    +-- (particles)
      |    \-- value [variable]
      |    \-- step [variable]
      |    \-- time [variable]
-     \-- obs2
+     \-- observable2
      |    \-- (particles) [variable]
      |    \-- value [variable][D]
      |    \-- step [variable]
      |    \-- time [variable]
      \-- group1
-     |    \-- obs3
+     |    \-- observable3
      |         +-- (particles)
      |         \-- value [variable][D][D]
      |         \-- step [variable]
