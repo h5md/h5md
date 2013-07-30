@@ -63,37 +63,35 @@ following notation is used to depict the tree or its subtrees:
 General organization
 --------------------
 
-H5MD defines an internal organization for an HDF5 file. A number of HDF5 groups
-are defined at the root level of the file. Within the data groups, a number of
-required fields exist and should possess a conforming name and shape.
+H5MD defines an organization of the HDF5 file into HDF5 groups, datasets,
+attributes. A number of HDF5 groups are defined at the root level of the file.
+Several levels of subgroups may exist in a file, allowing the storage and
+description of subsystems.
 
-Several groups of particles may exist in a file, allowing the description of
-several subsystems. Multiple time steps are found inside a single HDF5 dataset.
-One can then obtain either a snapshot of the system at a given time or extract a
-single trajectory via dataset slicing.
+The file is allowed to possess non-specified groups or datasets that contain
+additional information such as application-specific parameters or data
+structures, leaving scope for future extenstions. Only the ``h5md`` group is
+mandatory in a H5MD file. All other root groups are optional, allowing the user
+to store only relevant data. Inside each group, every group or dataset is again
+optional unless specified differently. Within certain data groups, a number of
+required fields exists and should possess a conforming name and shape.
 
-The file is allowed to possess non-conforming groups that contain other
-information such as simulation parameters. Only the ``h5md`` group is mandatory
-in a H5MD file. The other data groups are optional, allowing the user to store
-only relevant data. Inside each group, every dataset is again optional. However,
-within time-dependent groups, the ``step``, ``time``, and ``value`` datasets are
-mandatory as they form an important part of the specification.
+H5MD supports equally the storage of time-dependent and time-independent data,
+i.e., data that change in the course of the simulation or that do not. The
+choice between those storage types is not made explicit for the elements in the
+specification, it has to be made according to the situation. For instance, the
+species and mass of the particles are often fixed in time, but in chemically
+reactive systems this might not be appropriate.
 
+Time-dependent data
+===================
 
-Storage of time-dependent and time-independent data
----------------------------------------------------
-
-Data in H5MD is stored either as regular HDF5 datasets, for time-independent
-data, or as a group structure that is defined below, for time-dependent data.
-The choice between those storage types is not made explicit for the elements in
-the specification, but rather according to the situation. For instance, the
-particles' mass and species are often fixed in time, but in reactive systems,
-this might not be appropriate.
-
-In order to link time-dependent data to the time axis of the simulation, H5MD
-defines a group structure containing, in addition to the data, the corresponding
-integer time step information and physical time information.
-The structure of such groups is::
+Time-dependent data consist of a series of samples (or frames) referring to
+multiple time steps. Such data are found inside a single HDF5 dataset and are
+accessed via dataset slicing. In order to link the samples to the time axis of
+the simulation, H5MD defines a group structure containing, in addition to the
+actual data, information on the corresponding integer time step and on the
+physical time. The structure of such a group is::
 
     data_group
      \-- step [variable]
@@ -112,9 +110,9 @@ The structure of such groups is::
 
 * The ``value`` dataset holds the data of the time series. Its dimensions depend
   on the type of data (``[variable]`` for scalars, ``[variable][D]`` for
-  vectors, etc.). The first dimension of ``value`` must match the unique
-  dimension of ``step`` and ``time``, and serves to accumulate samples during
-  the course of the simulation.
+  ``D``-dimensional vectors, etc.). The first dimension of ``value`` must match
+  the unique dimension of ``step`` and ``time``, and serves to accumulate
+  samples during the course of the simulation.
 
 The datasets ``time`` and ``value`` may possess an optional string attribute
 ``unit`` that gives the physical unit of their respective data (``nm`` for the
@@ -124,8 +122,21 @@ attached to the dataset itself.
 If several data groups are sampled at equal times, ``step`` and ``time`` of one
 data group may be HDF5 hard links to the ``step`` and ``time`` datasets of a
 different data group. If data groups are sampled at different times (for
-instance, one needs the positions more frequently than the velocities), ``step``
-and ``time`` are unique to each data group.
+instance, if one needs the positions more frequently than the velocities),
+``step`` and ``time`` are unique to each data group.
+
+Time-independent data
+=====================
+
+Time-independent data is stored as a regular HDF5 dataset or as HDF5 attribute.
+Like for the ``value`` dataset in the case of time-dependent data, data type
+and array dimensions are implied by the stored data. Further, an optional
+attribute ``unit`` may be attached.
+
+Storage as HDF5 attributes is preferred over HDF5 datasets for small amounts of
+data, in particular when the size of the data is known *a priori* and does not
+scale with the system size (i.e., the particle number or the simulation
+volume).
 
 
 Root level of the file
