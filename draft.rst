@@ -108,8 +108,9 @@ physical time. The structure of such a group is::
 * The ``time`` dataset is the same as the ``step`` dataset, except it is
   real-valued and contains the simulation time in simulation or physical units.
 
-* The ``value`` dataset holds the data of the time series. Its dimensions depend
-  on the type of data (``[variable]`` for scalars, ``[variable][D]`` for
+* The ``value`` dataset holds the data of the time series. Its shape is the shape
+  of the stored data prepended by a ``[variable]`` dimension that allows the
+  accumulation of samples. (``[variable]`` for scalars, ``[variable][D]`` for
   ``D``-dimensional vectors, etc.). The first dimension of ``value`` must match
   the unique dimension of ``step`` and ``time``, and serves to accumulate
   samples during the course of the simulation.
@@ -130,8 +131,8 @@ Time-independent data
 
 Time-independent data is stored as a regular HDF5 dataset or as HDF5 attribute.
 Like for the ``value`` dataset in the case of time-dependent data, data type
-and array dimensions are implied by the stored data. Further, an optional
-attribute ``unit`` may be attached.
+and array shape are implied by the stored data, where the ``[variable]``
+dimension is omitted. Further, the optional attribute ``unit`` may be attached.
 
 Storage as HDF5 attributes is preferred over HDF5 datasets for small amounts of
 data, in particular when the size of the data is known *a priori* and does not
@@ -372,20 +373,20 @@ Observables group
 Macroscopic observables, or more generally, averages over many particles, are
 stored as time series in the root group ``observables``. Observables
 representing only a subset of the particles may be stored in appropriate
-subgroups similarly to the ``particles`` tree. Each observable is stored as
-a group obeying the ``value``, ``step``, ``time`` organization outlined above.
-The shape of ``value`` depends on the tensor rank of the observable prepended
-by a ``[variable]`` dimension allowing the accumulation of samples during the
-course of time. For scalar observables, ``value`` has the shape ``[variable]``,
-observables representing ``D``-dimensional vectors have shape
-``[variable][D]``, and so on. In addition, each group may carry an optional
-integer attribute ``particles`` stating the number of particles involved in the
-average. If this number varies, the attribute is replaced by a dataset
-``particles`` of ``[variable]`` dimension.
+subgroups similarly to the ``particles`` tree. Each observable is stored as a
+group obeying the ``value``, ``step``, ``time`` organization outlined above.
+As for all time-dependent data, the shape of ``value`` depends on the tensor
+rank of the observable prepended by a ``[variable]`` dimension.  In addition,
+each group may carry an optional integer attribute ``particles`` stating the
+number of particles involved in the average. If this number varies, the
+attribute is replaced by a dataset ``particles`` of ``[variable]`` dimension.
+
+The specification of the simulation box is mandatory at ``observables/box``.
 
 The content of the observables group has the following structure::
 
     observables
+     \-- box
      \-- observable1
      |    +-- (particles)
      |    \-- value [variable]
@@ -404,16 +405,12 @@ The content of the observables group has the following structure::
      |         \-- time [variable]
      \-- ...
 
-The following names should be obeyed for the corresponding observables:
-
-* ``total_energy``
-* ``potential_energy``
-* ``kinetic_energy``
-* ``pressure``
-* ``temperature``
-
-Note that ``temperature`` refers to the instantaneous temperature as obtained
-from the kinetic energy, not to the thermodynamic quantity.
+The following identifiers should be obeyed for the corresponding thermodynamic
+observables: ``total_energy``, ``potential_energy``, ``kinetic_energy``,
+``pressure``, ``temperature``. These quantities are understood as "per
+particle", i.e., the are intensive quantities in the thermodynamic limit.
+(Note that ``temperature`` refers to the instantaneous temperature as obtained
+from the kinetic energy, not to the thermodynamic variable.)
 
 
 Parameters group
