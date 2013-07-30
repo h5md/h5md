@@ -173,29 +173,33 @@ level, omitting the display of ``file root``.
 H5MD metadata
 -------------
 
-A few global attributes (in the HDF5 sense) are defined for convenience. These
-attributes are given to the ``h5md`` group.
-
-The content of this group is::
+A set of global metadata describing the content of the file is stored in the
+``h5md`` group as HDF5 attributes. The content of the group is::
 
     h5md
+     +-- author
+     +-- (author_email)
      +-- creator
      +-- creator_version
      +-- version
-     +-- author
-     +-- (author_email)
 
-* ``creator``: The name of the program that created the file.
-* ``creator_version``: The version of the program that created the file, as a
-  string containing proper identification for the given program.
-* ``version``: The version of the H5MD specification that the file conforms
-  to. ``version`` is a dimension \[2\] integer dataset, with the first element
-  as the major version number ``1`` and the second element as the minor version
-  number ``0``.
-* ``author``: The author of the simulation, or experiment, of the
-  form ``Real Name``.
-* ``author_email``: An email address of the author, of the form
-  ``email@domain.tld``. This attribute is optional.
+* The ``author`` attribute identifies the real name of the person responsible
+  for the simulation (or the experiment) as a string.
+
+* The optional attribute ``author_email`` holds an email address of the author
+  as a string of the form ``email@domain.tld``.
+
+* The ``creator`` attribute stores the name of the program that created the
+  file as a string.
+
+* The ``creator_version`` attribute yields the version of the program that
+  created the file, as a string containing a proper identification for the
+  given program.
+
+* The ``version`` attribute states the version of the H5MD specification that
+  the file conforms to. It is an integer dataset of dimension \[2\], with the
+  first element as the major version number ``1`` and the second element as the
+  minor version number ``0``.
 
 
 Particles group
