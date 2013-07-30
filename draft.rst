@@ -171,18 +171,18 @@ follows::
     is the only mandatory root group.
 
 ``particles``
-    A group that contains information on each particle in the system,
+    An optional group that contains information on each particle in the system,
     e.g., a snapshot of the positions or the full trajectory in phase space.
     The size of stored data scales linearly with the number of particles under
     consideration.
 
 ``observables``
-    A group that contains other quantities of interest, e.g.,
+    An optional group that contains other quantities of interest, e.g.,
     physical observables that are derived from the system state at given points
     in time. The size of stored data is typically independent of the system size.
 
 ``parameters``
-    A group that contains application-specific, custom data such as
+    An optional group that contains application-specific, custom data such as
     control parameters or simulation scripts.
 
 In subsequent sections, the examples of HDF5 organization may start at the group
