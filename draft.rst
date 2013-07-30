@@ -184,8 +184,8 @@ level, omitting the display of ``file root``.
 H5MD metadata
 -------------
 
-A set of global metadata describing the content of the file is stored in the
-``h5md`` group as HDF5 attributes. The content of the group is::
+A set of global metadata describing the file is stored in the ``h5md`` group as
+HDF5 attributes. The contents of the group is::
 
     h5md
      +-- author
@@ -226,7 +226,7 @@ below. For each dataset, the particle index is accomodated by the second
 (first, in the case of time-independence) array dimension.
 
 Standardized data elements are ``position``, ``image``, ``velocity``, ``force``,
-``mass``, ``species``, and ``id``. An example of content for the ``particles``
+``mass``, ``species``, and ``id``. An example of contents for the ``particles``
 group assuming ``N`` particles in ``D``-dimensional space is the following::
 
     particles
@@ -386,7 +386,7 @@ attribute is replaced by a dataset ``particles`` of ``[variable]`` dimension.
 
 The specification of the simulation box is mandatory at ``observables/box``.
 
-The content of the observables group has the following structure::
+The contents of the observables group has the following structure::
 
     observables
      \-- box
@@ -424,7 +424,7 @@ control parameters or simulation scripts. The group consists of HDF5 groups,
 datasets, attributes. However, the detailed structure of the group is left
 unspecified.
 
-The content of the ``parameters`` group could be the following::
+The contents of the ``parameters`` group could be the following::
 
     parameters
      +-- user_data1
