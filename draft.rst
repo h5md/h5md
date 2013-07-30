@@ -280,12 +280,12 @@ which is contained within each of the subgroups of the ``particles`` group.
 The group ``box`` is further stored in (or hard-linked to) the ``observables``
 group, if present.
 Storing the box information at several places reflects the fact that all root
-groups are optional (except for ``h5md``), and different subgroups may further
-be sampled at different time grids. This way, the box information remains
+groups are optional (except for ``h5md``), and further that different subgroups
+may be sampled at different time grids. This way, the box information remains
 associated to a group of particles or the collection of observables.
 
-The spatial dimension, the geometry and the boundary of the box are stored as
-attributes to the ``box`` group, e.g., ::
+The spatial dimension, the type of geometry, and the boundary conditions of the
+box are stored as attributes to the ``box`` group, e.g., ::
 
     particles
      \-- group1
@@ -298,17 +298,18 @@ attributes to the ``box`` group, e.g., ::
 * The ``dimension`` attribute stores the spatial dimension ``D`` of the
   simulation box and is of integer type.
 
-* The ``boundary`` attribute is a vector of length ``D`` that specifies the
-  boundary of the box in each dimension. The elements of ``boundary`` can be
-  either ``periodic`` or ``nonperiodic``.
+* The ``boundary`` attribute is a string-valued array of size ``D`` that
+  specifies the boundary condition of the box along each dimension. The
+  elements of ``boundary`` are either ``periodic`` or ``nonperiodic``.
 
-* The ``geometry`` attribute can be ``cuboid`` or ``triclinic``.
+* The ``geometry`` attribute is string-valued and is either ``cuboid`` or
+  ``triclinic``.
 
 For a cuboid box, the following additional data is stored:
 
 * ``edges``: A ``D``-dimensional vector specifying the space diagonal of the
-  box. The box is not restricted to having the same edges in the different
-  dimensions.
+  box. The box is not restricted to having the same edge lengths in the
+  different dimensions.
 
 * ``offset``: A ``D``-dimensional vector specifying the lower coordinate
   for all directions.
@@ -327,10 +328,12 @@ Time dependence
 If the simulation box is fixed in time, ``edges`` and ``offset`` are stored as
 attributes of the ``box`` group for all box kinds. Else, ``edges`` and
 ``offset`` are stored as datasets following the ``value``, ``step``, ``time``
-organization. A specific requirement for ``box`` groups inside ``particles``
-is that the ``step`` and ``time`` datasets exactly match those of the
-corresponding ``position`` datasets; this may be accomplished by hard linking
-in the HDF5 sense.
+organization.
+
+A specific requirement for ``box`` groups inside ``particles`` is that the
+``step`` and ``time`` datasets exactly match those of the corresponding
+``position`` datasets; this may be accomplished by hard linking in the HDF5
+sense.
 
 Examples:
 
