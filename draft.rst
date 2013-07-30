@@ -21,10 +21,10 @@ Specifications for the H5MD file format version 1.0
 Objective
 ---------
 
-H5MD stands for "HDF5 for molecular data". H5MD is aimed at becoming a
-specification to store molecular simulation data. It is based on the `HDF5`_
-file format. It should facilitate portability of said data amongst simulation
-and analysis programs.
+H5MD stands for "HDF5 for molecular data". H5MD is a
+specification to store molecular simulation data and is based on the `HDF5`_
+file format. The primary goal is to facilitate the portability of said data
+amongst scientific simulation and analysis programs.
 
 .. _HDF5: http://www.hdfgroup.org/HDF5/
 
@@ -35,7 +35,7 @@ File format
 A H5MD file is stored in the `HDF5 file format`_ version 0 or later.
 It is recommended to store H5MD files in the HDF5 file format version 2,
 which includes the implicit tracking of the creation and modification times
-of the file and its objects.
+of the file and of each of its objects.
 
 .. _HDF5 file format: http://www.hdfgroup.org/HDF5/doc/H5.format.html
 
@@ -43,14 +43,21 @@ of the file and its objects.
 Notation
 --------
 
-The following notation is used:
+HDF5 files are organized into HDF5 groups and HDF5 datasets, which form a tree
+structure. HDF5 attributes can be attached to each group or dataset. The
+following notation is used to depict the tree or its subtrees:
 
-* ``\-- item``: ``item`` is an element of a group. ``item`` can be a group
-  itself. The elements within a group are indented by five spaces with respect
-  to the group.
+* ``\-- item``: ``item`` represents an element of a group. ``item`` is a
+  dataset or a group. If it is a group itself, the elements within the group
+  are indented by five spaces with respect to the group name.
+
 * ``+-- att``: ``att`` is an attribute. ``att`` can relate to a group or a
   dataset.
-* ``\-- data [dim1][dim2]``: ``data`` has dimensions ``dim1`` by ``dim2``.
+
+* ``\-- data [dim1][dim2]``: ``data`` is an HDF5 dataset with array dimensions
+  ``dim1`` by ``dim2``.
+
+* ``(identifier)``: The element ``identifier`` is optional.
 
 
 General organization
