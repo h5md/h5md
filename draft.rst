@@ -84,7 +84,7 @@ species and mass of the particles are often fixed in time, but in chemically
 reactive systems this might not be appropriate.
 
 Time-dependent data
-===================
+^^^^^^^^^^^^^^^^^^^
 
 Time-dependent data consist of a series of samples (or frames) referring to
 multiple time steps. Such data are found inside a single HDF5 dataset and are
@@ -126,7 +126,7 @@ instance, if one needs the positions more frequently than the velocities),
 ``step`` and ``time`` are unique to each data group.
 
 Time-independent data
-=====================
+^^^^^^^^^^^^^^^^^^^^^
 
 Time-independent data is stored as a regular HDF5 dataset or as HDF5 attribute.
 Like for the ``value`` dataset in the case of time-dependent data, data type
