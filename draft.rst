@@ -47,17 +47,19 @@ HDF5 files are organized into HDF5 groups and HDF5 datasets, which form a tree
 structure. HDF5 attributes can be attached to each group or dataset. The
 following notation is used to depict the tree or its subtrees:
 
-* ``\-- item``: ``item`` represents an element of a group. ``item`` is a
-  dataset or a group. If it is a group itself, the elements within the group
-  are indented by five spaces with respect to the group name.
+``\-- item``
+    An element of a group, that is either a dataset or a group. If it is a
+    group itself, the elements within the group are indented by five spaces
+    with respect to the group name.
 
-* ``+-- att``: ``att`` is an attribute. ``att`` can relate to a group or a
-  dataset.
+``+-- att``
+    An attribute, that relates either to a group or a dataset.
 
-* ``\-- data [dim1][dim2]``: ``data`` is an HDF5 dataset with array dimensions
-  ``dim1`` by ``dim2``.
+``\-- data [dim1][dim2]``
+    A dataset with array dimensions ``dim1`` by ``dim2``.
 
-* ``(identifier)``: The element ``identifier`` is optional.
+``(identifier)``
+    An optional element.
 
 
 General organization
@@ -100,20 +102,24 @@ physical time. The structure of such a group is::
      \-- value [variable][...]
           +-- (unit)
 
-* The ``step`` dataset has dimensions ``[variable]`` and contains the time steps
-  at which the corresponding data were sampled. It is of integer data type to
-  allow exact temporal matching of data from one data group to another within
-  the same file.
+``step``
+    A dataset with dimensions ``[variable]`` that contains the time steps
+    at which the corresponding data were sampled. It is of integer data type to
+    allow exact temporal matching of data from one data group to another within
+    the same file.
 
-* The ``time`` dataset is the same as the ``step`` dataset, except it is
-  real-valued and contains the simulation time in simulation or physical units.
+``time``
+    A dataset that is the same as the ``step`` dataset, except it is
+    real-valued and contains the simulation time in simulation or physical
+    units.
 
-* The ``value`` dataset holds the data of the time series. Its shape is the shape
-  of the stored data prepended by a ``[variable]`` dimension that allows the
-  accumulation of samples. (``[variable]`` for scalars, ``[variable][D]`` for
-  ``D``-dimensional vectors, etc.). The first dimension of ``value`` must match
-  the unique dimension of ``step`` and ``time``, and serves to accumulate
-  samples during the course of the simulation.
+``value``
+    A dataset that holds the data of the time series. Its shape is the shape
+    of the stored data prepended by a ``[variable]`` dimension that allows the
+    accumulation of samples. (``[variable]`` for scalars, ``[variable][D]`` for
+    ``D``-dimensional vectors, etc.). The first dimension of ``value`` must match
+    the unique dimension of ``step`` and ``time``, and serves to accumulate
+    samples during the course of the simulation.
 
 The datasets ``time`` and ``value`` may possess an optional string attribute
 ``unit`` that gives the physical unit of their respective data (``nm`` for the
@@ -162,20 +168,24 @@ follows::
      \-- (observables)
      \-- (parameters)
 
-* The ``h5md`` group contains metadata and information on the file itself. It
-  is the only mandatory root group.
+``h5md``
+    A group that contains metadata and information on the file itself. It
+    is the only mandatory root group.
 
-* The ``particles`` group contains information on each particle in the system,
-  e.g., a snapshot of the positions or the full trajectory in phase space.
-  The size of stored data scales linearly with the number of particles under
-  consideration.
+``particles``
+    A group that contains information on each particle in the system,
+    e.g., a snapshot of the positions or the full trajectory in phase space.
+    The size of stored data scales linearly with the number of particles under
+    consideration.
 
-* The ``observables`` group contains other quantities of interest, e.g.,
-  physical observables that are derived from the system state at given points
-  in time. The size of stored data is typically independent of the system size.
+``observables``
+    A group that contains other quantities of interest, e.g.,
+    physical observables that are derived from the system state at given points
+    in time. The size of stored data is typically independent of the system size.
 
-* The ``parameters`` group contains application-specific, custom data such as
-  control parameters or simulation scripts.
+``parameters``
+    A group that contains application-specific, custom data such as
+    control parameters or simulation scripts.
 
 In subsequent sections, the examples of HDF5 organization may start at the group
 level, omitting the display of ``file root``.
@@ -194,23 +204,28 @@ HDF5 attributes. The contents of the group is::
      +-- creator_version
      +-- version
 
-* The ``author`` attribute identifies the real name of the person responsible
-  for the simulation (or the experiment) as a string.
+``author``
+    An attribute that identifies the real name of the person responsible
+    for the simulation (or the experiment) as a string.
 
-* The optional attribute ``author_email`` holds an email address of the author
-  as a string of the form ``email@domain.tld``.
+``author_email``
+    An optional attribute that holds an email address of the author
+    as a string of the form ``email@domain.tld``.
 
-* The ``creator`` attribute stores the name of the program that created the
-  file as a string.
+``creator``
+    An attribute that stores the name of the program that created the
+    file as a string.
 
-* The ``creator_version`` attribute yields the version of the program that
-  created the file, as a string containing a proper identification for the
-  given program.
+``creator_version``
+    An attribute that yields the version of the program that
+    created the file, as a string containing a proper identification for the
+    given program.
 
-* The ``version`` attribute states the version of the H5MD specification that
-  the file conforms to. It is an integer dataset of dimension \[2\], with the
-  first element as the major version number ``1`` and the second element as the
-  minor version number ``0``.
+``version``
+    An attribute that states the version of the H5MD specification that
+    the file conforms to. It is an integer dataset of dimension \[2\], with the
+    first element as the major version number ``1`` and the second element as the
+    minor version number ``0``.
 
 
 Particles group
@@ -243,33 +258,41 @@ group assuming ``N`` particles in ``D``-dimensional space is the following::
           \-- species [N]
           \-- ...
 
-* The group ``position`` describes the particle positions within the simulation
-  box, as periodically wrapped or unwrapped coordinate vectors.
+``position``
+    A group that describes the particle positions within the simulation
+    box, as periodically wrapped or unwrapped coordinate vectors.
 
-* The ``image`` group represents the periodic image of the box in which each
-  particle is actually located and allows one to unwrap periodically wrapped
-  positions. For the case of time-dependent data, the ``image/value`` dataset is
-  of the same shape as ``position/value`` and is either of integer or real kind.
+``image``
+    A group that represents the periodic image of the box in which each
+    particle is actually located and allows one to unwrap periodically wrapped
+    positions. For the case of time-dependent data, the ``image/value`` dataset is
+    of the same shape as ``position/value`` and is either of integer or real kind.
 
-  Example: for a cuboid box with periodic boundaries, let :math:`\vec r_i` be
-  the reduced position of particle :math:`i` taken from ``position``,
-  :math:`\vec a_i` its image vector from ``image``, and :math:`\vec L` the
-  space diagonal of the box, then component :math:`j` of the extended particle
-  position :math:`\vec R_i` is given by :math:`R_{ij} = r_{ij} + L_j a_{ij}`.
+    For instance, given a cuboid box with periodic boundaries, let :math:`\vec
+    r_i` be the reduced position of particle :math:`i` taken from ``position``,
+    :math:`\vec a_i` its image vector from ``image``, and :math:`\vec L` the
+    space diagonal of the box, then component :math:`j` of the extended particle
+    position :math:`\vec R_i` is given by :math:`R_{ij} = r_{ij} + L_j a_{ij}`.
 
-* The ``velocity`` and ``force`` groups contain the velocities and total forces
-  (i.e., the accelerations multiplied by the particle mass), respectively, for
-  each particle as vectors.
+``velocity``
+    A group that contains the velocities for each particle as a vector.
 
-* The ``mass`` group holds the mass for each particle as a scalar.
+``force``
+    A group that contains the total forces (i.e., the accelerations multiplied
+    by the particle mass) for each particle as a vector.
 
-* The ``species`` group describes the species of the particles, i.e., their
-  atomic or chemical identity, and is of scalar integer data type. ``species``
-  is typically time-dependent if chemical reactions occur or in
-  semi-grandcanonical Monte-Carlo simulations.
+``mass``
+    A group that holds the mass for each particle as a scalar.
 
-* The ``id`` group holds a unique scalar identifier for each particle, which is
-  of integer kind.
+``species``
+    A group that describes the species of the particles, i.e., their
+    atomic or chemical identity, and is of scalar integer data type. ``species``
+    is typically time-dependent if chemical reactions occur or in
+    semi-grandcanonical Monte-Carlo simulations.
+
+``id``
+    A group that holds a unique scalar identifier for each particle, which is
+    of integer kind.
 
 
 Specification of the simulation box
@@ -295,32 +318,39 @@ box are stored as attributes to the ``box`` group, e.g., ::
                +-- geometry
                \-- ...
 
-* The ``dimension`` attribute stores the spatial dimension ``D`` of the
-  simulation box and is of integer type.
+``dimension``
+    An attribute that stores the spatial dimension ``D`` of the
+    simulation box and is of integer type.
 
-* The ``boundary`` attribute is a string-valued array of size ``D`` that
-  specifies the boundary condition of the box along each dimension. The
-  elements of ``boundary`` are either ``periodic`` or ``nonperiodic``.
+``boundary``
+    An attribute that is a string-valued array of size ``D`` that
+    specifies the boundary condition of the box along each dimension. The
+    elements of ``boundary`` are either ``periodic`` or ``nonperiodic``.
 
-* The ``geometry`` attribute is string-valued and is either ``cuboid`` or
-  ``triclinic``.
+``geometry``
+    An attribute that is string-valued and is either ``cuboid`` or
+    ``triclinic``.
 
 For a cuboid box, the following additional data is stored:
 
-* ``edges``: A ``D``-dimensional vector specifying the space diagonal of the
-  box. The box is not restricted to having the same edge lengths in the
-  different dimensions.
+``edges``
+    A ``D``-dimensional vector specifying the space diagonal of the
+    box. The box is not restricted to having the same edge lengths in the
+    different dimensions.
 
-* ``offset``: A ``D``-dimensional vector specifying the lower coordinate
-  for all directions.
+``offset``
+    A ``D``-dimensional vector specifying the lower coordinate
+    for all directions.
 
 For a triclinic box, the following additional data is stored:
 
-* ``edges``: A ``D`` × ``D`` matrix with the rows specifying the edge vectors
-  of the box.
+``edges``
+    A ``D`` × ``D`` matrix with the rows specifying the edge vectors
+    of the box.
 
-* ``offset``: A ``D``-dimensional vector specifying the lower coordinate
-  for all directions.
+``offset``
+    A ``D``-dimensional vector specifying the lower coordinate
+    for all directions.
 
 Time dependence
 ^^^^^^^^^^^^^^^
@@ -335,9 +365,7 @@ A specific requirement for ``box`` groups inside ``particles`` is that the
 ``position`` datasets; this may be accomplished by hard linking in the HDF5
 sense.
 
-Examples:
-
-* A cuboid box that changes in time would appear as ::
+For instance, a cuboid box that changes in time would appear as::
 
     particles
      \-- group1
@@ -355,8 +383,7 @@ Examples:
                     \-- time [variable]
 
 where ``dimension`` is equal to ``D`` and ``geometry`` is set to ``cuboid``.
-
-* A fixed-in-time triclinic box would appear as ::
+A fixed-in-time triclinic box would appear as::
 
     particles
      \-- group1
