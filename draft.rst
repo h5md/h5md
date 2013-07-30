@@ -52,7 +52,7 @@ used to depict the tree or its subtrees:
     group itself, the elements within the group are indented by five spaces
     with respect to the group name.
 
-``+-- att``
+``+-- attribute``
     An attribute, that relates either to a group or a dataset.
 
 ``\-- data [dim1][dim2]``
