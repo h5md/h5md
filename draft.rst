@@ -138,6 +138,16 @@ data, in particular when the size of the data is known *a priori* and does not
 scale with the system size (i.e., the particle number or the simulation
 volume).
 
+Storage order of arrays
+^^^^^^^^^^^^^^^^^^^^^^^
+
+All arrays are stored in C-order as enforced by the HDF5 file format (see `§
+3.2.5 <http://www.hdfgroup.org/HDF5/doc/UG/12_Dataspaces.html#ProgModel>`_). A
+C or C++ program may thus declare ``r\[N\]\[D\]`` for the array of particle
+coordinates while the Fortran program will declare a ``r(D,N)`` array
+(appropriate index ordering for a system of ``N`` particles in ``D`` spatial
+dimensions) and the HDF5 file will be the same.
+
 
 Root level of the file
 ----------------------
@@ -255,12 +265,6 @@ group is the following::
 
 * The ``id`` group holds a unique identifier for each particle, which is of
   integer kind.
-
-All arrays are stored in C-order as enforced by the HDF5 file format (see `§
-3.2.5 <http://www.hdfgroup.org/HDF5/doc/UG/12_Dataspaces.html#ProgModel>`_). A C
-or C++ program may thus declare r\[N\]\[D\] for the coordinates array while the
-Fortran program will declare a r(D,N) array (appropriate index ordering for a
-system of N atoms in D dimensions) and the HDF5 file will be the same.
 
 
 Specification of the simulation box
