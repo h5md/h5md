@@ -209,8 +209,8 @@ HDF5 attributes. The contents of the group is::
     for the simulation (or the experiment) as a string.
 
 ``author_email``
-    An optional attribute that holds an email address of the author
-    as a string of the form ``email@domain.tld``.
+    An optional attribute that holds the author's email address as a string of
+    the form ``email@domain.tld``.
 
 ``creator``
     An attribute that stores the name of the program that created the
