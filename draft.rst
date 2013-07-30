@@ -144,7 +144,7 @@ Storage order of arrays
 
 All arrays are stored in C-order as enforced by the HDF5 file format (see `§
 3.2.5 <http://www.hdfgroup.org/HDF5/doc/UG/12_Dataspaces.html#ProgModel>`_). A
-C or C++ program may thus declare ``r\[N\]\[D\]`` for the array of particle
+C or C++ program may thus declare ``r[N][D]`` for the array of particle
 coordinates while the Fortran program will declare a ``r(D,N)`` array
 (appropriate index ordering for a system of ``N`` particles in ``D`` spatial
 dimensions) and the HDF5 file will be the same.
