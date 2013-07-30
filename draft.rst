@@ -410,7 +410,7 @@ The contents of the observables group has the following structure::
 
 The following identifiers should be obeyed for the corresponding thermodynamic
 observables: ``total_energy``, ``potential_energy``, ``kinetic_energy``,
-``pressure``, ``temperature``. These quantities are understood as "per
+``pressure``, and ``temperature``. These quantities are understood as "per
 particle", i.e., they are intensive quantities in the thermodynamic limit.
 (Note that ``temperature`` refers to the instantaneous temperature as obtained
 from the kinetic energy, not to the thermodynamic variable.)
