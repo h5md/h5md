@@ -298,10 +298,10 @@ group assuming ``N`` particles in ``D``-dimensional space is the following::
 Specification of the simulation box
 -----------------------------------
 
-The specification of the simulation box is stored in the group ``box``,
-which is contained within each of the subgroups of the ``particles`` group.
-The group ``box`` is further stored in (or hard-linked to) the ``observables``
-group, if present.
+The specification of the simulation box is stored in the group ``box``, which
+must be contained within each of the subgroups of the ``particles`` group.
+The group ``box`` must further be stored in (or hard-linked to) the
+``observables`` group, if present.
 Storing the box information at several places reflects the fact that all root
 groups are optional (except for ``h5md``), and further that different subgroups
 may be sampled at different time grids. This way, the box information remains
@@ -410,8 +410,6 @@ rank of the observable prepended by a ``[variable]`` dimension.  In addition,
 each group may carry an optional integer attribute ``particles`` stating the
 number of particles involved in the average. If this number varies, the
 attribute is replaced by a dataset ``particles`` of ``[variable]`` dimension.
-
-The specification of the simulation box is mandatory at ``observables/box``.
 
 The contents of the observables group has the following structure::
 
