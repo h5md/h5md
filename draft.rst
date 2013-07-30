@@ -70,8 +70,8 @@ attributes. A number of HDF5 groups are defined at the root level of the file.
 Several levels of subgroups may exist in a file, allowing the storage and
 description of subsystems.
 
-The file is allowed to possess non-specified groups or datasets that contain
-additional information such as application-specific parameters or data
+The file is allowed to possess non-specified groups, datasets or attributes that
+contain additional information such as application-specific parameters or data
 structures, leaving scope for future extensions. Only the ``h5md`` group is
 mandatory in a H5MD file. All other root groups are optional, allowing the user
 to store only relevant data. Inside each group, every group or dataset is again
