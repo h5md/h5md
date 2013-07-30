@@ -218,16 +218,19 @@ Particles group
 Information on each particle, i.e., particle trajectories, is stored in the
 ``particles`` group. The ``particles`` group is a container for subgroups that
 represent different subsets of the system under consideration, and it may hold
-one or several subgroups, as needed. These subgroups contain the trajectory data
-per particle as time-dependent or time-independent data, depending on the
-situation.
+one or several subgroups, as needed. These subgroups contain the trajectory
+data per particle as time-dependent or time-independent data, depending on the
+situation. Each subgroup contains a specification of the simulation box, see
+below. For each dataset, the particle index is accomodated by the second
+(first, in the case of time-independence) array dimension.
 
-Standardized subgroups are ``position``, ``image``, ``velocity``, ``force``,
+Standardized data elements are ``position``, ``image``, ``velocity``, ``force``,
 ``mass``, ``species``, and ``id``. An example of content for the ``particles``
-group is the following::
+group assuming ``N`` particles in ``D``-dimensional space is the following::
 
     particles
      \-- group1
+          \-- box
           \-- position
           |    \-- value [variable][N][D]
           |    \-- step [variable]
@@ -240,7 +243,7 @@ group is the following::
           \-- ...
 
 * The group ``position`` describes the particle positions within the simulation
-  box, as periodically wrapped or unwrapped coordinates.
+  box, as periodically wrapped or unwrapped coordinate vectors.
 
 * The ``image`` group represents the periodic image of the box in which each
   particle is actually located and allows one to unwrap periodically wrapped
@@ -251,20 +254,21 @@ group is the following::
   the reduced position of particle :math:`i` taken from ``position``,
   :math:`\vec a_i` its image vector from ``image``, and :math:`\vec L` the
   space diagonal of the box, then component :math:`j` of the extended particle
-  position is given by :math:`R_{ij} = r_{ij} + L_j a_{ij}`.
+  position :math:`\vec R_i` is given by :math:`R_{ij} = r_{ij} + L_j a_{ij}`.
 
 * The ``velocity`` and ``force`` groups contain the velocities and total forces
-  (i.e., the accelerations multiplied by the particle mass) for each particle.
+  (i.e., the accelerations multiplied by the particle mass), respectively, for
+  each particle as vectors.
 
-* The ``mass`` group holds the mass for each particle.
+* The ``mass`` group holds the mass for each particle as a scalar.
 
 * The ``species`` group describes the species of the particles, i.e., their
-  atomic or chemical identity, and is of an integer datatype. ``species`` is
-  typically time-dependent if chemical reactions occur or in semi-grandcanonical
-  Monte-Carlo simulations.
+  atomic or chemical identity, and is of scalar integer datatype. ``species``
+  is typically time-dependent if chemical reactions occur or in
+  semi-grandcanonical Monte-Carlo simulations.
 
-* The ``id`` group holds a unique identifier for each particle, which is of
-  integer kind.
+* The ``id`` group holds a unique scalar identifier for each particle, which is
+  of integer kind.
 
 
 Specification of the simulation box
