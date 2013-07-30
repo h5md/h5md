@@ -419,9 +419,12 @@ from the kinetic energy, not to the thermodynamic variable.)
 Parameters group
 ----------------
 
-The ``parameters`` group stores user-defined simulation parameters.
+The ``parameters`` group stores application-specific, custom data such as
+control parameters or simulation scripts. The group consists of HDF5 groups,
+datasets, attributes. However, the detailed structure of the group is left
+unspecified.
 
-The content of the ``parameters`` group is the following::
+The content of the ``parameters`` group could be the following::
 
     parameters
      +-- user_data1
