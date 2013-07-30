@@ -43,9 +43,9 @@ of the file and of each of its objects.
 Notation
 --------
 
-HDF5 files are organized into HDF5 groups and HDF5 datasets, which form a tree
-structure. HDF5 attributes can be attached to each group or dataset. The
-following notation is used to depict the tree or its subtrees:
+HDF5 files are organized into groups and datasets, which form a tree structure.
+Attributes can be attached to each group or dataset. The following notation is
+used to depict the tree or its subtrees:
 
 ``\-- item``
     An element of a group, that is either a dataset or a group. If it is a
@@ -65,8 +65,8 @@ following notation is used to depict the tree or its subtrees:
 General organization
 --------------------
 
-H5MD defines an organization of the HDF5 file into HDF5 groups, datasets,
-attributes. A number of HDF5 groups are defined at the root level of the file.
+H5MD defines an organization of the HDF5 file into groups, datasets, and
+attributes. A number of groups are defined at the root level of the file.
 Several levels of subgroups may exist in a file, allowing the storage and
 description of subsystems.
 
@@ -89,7 +89,7 @@ Time-dependent data
 ^^^^^^^^^^^^^^^^^^^
 
 Time-dependent data consist of a series of samples (or frames) referring to
-multiple time steps. Such data are found inside a single HDF5 dataset and are
+multiple time steps. Such data are found inside a single dataset and are
 accessed via dataset slicing. In order to link the samples to the time axis of
 the simulation, H5MD defines a group structure containing, in addition to the
 actual data, information on the corresponding integer time step and on the
@@ -127,7 +127,7 @@ position, for instance). In the case of time-independent data, ``unit`` is
 attached to the dataset itself.
 
 If several data groups are sampled at equal times, ``step`` and ``time`` of one
-data group may be HDF5 hard links to the ``step`` and ``time`` datasets of a
+data group may be hard links to the ``step`` and ``time`` datasets of a
 different data group. If data groups are sampled at different times (for
 instance, if one needs the positions more frequently than the velocities),
 ``step`` and ``time`` are unique to each data group.
@@ -135,15 +135,14 @@ instance, if one needs the positions more frequently than the velocities),
 Time-independent data
 ^^^^^^^^^^^^^^^^^^^^^
 
-Time-independent data is stored as a regular HDF5 dataset or as HDF5 attribute.
+Time-independent data is stored as a dataset or as an attribute.
 Like for the ``value`` dataset in the case of time-dependent data, data type
 and array shape are implied by the stored data, where the ``[variable]``
 dimension is omitted. Further, the optional attribute ``unit`` may be attached.
 
-Storage as HDF5 attributes is preferred over HDF5 datasets for small amounts of
-data, in particular when the size of the data is known *a priori* and does not
-scale with the system size (i.e., the particle number or the simulation
-volume).
+Storage as attributes is preferred over datasets for small amounts of data, in
+particular when the size of the data is known *a priori* and does not scale with
+the system size (i.e., the particle number or the simulation volume).
 
 Storage order of arrays
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -195,7 +194,7 @@ H5MD metadata
 -------------
 
 A set of global metadata describing the file is stored in the ``h5md`` group as
-HDF5 attributes. The contents of the group is::
+attributes. The contents of the group is::
 
     h5md
      +-- author
@@ -362,8 +361,7 @@ organization.
 
 A specific requirement for ``box`` groups inside ``particles`` is that the
 ``step`` and ``time`` datasets exactly match those of the corresponding
-``position`` datasets; this may be accomplished by hard linking in the HDF5
-sense.
+``position`` groups, which may be accomplished by hard-linking the datasets.
 
 For instance, a cuboid box that changes in time would appear as::
 
@@ -445,8 +443,8 @@ Parameters group
 ----------------
 
 The ``parameters`` group stores application-specific, custom data such as
-control parameters or simulation scripts. The group consists of HDF5 groups,
-datasets, attributes. However, the detailed structure of the group is left
+control parameters or simulation scripts. The group consists of groups,
+datasets, and attributes. However, the detailed structure of the group is left
 unspecified.
 
 The contents of the ``parameters`` group could be the following::
