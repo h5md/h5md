@@ -79,24 +79,6 @@ only relevant data. Inside each group, every dataset is again optional. However,
 within time-dependent groups, the ``step``, ``time``, and ``value`` datasets are
 mandatory as they form an important part of the specification.
 
-The root of the HDF5 file is organized as follows::
-
-    file root
-     \-- h5md
-     \-- particles
-     \-- observables
-     \-- parameters
-
-* ``h5md``: Group containing information on the file itself, as attributes.
-* ``particles``: Group containing the trajectory of particles in the system
-  (positions, ...).
-* ``observables``: Group containing all time-dependent variables in the system,
-  except the ones found in the ``particles`` group.
-* ``parameters``: Group containing user-defined simulation parameters.
-
-In subsequent sections, the examples of HDF5 organization may start at the group
-level, omitting to display ``file root``.
-
 
 Storage of time-dependent and time-independent data
 ---------------------------------------------------
@@ -146,8 +128,30 @@ instance, one needs the positions more frequently than the velocities), ``step``
 and ``time`` are unique to each data group.
 
 
-Global attributes
------------------
+Root level of the file
+----------------------
+
+The root of the HDF5 file is organized as follows::
+
+    file root
+     \-- h5md
+     \-- particles
+     \-- observables
+     \-- parameters
+
+* ``h5md``: Group containing information on the file itself, as attributes.
+* ``particles``: Group containing the trajectory of particles in the system
+  (positions, ...).
+* ``observables``: Group containing all time-dependent variables in the system,
+  except the ones found in the ``particles`` group.
+* ``parameters``: Group containing user-defined simulation parameters.
+
+In subsequent sections, the examples of HDF5 organization may start at the group
+level, omitting to display ``file root``.
+
+
+H5MD metadata
+-------------
 
 A few global attributes (in the HDF5 sense) are defined for convenience. These
 attributes are given to the ``h5md`` group.
