@@ -142,23 +142,32 @@ volume).
 Root level of the file
 ----------------------
 
-The root of the HDF5 file is organized as follows::
+The root of the HDF5 file holds a number of groups and is organized as
+follows::
 
     file root
      \-- h5md
-     \-- particles
-     \-- observables
-     \-- parameters
+     \-- (particles)
+     \-- (observables)
+     \-- (parameters)
 
-* ``h5md``: Group containing information on the file itself, as attributes.
-* ``particles``: Group containing the trajectory of particles in the system
-  (positions, ...).
-* ``observables``: Group containing all time-dependent variables in the system,
-  except the ones found in the ``particles`` group.
-* ``parameters``: Group containing user-defined simulation parameters.
+* The ``h5md`` group contains metadata and information on the file itself. It
+  is the only mandatory root group.
+
+* The ``particles`` group contains information on each particle in the system,
+  e.g., a snapshot of the positions or the full trajectory in phase space.
+  The size of stored data scales linearly with the number of particles under
+  consideration.
+
+* The ``observables`` group contains other quantities of interest, e.g.,
+  physical observables that are derived from the system state at given points
+  in time. The size of stored data is typically independent of the system size.
+
+* The ``parameters`` group contains application-specific, custom data such as
+  control parameters or simulation scripts.
 
 In subsequent sections, the examples of HDF5 organization may start at the group
-level, omitting to display ``file root``.
+level, omitting the display of ``file root``.
 
 
 H5MD metadata
