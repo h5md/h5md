@@ -427,9 +427,10 @@ unspecified.
 The contents of the ``parameters`` group could be the following::
 
     parameters
-     +-- user_data1
+     +-- user_attribute1
+     \-- user_data1
      \-- user_group1
-     |    +-- user_data2
+     |    \-- user_data2
      |    \-- ...
      \-- ...
 
