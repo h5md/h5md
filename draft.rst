@@ -61,6 +61,9 @@ used to depict the tree or its subtrees:
 ``(identifier)``
     An optional element.
 
+``<identifier>``
+    An optional element with unspecified name.
+
 
 General organization
 --------------------
@@ -243,7 +246,7 @@ Standardized data elements are ``position``, ``image``, ``velocity``, ``force``,
 group assuming ``N`` particles in ``D``-dimensional space is the following::
 
     particles
-     \-- group1
+     \-- <group1>
           \-- box
           \-- position
           |    \-- value [variable][N][D]
@@ -309,7 +312,7 @@ The spatial dimension, the type of geometry, and the boundary conditions of the
 box are stored as attributes to the ``box`` group, e.g., ::
 
     particles
-     \-- group1
+     \-- <group1>
           \-- box
                +-- dimension
                +-- boundary [D]
@@ -365,7 +368,7 @@ A specific requirement for ``box`` groups inside ``particles`` is that the
 For instance, a cuboid box that changes in time would appear as::
 
     particles
-     \-- group1
+     \-- <group1>
           \-- box
                +-- dimension
                +-- geometry
@@ -383,7 +386,7 @@ where ``dimension`` is equal to ``D`` and ``geometry`` is set to ``cuboid``.
 A fixed-in-time triclinic box would appear as::
 
     particles
-     \-- group1
+     \-- <group1>
           \-- box
                +-- dimension
                +-- geometry
@@ -412,18 +415,18 @@ The contents of the observables group has the following structure::
 
     observables
      \-- box
-     \-- observable1
+     \-- <observable1>
      |    +-- (particles)
      |    \-- value [variable]
      |    \-- step [variable]
      |    \-- time [variable]
-     \-- observable2
+     \-- <observable2>
      |    \-- (particles) [variable]
      |    \-- value [variable][D]
      |    \-- step [variable]
      |    \-- time [variable]
-     \-- group1
-     |    \-- observable3
+     \-- <group1>
+     |    \-- <observable3>
      |         +-- (particles)
      |         \-- value [variable][D][D]
      |         \-- step [variable]
@@ -449,10 +452,10 @@ unspecified.
 The contents of the ``parameters`` group could be the following::
 
     parameters
-     +-- user_attribute1
-     \-- user_data1
-     \-- user_group1
-     |    \-- user_data2
+     +-- <user_attribute1>
+     \-- <user_data1>
+     \-- <user_group1>
+     |    \-- <user_data2>
      |    \-- ...
      \-- ...
 
