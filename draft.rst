@@ -70,7 +70,7 @@ description of subsystems.
 
 The file is allowed to possess non-specified groups or datasets that contain
 additional information such as application-specific parameters or data
-structures, leaving scope for future extenstions. Only the ``h5md`` group is
+structures, leaving scope for future extensions. Only the ``h5md`` group is
 mandatory in a H5MD file. All other root groups are optional, allowing the user
 to store only relevant data. Inside each group, every group or dataset is again
 optional unless specified differently. Within certain data groups, a number of
@@ -101,7 +101,7 @@ physical time. The structure of such a group is::
           +-- (unit)
 
 * The ``step`` dataset has dimensions ``[variable]`` and contains the time steps
-  at which the corresponding data were sampled. It is of integer datatype to
+  at which the corresponding data were sampled. It is of integer data type to
   allow exact temporal matching of data from one data group to another within
   the same file.
 
@@ -222,7 +222,7 @@ represent different subsets of the system under consideration, and it may hold
 one or several subgroups, as needed. These subgroups contain the trajectory
 data per particle as time-dependent or time-independent data, depending on the
 situation. Each subgroup contains a specification of the simulation box, see
-below. For each dataset, the particle index is accomodated by the second
+below. For each dataset, the particle index is accommodated by the second
 (first, in the case of time-independence) array dimension.
 
 Standardized data elements are ``position``, ``image``, ``velocity``, ``force``,
@@ -264,7 +264,7 @@ group assuming ``N`` particles in ``D``-dimensional space is the following::
 * The ``mass`` group holds the mass for each particle as a scalar.
 
 * The ``species`` group describes the species of the particles, i.e., their
-  atomic or chemical identity, and is of scalar integer datatype. ``species``
+  atomic or chemical identity, and is of scalar integer data type. ``species``
   is typically time-dependent if chemical reactions occur or in
   semi-grandcanonical Monte-Carlo simulations.
 
@@ -411,7 +411,7 @@ The contents of the observables group has the following structure::
 The following identifiers should be obeyed for the corresponding thermodynamic
 observables: ``total_energy``, ``potential_energy``, ``kinetic_energy``,
 ``pressure``, ``temperature``. These quantities are understood as "per
-particle", i.e., the are intensive quantities in the thermodynamic limit.
+particle", i.e., they are intensive quantities in the thermodynamic limit.
 (Note that ``temperature`` refers to the instantaneous temperature as obtained
 from the kinetic energy, not to the thermodynamic variable.)
 
