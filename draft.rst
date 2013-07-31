@@ -224,7 +224,7 @@ attributes. The contents of the group is::
 
 ``version``
     An attribute that states the version of the H5MD specification that
-    the file conforms to. It is an integer dataset of dimension \[2\], with the
+    the file conforms to. It is an integer attribute of dimension \[2\], with the
     first element as the major version number ``1`` and the second element as the
     minor version number ``0``.
 
