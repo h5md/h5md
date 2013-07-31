@@ -199,34 +199,41 @@ A set of global metadata describing the file is stored in the ``h5md`` group as
 attributes. The contents of the group is::
 
     h5md
-     +-- author
-     +-- (author_email)
-     +-- creator
-     +-- creator_version
      +-- version
-
-``author``
-    An attribute that identifies the real name of the person responsible
-    for the simulation (or the experiment) as a string.
-
-``author_email``
-    An optional attribute that holds the author's email address as a string of
-    the form ``email@domain.tld``.
-
-``creator``
-    An attribute that stores the name of the program that created the
-    file as a string.
-
-``creator_version``
-    An attribute that yields the version of the program that
-    created the file, as a string containing a proper identification for the
-    given program.
+     \-- author
+     |    +-- name
+     |    +-- (email)
+     \-- creator
+          +-- name
+          +-- version
 
 ``version``
     An attribute that states the version of the H5MD specification that
     the file conforms to. It is an integer attribute of dimension \[2\], with the
     first element as the major version number ``1`` and the second element as the
     minor version number ``0``.
+
+``author``
+    A group that contains meta-data on the person responsible for the simulation
+    (or the experiment) as follows:
+
+    ``name``
+        An attribute that holds the author's real name as a string.
+
+    ``email``
+        An optional attribute that holds the author's email address as a string of
+        the form ``email@domain.tld``.
+
+``creator``
+    A group that contains meta-data on the program that created the file
+    as follows:
+
+    ``name``
+        An attribute that stores the name of the program as a string.
+
+    ``version``
+        An attribute that yields the version of the program, as a string
+        containing a proper identification for the given program.
 
 
 Particles group
