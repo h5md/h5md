@@ -138,7 +138,7 @@ Time-independent data
 ^^^^^^^^^^^^^^^^^^^^^
 
 Time-independent data is stored as a dataset or as an attribute.
-Like for the ``value`` dataset in the case of time-dependent data, data type
+As for the ``value`` dataset in the case of time-dependent data, data type
 and array shape are implied by the stored data, where the ``[variable]``
 dimension is omitted. Further, the optional attribute ``unit`` may be attached.
 
