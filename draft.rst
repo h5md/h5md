@@ -93,9 +93,9 @@ Time-dependent data
 Time-dependent data consist of a series of samples (or frames) referring to
 multiple time steps. Such data are found inside a single dataset and are
 accessed via dataset slicing. In order to link the samples to the time axis of
-the simulation, H5MD defines a data group as a group that contains, in addition
-to the actual data, information on the corresponding integer time step and on
-the physical time. The structure of such a group is::
+the simulation, H5MD defines a *data group* as a group that contains, in
+addition to the actual data, information on the corresponding integer time step
+and on the physical time. The structure of such a group is::
 
     data_group
      \-- step [variable]
