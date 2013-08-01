@@ -97,7 +97,7 @@ the simulation, H5MD defines a *data group* as a group that contains, in
 addition to the actual data, information on the corresponding integer time step
 and on the physical time. The structure of such a group is::
 
-    data_group
+    <data_group>
      \-- step [variable]
      \-- time [variable]
      \-- value [variable][...]
