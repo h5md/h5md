@@ -240,9 +240,8 @@ situation. Each subgroup contains a specification of the simulation box, see
 below. For each dataset, the particle index is accommodated by the second
 (first, in the case of time-independence) array dimension.
 
-Standardized data elements are ``position``, ``image``, ``velocity``, ``force``,
-``mass``, ``species``, and ``id``. An example of contents for the ``particles``
-group assuming ``N`` particles in ``D``-dimensional space is the following::
+An example of contents for the ``particles`` group assuming ``N`` particles in
+``D``-dimensional space is the following::
 
     particles
      \-- <group1>
