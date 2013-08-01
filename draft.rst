@@ -306,16 +306,18 @@ Storing the box information at several places reflects the fact that all root
 groups are optional (except for ``h5md``), and further that different subgroups
 may be sampled at different time grids. This way, the box information remains
 associated to a group of particles or the collection of observables.
+A specific requirement for ``box`` groups inside ``particles`` is that the
+``step`` and ``time`` datasets exactly match those of the corresponding
+``position`` groups, which may be accomplished by hard-linking the datasets.
 
-The spatial dimension, the type of geometry, and the boundary conditions of the
-box are stored as attributes to the ``box`` group, e.g., ::
+The spatial dimension and the boundary conditions of the box are stored as
+attributes to the ``box`` group, e.g., ::
 
     particles
      \-- <group1>
           \-- box
                +-- dimension
                +-- boundary [D]
-               +-- geometry
                \-- ...
 
 ``dimension``
@@ -324,45 +326,22 @@ box are stored as attributes to the ``box`` group, e.g., ::
 
 ``boundary``
     An attribute that is a string-valued array of size ``D`` that
-    specifies the boundary condition of the box along each dimension. The
-    elements of ``boundary`` are either ``periodic`` or ``nonperiodic``.
+    specifies the boundary condition of the box along each dimension.
+    The elements of ``boundary`` are either ``periodic`` or ``none``.
 
-``geometry``
-    An attribute that is string-valued and is either ``cuboid`` or
-    ``triclinic``.
-
-For a cuboid box, the following additional data is stored:
+Information on the geometry of the box edges and on the coordinate offset is
+stored as attributes or as data groups, depending on whether the box is fixed
+in time or not.
 
 ``edges``
-    A ``D``-dimensional vector specifying the space diagonal of the
-    box. The box is not restricted to having the same edge lengths in the
-    different dimensions.
+    A ``D``-dimensional vector, or a ``D`` × ``D`` matrix, depending on the
+    geometry of the box. If ``edges`` is a vector, it specifies the space
+    diagonal of a cuboid-shaped box. If ``edges`` is a matrix, the box is of
+    triclinic shape with the edge vectors given by the rows of the matrix.
 
 ``offset``
     A ``D``-dimensional vector specifying the lower coordinate
     for all directions.
-
-For a triclinic box, the following additional data is stored:
-
-``edges``
-    A ``D`` × ``D`` matrix with the rows specifying the edge vectors
-    of the box.
-
-``offset``
-    A ``D``-dimensional vector specifying the lower coordinate
-    for all directions.
-
-Time dependence
-^^^^^^^^^^^^^^^
-
-If the simulation box is fixed in time, ``edges`` and ``offset`` are stored as
-attributes of the ``box`` group for all box kinds. Else, ``edges`` and
-``offset`` are stored as datasets following the ``value``, ``step``, ``time``
-organization.
-
-A specific requirement for ``box`` groups inside ``particles`` is that the
-``step`` and ``time`` datasets exactly match those of the corresponding
-``position`` groups, which may be accomplished by hard-linking the datasets.
 
 For instance, a cuboid box that changes in time would appear as::
 
@@ -370,8 +349,7 @@ For instance, a cuboid box that changes in time would appear as::
      \-- <group1>
           \-- box
                +-- dimension
-               +-- geometry
-               +-- boundary
+               +-- boundary [D]
                \-- edges
                     \-- value [variable][D]
                     \-- step [variable]
@@ -381,19 +359,18 @@ For instance, a cuboid box that changes in time would appear as::
                     \-- step [variable]
                     \-- time [variable]
 
-where ``dimension`` is equal to ``D`` and ``geometry`` is set to ``cuboid``.
-A fixed-in-time triclinic box would appear as::
+where ``dimension`` is equal to ``D``.
+A triclinic box that is fixed in time would appear as::
 
     particles
      \-- <group1>
           \-- box
                +-- dimension
-               +-- geometry
-               +-- boundary
+               +-- boundary [D]
                +-- edges [D][D]
                +-- offset [D]
 
-where ``dimension`` is equal to ``D`` and ``geometry`` is set to ``triclinic``.
+where ``dimension`` is equal to ``D``.
 
 
 Observables group
