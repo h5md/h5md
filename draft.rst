@@ -257,6 +257,8 @@ An example of contents for the ``particles`` group assuming ``N`` particles in
           \-- species [N]
           \-- ...
 
+The following identifiers for data groups are standardized:
+
 ``position``
     A group that describes the particle positions within the simulation
     box, as periodically wrapped or unwrapped coordinate vectors.
