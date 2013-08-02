@@ -206,7 +206,7 @@ attributes. The contents of the group is::
     minor version number ``0``.
 
 ``author``
-    A group that contains meta-data on the person responsible for the simulation
+    A group that contains metadata on the person responsible for the simulation
     (or the experiment) as follows:
 
     ``name``
@@ -217,7 +217,7 @@ attributes. The contents of the group is::
         the form ``email@domain.tld``.
 
 ``creator``
-    A group that contains meta-data on the program that created the file
+    A group that contains metadata on the program that created the file
     as follows:
 
     ``name``
