@@ -60,7 +60,7 @@ manipulating data of molecular simulations stored in the H5MD file format.
 
 .. _h5md-tools: https://github.com/fhoefling/h5md-tools
 
-An `H5MD file reader plugin for VMD`_ is being developed by Olaf Lenz and
-Sascha Ehrhardt.
+`VMD-h5mdplugin`_, an H5MD file reader plugin for VMD, is being developed by
+Olaf Lenz, Sascha Ehrhardt and Jonas Landsgesell.
 
-.. _H5MD file reader plugin for VMD: http://article.gmane.org/gmane.science.simulation.h5md.user/122
+.. _VMD-h5mdplugin: https://github.com/jonaslandsgesell/VMD-h5mdplugin.git
