@@ -333,6 +333,8 @@ attributes to the ``box`` group, e.g., ::
 Information on the geometry of the box edges and on the coordinate offset is
 stored as attributes or as data groups, depending on whether the box is fixed
 in time or not.
+If all elements of ``boundary`` are ``none``, ``edges`` and ``offset`` may be
+omitted.
 
 ``edges``
     A ``D``-dimensional vector, or a ``D`` × ``D`` matrix, depending on the
