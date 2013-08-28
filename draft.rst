@@ -296,8 +296,8 @@ The following identifiers for data groups are standardized:
     of integer kind.
 
 
-Specification of the simulation box
------------------------------------
+Simulation box
+--------------
 
 The specification of the simulation box is stored in the group ``box``, which
 must be contained within each of the subgroups of the ``particles`` group.
@@ -329,6 +329,16 @@ attributes to the ``box`` group, e.g., ::
     An attribute that is a string-valued array of size ``D`` that
     specifies the boundary condition of the box along each dimension.
     The elements of ``boundary`` are either ``periodic`` or ``none``.
+
+    ``periodic``
+    The simulation box is periodically continued along the given dimension and
+    serves as the unit cell for an infinite tiling of space.
+
+    ``none``
+    No boundary condition is imposed. This summarizes the situations of open
+    systems (i.e., an infinitely large box) and closed systems (e.g., due to an
+    impenetrable wall). In both cases, the offset and the edge length along
+    this dimension are irrelevant.
 
 Information on the geometry of the box edges and on the coordinate offset is
 stored as attributes or as data groups, depending on whether the box is fixed
