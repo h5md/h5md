@@ -293,8 +293,11 @@ The following identifiers for data groups are standardized:
 
 ``id``
     A group that holds a unique scalar identifier for each particle, which is
-    of integer kind.
-
+    of integer kind. The ``id`` serves to identify particles over the course of
+    the simulation in the case when the order of the particles changes, or when
+    new particles are inserted and removed (as e.g. in grand-canonical
+    simulations). If ``id`` is absent, the identity of the particles is given
+    by their index in the ``value`` datasets of the various data groups.
 
 Simulation box
 --------------
