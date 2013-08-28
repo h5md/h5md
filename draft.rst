@@ -240,21 +240,21 @@ situation. Each subgroup contains a specification of the simulation box, see
 below. For each dataset, the particle index is accommodated by the second
 (first, in the case of time-independence) array dimension.
 
-An example of contents for the ``particles`` group assuming ``N`` particles in
+The contents of the ``particles`` group assuming ``N`` particles in
 ``D``-dimensional space is the following::
 
     particles
      \-- <group1>
           \-- box
-          \-- position
+          \-- (position)
           |    \-- value [variable][N][D]
           |    \-- step [variable]
           |    \-- time [variable]
-          \-- image
+          \-- (image)
           |    \-- value [variable][N][D]
           |    \-- step [variable]
           |    \-- time [variable]
-          \-- species [N]
+          \-- (species) [N]
           \-- ...
 
 The following identifiers for data groups are standardized:
