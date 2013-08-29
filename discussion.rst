@@ -26,7 +26,7 @@ Time-averaged data
 
 Time-averaged data are stored for some applications, for example the potential
 energy is computed every 200 simulation steps but only the average of 50 such
-computations is stored (every 10⁴ steps). Additional statistical information
+computations is stored (every :math:`10^4` steps). Additional statistical information
 along with the mean value is stored by extending the triple ``value``,
 ``step``, ``time``:
 
