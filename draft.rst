@@ -100,7 +100,9 @@ and on the physical time. The structure of such a group is::
     <data_group>
      \-- step [variable]
      \-- time [variable]
+          +-- (unit)
      \-- value [variable][...]
+          +-- (unit)
 
 ``step``
     A dataset with dimensions ``[variable]`` that contains the time steps
@@ -110,7 +112,8 @@ and on the physical time. The structure of such a group is::
 
 ``time``
     A dataset that is the same as the ``step`` dataset, except it is
-    real-valued and contains the simulation time.
+    real-valued and contains the simulation time in simulation or physical
+    units.
 
 ``value``
     A dataset that holds the data of the time series. Its shape is the shape
@@ -119,6 +122,11 @@ and on the physical time. The structure of such a group is::
     ``D``-dimensional vectors, etc.). The first dimension of ``value`` must match
     the unique dimension of ``step`` and ``time``, and serves to accumulate
     samples during the course of the simulation.
+
+The datasets ``time`` and ``value`` may possess an optional string attribute
+``unit`` that gives the physical unit of their respective data (``nm`` for the
+position, for instance). In the case of time-independent data, ``unit`` is
+attached to the dataset itself.
 
 If several data groups are sampled at equal times, ``step`` and ``time`` of one
 data group may be hard links to the ``step`` and ``time`` datasets of a
@@ -131,7 +139,8 @@ Time-independent data
 
 Time-independent data is stored as a dataset. As for the ``value`` dataset in
 the case of time-dependent data, data type and array shape are implied by the
-stored data, where the ``[variable]`` dimension is omitted.
+stored data, where the ``[variable]`` dimension is omitted. Further, the
+optional attribute ``unit`` may be attached.
 
 Storage order of arrays
 ^^^^^^^^^^^^^^^^^^^^^^^

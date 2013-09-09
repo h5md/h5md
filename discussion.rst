@@ -58,23 +58,6 @@ Note that the statistical variance and the standard deviation are easily
 obtained from combining the datasets ``error`` and ``count`` and need not to be
 stored explicitly.
 
-Units
-=====
-
-The datasets ``time`` and ``value`` may possess an optional string attribute
-``unit`` that gives the physical unit of their respective data (``nm`` for the
-position, for instance). In the case of time-independent data, ``unit`` is
-attached to the dataset itself.
-
-The structure of such a data group is ::
-
-    data_group
-     \-- step [variable]
-     \-- time [variable]
-          +-- (unit)
-     \-- value [variable][...]
-          +-- (unit)
-
 
 Extensions: Observables group
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
