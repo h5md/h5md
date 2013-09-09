@@ -251,13 +251,15 @@ The contents of the ``particles`` group assuming ``N`` particles in
      \-- <group1>
           \-- box
           \-- (position)
-          |    \-- value [variable][N][D]
           |    \-- step [variable]
           |    \-- time [variable]
+                    +-- (unit)
+          |    \-- value [variable][N][D]
+                    +-- (unit)
           \-- (image)
-          |    \-- value [variable][N][D]
           |    \-- step [variable]
           |    \-- time [variable]
+          |    \-- value [variable][N][D]
           \-- (species) [N]
           \-- ...
 
@@ -371,13 +373,17 @@ For instance, a cuboid box that changes in time would appear as::
                +-- dimension
                +-- boundary [D]
                \-- edges
-                    \-- value [variable][D]
                     \-- step [variable]
                     \-- time [variable]
+                         +-- (unit)
+                    \-- value [variable][D]
+                         +-- (unit)
                \-- offset
-                    \-- value [variable][D]
                     \-- step [variable]
                     \-- time [variable]
+                         +-- (unit)
+                    \-- value [variable][D]
+                         +-- (unit)
 
 where ``dimension`` is equal to ``D``.
 A triclinic box that is fixed in time would appear as::
@@ -388,7 +394,9 @@ A triclinic box that is fixed in time would appear as::
                +-- dimension
                +-- boundary [D]
                \-- edges [D][D]
+                    +-- (unit)
                \-- offset [D]
+                    +-- (unit)
 
 where ``dimension`` is equal to ``D``.
 
@@ -413,20 +421,26 @@ The contents of the observables group has the following structure::
      \-- box
      \-- <observable1>
      |    +-- (particles)
-     |    \-- value [variable]
      |    \-- step [variable]
      |    \-- time [variable]
+               +-- (unit)
+     |    \-- value [variable]
+               +-- (unit)
      \-- <observable2>
      |    \-- (particles) [variable]
-     |    \-- value [variable][D]
      |    \-- step [variable]
      |    \-- time [variable]
+               +-- (unit)
+     |    \-- value [variable][D]
+               +-- (unit)
      \-- <group1>
      |    \-- <observable3>
      |         +-- (particles)
-     |         \-- value [variable][D][D]
      |         \-- step [variable]
      |         \-- time [variable]
+                    +-- (unit)
+     |         \-- value [variable][D][D]
+                    +-- (unit)
      \-- ...
 
 The following identifiers should be obeyed for the corresponding thermodynamic
