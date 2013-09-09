@@ -129,14 +129,9 @@ instance, if one needs the positions more frequently than the velocities),
 Time-independent data
 ^^^^^^^^^^^^^^^^^^^^^
 
-Time-independent data is stored as a dataset or as an attribute.
-As for the ``value`` dataset in the case of time-dependent data, data type
-and array shape are implied by the stored data, where the ``[variable]``
-dimension is omitted.
-
-Storage as attributes is preferred over datasets for small amounts of data, in
-particular when the size of the data is known *a priori* and does not scale with
-the system size (i.e., the particle number or the simulation volume).
+Time-independent data is stored as a dataset. As for the ``value`` dataset in
+the case of time-dependent data, data type and array shape are implied by the
+stored data, where the ``[variable]`` dimension is omitted.
 
 Storage order of arrays
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -344,7 +339,7 @@ attributes to the ``box`` group, e.g., ::
     this dimension are irrelevant.
 
 Information on the geometry of the box edges and on the coordinate offset is
-stored as attributes or as data groups, depending on whether the box is fixed
+stored as datasets or as data groups, depending on whether the box is fixed
 in time or not.
 If all elements of ``boundary`` are ``none``, ``edges`` and ``offset`` may be
 omitted.
@@ -383,8 +378,8 @@ A triclinic box that is fixed in time would appear as::
           \-- box
                +-- dimension
                +-- boundary [D]
-               +-- edges [D][D]
-               +-- offset [D]
+               \-- edges [D][D]
+               \-- offset [D]
 
 where ``dimension`` is equal to ``D``.
 

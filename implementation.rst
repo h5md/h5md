@@ -25,6 +25,16 @@ libraries.
 Language-independent
 ^^^^^^^^^^^^^^^^^^^^
 
+Compact datasets
+----------------
+
+For storage efficiency, small-sized time-independent data should be stored
+using the compact dataset layout (see `§5.4.5
+<http://www.hdfgroup.org/HDF5/doc/UG/UG_frame10Datasets.html>`_). The raw data
+of a compact dataset, which may `not exceed 64 kb
+<http://www.hdfgroup.org/HDF5/doc/RM/RM_H5P.html#Property-SetLayout>`_, is
+stored in the header block of the dataset object.
+
 The enum datatype for the ``species`` data
 ------------------------------------------
 
@@ -67,6 +77,18 @@ This is achieved using the function `H5Pset_libver_bounds`_.
    hid_t fapl_id = H5Pcreate(H5P_FILE_ACCESS);
    H5Pset_libver_bounds(fapl_id, H5F_LIBVER_18, H5F_LIBVER_18);
    hid_t file_id = H5Fcreate("name.h5", H5F_ACC_TRUNC, H5P_DEFAULT, fapl_id);
+
+Compact datasets
+----------------
+
+Compact datasets are created by setting the layout property of the dataset
+creation property list.
+
+.. code-block:: c
+
+  hid_t dcpl_id = H5Pcreate(H5P_DATASET_CREATE);
+  H5Pset_layout(dcpl_id, H5D_COMPACT);
+  hid_t dset_id = H5Dcreate(loc_id, "name", type_id, space_id, H5P_DEFAULT, dcpl_id, H5P_DEFAULT);
 
 Object time tracking
 --------------------
