@@ -22,6 +22,23 @@ While the H5MD specification is agnostic towards the software used to write and
 read H5MD files, this document provides implementation hints for common HDF5
 libraries.
 
+Language-independent
+^^^^^^^^^^^^^^^^^^^^
+
+The enum datatype for the ``species`` data
+------------------------------------------
+
+The ``species`` data group in the ``particles`` group of a H5MD file may use the
+enum datatype (see `§6.5.3
+<http://www.hdfgroup.org/HDF5/doc/UG/11_Datatypes.html#NonNumDtypes>`_) that is
+compatible with the integer datatype. This allows to map numerical species
+identifiers to a string while keeping the performance of integer data.
+
+An enumerated-type dataset can be read using, e.g., ``H5T_NATIVE_INT`` as the
+memory datatype. For writing, however, the memory datatype needs to be an
+enumerated type. A program extending an existing enumerated-type dataset needs
+to be aware of this.
+
 C
 ^
 
@@ -116,20 +133,3 @@ The low-level function `h5py.h5o.get_info`_ retrieves object times.
 .. note::
 
    h5py up to version 2.1.3 lacks bindings for the above mentioned ``H5O_info_t`` members.
-
-Language independent implementation hints
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The enum datatype for the ``species`` data
-------------------------------------------
-
-The ``species`` data group in the ``particles`` group of a H5MD file may use the
-enum datatype (see `§6.5.3
-<http://www.hdfgroup.org/HDF5/doc/UG/11_Datatypes.html#NonNumDtypes>`_) that is
-compatible with the integer datatype. This allows to map numerical species
-identifiers to a string while keeping the performance of integer data.
-
-An enumerated-type dataset can be read using, e.g., ``H5T_NATIVE_INT`` as the
-memory datatype. For writing, however, the memory datatype needs to be an
-enumerated type. A program extending an existing enumerated-type dataset needs
-to be aware of this.
