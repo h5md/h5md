@@ -15,8 +15,8 @@
    You should have received a copy of the GNU General Public License
    along with H5MD.  If not, see <http://www.gnu.org/licenses/>.
 
-Specifications for the H5MD file format version 1.0
-===================================================
+Specifications for the H5MD file format version 1
+=================================================
 
 Objective
 ---------
@@ -204,10 +204,8 @@ attributes. The contents of the group is::
           +-- version
 
 ``version``
-    An attribute that states the version of the H5MD specification that
-    the file conforms to. It is an integer attribute of dimension \[2\], with the
-    first element as the major version number ``1`` and the second element as the
-    minor version number ``0``.
+    An attribute that contains the H5MD file format version that the file
+    conforms to, as an integer of version number ``1``.
 
 ``author``
     A group that contains metadata on the person responsible for the simulation
