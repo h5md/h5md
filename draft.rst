@@ -110,11 +110,12 @@ and on the physical time. The structure of such a group is::
     A dataset with dimensions ``[variable]`` that contains the time steps
     at which the corresponding data were sampled. It is of integer data type to
     allow exact temporal matching of data from one data group to another.
+    The elements of the dataset are in monotonically increasing order.
 
 ``time``
     A dataset that is the same as the ``step`` dataset, except it is
     real-valued and contains the simulation time in simulation or physical
-    units.
+    units. The elements of the dataset are in monotonically increasing order.
 
 ``value``
     A dataset that holds the data of the time series. Its shape is the shape

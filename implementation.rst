@@ -25,6 +25,15 @@ libraries.
 Language-independent
 ^^^^^^^^^^^^^^^^^^^^
 
+Dataset index lookup at a given step or time
+--------------------------------------------
+
+The ``step`` and ``time`` datasets are in monotonically increasing order, which
+permits the use of a `binary search`_ to efficiently determine the index of an
+element of the ``value`` dataset corresponding to a given step or time.
+
+.. _binary search: https://en.wikipedia.org/wiki/Binary_search_algorithm
+
 Compact datasets
 ----------------
 
