@@ -488,6 +488,8 @@ The modules that apply to a specific H5MD file are stored as subgroups
 within the group h5md/modules. A module holds as an attribute the
 version number stored as an integer.
 
+::
+
     h5md
      \-- ...
      \-- (modules)
