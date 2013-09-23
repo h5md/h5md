@@ -235,6 +235,30 @@ A set of global metadata describing the H5MD structure is stored in the
         An attribute, of variable-length string datatype, and of scalar
         dataspace, that yields the version of the program.
 
+Modules
+^^^^^^^
+
+The H5MD specification can be complemented by domain-specific modules,
+which add conditions that the data in the H5MD file must satisfy,
+and rules for the semantic interpretation of the data. A single
+trajectory can use multiple modules, as long as their prescriptions
+are not contradictory. Each module is identified by a name and a
+version number.
+
+The modules that apply to a specific H5MD file are stored as subgroups
+within the group ``h5md/modules``. A module holds as an attribute the
+version number stored as an integer.
+
+::
+
+    h5md
+     \-- (modules)
+          \-- <module1>
+          |    +-- version
+          \-- <module2>
+          |    +-- version
+          \-- ...
+
 
 Particles group
 ---------------
@@ -473,29 +497,3 @@ The contents of the ``parameters`` group could be the following::
      |    \-- <user_data2>
      |    \-- ...
      \-- ...
-
-
-Modules
--------
-
-The H5MD specification can be complemented by domain-specific modules,
-which add conditions that the data in the H5MD file must satisfy,
-and rules for the semantic interpretation of the data. A single
-trajectory can use multiple modules, as long as their prescriptions
-are not contradictory. Each module is identified by a name and a
-version number.
-
-The modules that apply to a specific H5MD file are stored as subgroups
-within the group h5md/modules. A module holds as an attribute the
-version number stored as an integer.
-
-::
-
-    h5md
-     \-- ...
-     \-- (modules)
-          \-- <module1>
-          |    +-- version
-          \-- <module2>
-          |    +-- version
-          \-- ...
