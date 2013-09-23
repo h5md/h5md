@@ -124,10 +124,11 @@ and on the physical time. The structure of such a group is::
     the unique dimension of ``step`` and ``time``, and serves to accumulate
     samples during the course of the simulation.
 
-The datasets ``time`` and ``value`` may possess an optional string attribute
-``unit`` that gives the physical unit of their respective data (``nm`` for the
-position, for instance). In the case of time-independent data, ``unit`` is
-attached to the dataset itself.
+The datasets ``time`` and ``value`` may possess an optional attribute ``unit``,
+of variable-length string datatype, and of scalar dataspace, that gives the
+physical unit of their respective data (``nm`` for the position, for instance).
+In the case of time-independent data, ``unit`` is attached to the dataset
+itself.
 
 If several data groups are sampled at equal times, ``step`` and ``time`` of one
 data group may be hard links to the ``step`` and ``time`` datasets of a
@@ -213,22 +214,25 @@ A set of global metadata describing the H5MD structure is stored in the
     (or the experiment) as follows:
 
     ``name``
-        An attribute that holds the author's real name as a string.
+        An attribute, of variable-length string datatype, and of scalar
+        dataspace, that holds the author's real name.
 
     ``email``
-        An optional attribute that holds the author's email address as a string of
-        the form ``email@domain.tld``.
+        An optional attribute, of variable-length string datatype, and of
+        scalar dataspace, that holds the author's email address of the form
+        ``email@domain.tld``.
 
 ``creator``
     A group that contains metadata on the program that created the H5MD
     structure as follows:
 
     ``name``
-        An attribute that stores the name of the program as a string.
+        An attribute, of variable-length string datatype, and of scalar
+        dataspace, that stores the name of the program.
 
     ``version``
-        An attribute that yields the version of the program, as a string
-        containing a proper identification for the given program.
+        An attribute, of variable-length string datatype, and of scalar
+        dataspace, that yields the version of the program.
 
 
 Particles group
@@ -334,9 +338,10 @@ attributes to the ``box`` group, e.g., ::
     simulation box and is of integer type.
 
 ``boundary``
-    An attribute that is a string-valued array of size ``D`` that
-    specifies the boundary condition of the box along each dimension.
-    The elements of ``boundary`` are either ``periodic`` or ``none``.
+    An attribute, of variable-length string datatype, and of simple dataspace
+    of rank 1 and size ``D``, that specifies the boundary condition of the box
+    along each dimension. The elements of ``boundary`` are either ``periodic``
+    or ``none``.
 
     ``periodic``
     The simulation box is periodically continued along the given dimension and
