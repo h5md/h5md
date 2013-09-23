@@ -15,8 +15,8 @@
    You should have received a copy of the GNU General Public License
    along with H5MD.  If not, see <http://www.gnu.org/licenses/>.
 
-Specifications for the H5MD file format version 1
-=================================================
+Specifications for the H5MD format version 1
+============================================
 
 Objective
 ---------
@@ -32,10 +32,10 @@ amongst scientific simulation and analysis programs.
 File format
 -----------
 
-A H5MD file is stored in the `HDF5 file format`_ version 0 or later.
-It is recommended to store H5MD files in the HDF5 file format version 2,
-which includes the implicit tracking of the creation and modification times
-of the file and of each of its objects.
+H5MD structures are stored in the `HDF5 file format`_ version 0 or later. It is
+recommended to use the HDF5 file format version 2, which includes the implicit
+tracking of the creation and modification times of the file and of each of its
+objects.
 
 .. _HDF5 file format: http://www.hdfgroup.org/HDF5/doc/H5.format.html
 
@@ -68,17 +68,19 @@ used to depict the tree or its subtrees:
 General organization
 --------------------
 
-H5MD defines an organization of the HDF5 file into groups, datasets, and
-attributes. A number of groups are defined at the root level of the file.
-Several levels of subgroups may exist in a file, allowing the storage and
+H5MD defines an organization of the HDF5 file or a part thereof into groups,
+datasets, and attributes. The root level of the H5MD structure may coincide
+with the root of the HDF5 file or be an arbitrary group inside the HDF5 tree. A
+number of groups are defined at the H5MD root level. Several levels of
+subgroups may exist inside the H5MD structure, allowing the storage and
 description of subsystems.
 
-The file is allowed to possess non-specified groups, datasets or attributes that
-contain additional information such as application-specific parameters or data
-structures, leaving scope for future extensions. Only the ``h5md`` group is
-mandatory in a H5MD file. All other root groups are optional, allowing the user
-to store only relevant data. Inside each group, every group or dataset is again
-optional, unless specified differently.
+The H5MD structure is allowed to possess non-specified groups, datasets or
+attributes that contain additional information such as application-specific
+parameters or data structures, leaving scope for future extensions. Only the
+``h5md`` group is mandatory at the H5MD root level. All other root groups are
+optional, allowing the user to store only relevant data. Inside each group,
+every group or dataset is again optional, unless specified differently.
 
 H5MD supports equally the storage of time-dependent and time-independent data,
 i.e., data that change in the course of the simulation or that do not. The
@@ -107,8 +109,7 @@ and on the physical time. The structure of such a group is::
 ``step``
     A dataset with dimensions ``[variable]`` that contains the time steps
     at which the corresponding data were sampled. It is of integer data type to
-    allow exact temporal matching of data from one data group to another within
-    the same file.
+    allow exact temporal matching of data from one data group to another.
 
 ``time``
     A dataset that is the same as the ``step`` dataset, except it is
@@ -153,21 +154,21 @@ coordinates while the Fortran program will declare a ``r(D,N)`` array
 dimensions) and the HDF5 file will be the same.
 
 
-Root level of the file
-----------------------
+H5MD root level
+---------------
 
-The root of the HDF5 file holds a number of groups and is organized as
-follows::
+The root level of an H5MD structure holds a number of groups and is organized
+as follows::
 
-    file root
+    H5MD root
      \-- h5md
      \-- (particles)
      \-- (observables)
      \-- (parameters)
 
 ``h5md``
-    A group that contains metadata and information on the file itself. It
-    is the only mandatory root group.
+    A group that contains metadata and information on the H5MD structure
+    itself. It is the only mandatory group at the root level of H5MD.
 
 ``particles``
     An optional group that contains information on each particle in the system,
@@ -185,14 +186,14 @@ follows::
     control parameters or simulation scripts.
 
 In subsequent sections, the examples of HDF5 organization may start at the group
-level, omitting the display of ``file root``.
+level, omitting the display of ``H5MD root``.
 
 
 H5MD metadata
 -------------
 
-A set of global metadata describing the file is stored in the ``h5md`` group as
-attributes. The contents of the group is::
+A set of global metadata describing the H5MD structure is stored in the
+``h5md`` group as attributes. The contents of the group is::
 
     h5md
      +-- version
@@ -204,8 +205,8 @@ attributes. The contents of the group is::
           +-- version
 
 ``version``
-    An attribute that contains the H5MD file format version that the file
-    conforms to, as an integer of version number ``1``.
+    An attribute that contains the version of the H5MD specification the H5MD
+    structure conforms to, as an integer of version number ``1``.
 
 ``author``
     A group that contains metadata on the person responsible for the simulation
@@ -219,8 +220,8 @@ attributes. The contents of the group is::
         the form ``email@domain.tld``.
 
 ``creator``
-    A group that contains metadata on the program that created the file
-    as follows:
+    A group that contains metadata on the program that created the H5MD
+    structure as follows:
 
     ``name``
         An attribute that stores the name of the program as a string.
