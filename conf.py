@@ -1,22 +1,5 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright © 2011 Pierre de Buyl, Peter Colberg and Felix Höfling
-#
-# This file is part of H5MD.
-#
-# H5MD is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# H5MD is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with H5MD.  If not, see <http://www.gnu.org/licenses/>.
-
 # H5MD documentation build configuration file, created by
 # sphinx-quickstart on Tue Jan 25 13:16:28 2011.
 #
@@ -48,7 +31,7 @@ extensions = ['sphinx.ext.pngmath']
 templates_path = ['_templates']
 
 # The suffix of source filenames.
-source_suffix = '.rst'
+source_suffix = '.mdwn'
 
 # The encoding of source files.
 #source_encoding = 'utf-8-sig'
@@ -228,6 +211,20 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'molecularsimulation', u'H5MD',
+    ('index', 'h5md', u'H5MD',
      [u'Pierre de Buyl, Peter Colberg, Felix Höfling'], 1)
 ]
+
+def setup(app):
+  from subprocess import Popen, PIPE
+
+  def pandoc(app, docname, source):
+    args = ["pandoc", "-f", "markdown", "-t", "rst"]
+    if docname == app.config.master_doc:
+      args += ["-A", "contents.rst"]
+    proc = Popen(args, stdin=PIPE, stdout=PIPE)
+    indata = source[0].encode(app.config.source_encoding)
+    outdata, _ = proc.communicate(indata)
+    source[0] = outdata.decode(app.config.source_encoding)
+
+  app.connect('source-read', pandoc)

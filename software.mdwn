@@ -1,0 +1,39 @@
+Free/Libre software for H5MD files
+==================================
+
+This is a list of [free
+software](https://www.gnu.org/philosophy/free-sw.html) for use with H5MD
+files.
+
+Reading and writing H5MD files
+------------------------------
+
+The [HDF5 library](http://www.hdfgroup.org/HDF5/) provides interfaces
+for C, Fortran, C++, and Java.
+
+[HDF5 for Python](http://www.h5py.org/) by Andrew Collette provides a
+Pythonic interface to the HDF5 binary data format.
+
+[f90h5md](http://homepages.ulb.ac.be/~pdebuyl/code/f90h5md.html) by
+Pierre de Buyl is a Fortran 90 implementation of H5MD.
+
+[pyh5md](https://github.com/pdebuyl/pyh5md) by Pierre de Buyl is a
+Python module that facilitate reading and writing H5MD files.
+
+Simulation
+----------
+
+[HAL's MD package](http://halmd.org/) by Felix Höfling and Nicolas Höft
+is a high-precision molecular dynamics package for the large-scale
+simulation of simple and complex liquids.
+
+Analysis and plotting
+---------------------
+
+[h5md-tools](https://github.com/fhoefling/h5md-tools) by Felix Höfling
+is a tool set for analysing, plotting, and manipulating data of
+molecular simulations stored in the H5MD file format.
+
+[VMD-h5mdplugin](https://github.com/jonaslandsgesell/VMD-h5mdplugin.git),
+an H5MD file reader plugin for VMD, is being developed by Olaf Lenz,
+Sascha Ehrhardt and Jonas Landsgesell.
