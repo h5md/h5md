@@ -1,19 +1,25 @@
 H5MD : HDF5 for molecular data
 ==============================
 
-Copyright © 2011 Pierre de Buyl, Peter Colberg and Felix Höfling
+H5MD is a file format specification, based upon
+[HDF5](http://www.hdfgroup.org/HDF5/), aimed at the efficient and
+portable storage of molecular data (e.g. simulation trajectories,
+molecular structures, ...). H5MD implements data models for a variety of
+computational problems, e.g., molecular simulation using molecular
+dynamics, or computational fluid dynamics using multi-particle collision
+dynamics.
 
-H5MD is a file format specification, based upon `HDF5
-<http://www.hdfgroup.org/HDF5/>`_, aimed at the efficient and portable storage
-of molecular data (e.g. simulation trajectories, molecular structures, ...).
+The first official release of the specification will contain particle
+trajectories (positions, velocities, forces and species) as well as
+thermodynamical observables. Afterwards, extensions will be considered
+on the basis of discussion with users of H5MD.
 
-H5MD is developed by Pierre de Buyl, Peter Colberg and Felix Höfling and is
-available under the `GNU General Public License
-<http://www.gnu.org/licenses/gpl.html>`_. The GNU General Public License is
-found in the file LICENSE.
+H5MD is developed by Pierre de Buyl, Peter Colberg and Felix Höfling and
+is available under the [GNU General Public License version
+3](https://www.gnu.org/licenses/gpl.html), or any later version.
 
-The H5MD specification is found in the reStructuredText files index.rst,
-draft.rst and discussion.rst. It may be optionnally be built as html files with
-the `Sphinx <http://sphinx.pocoo.org/>`_ software by typing "make html" at a
-command prompt. The resulting files are stored in the _html directory.
+The draft represents the current state of the specification.
 
+If you want to know more about or contribute to H5MD, please visit the
+[project page](https://savannah.nongnu.org/p/h5md/) of H5MD or join the
+[mailing list](https://lists.nongnu.org/mailman/listinfo/h5md-user).
