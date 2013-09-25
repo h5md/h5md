@@ -82,7 +82,7 @@ of such a group is:
     <data_group>
      \-- step [variable]
      \-- time [variable]
-          +-- (unit)
+     |    +-- (unit)
      \-- value [variable][...]
           +-- (unit)
 
@@ -258,9 +258,9 @@ The contents of the `particles` group assuming `N` particles in
           \-- (position)
           |    \-- step [variable]
           |    \-- time [variable]
-                    +-- (unit)
+          |    |    +-- (unit)
           |    \-- value [variable][N][D]
-                    +-- (unit)
+          |         +-- (unit)
           \-- (image)
           |    \-- step [variable]
           |    \-- time [variable]
@@ -380,15 +380,15 @@ For instance, a cuboid box that changes in time would appear as:
                +-- dimension
                +-- boundary [D]
                \-- edges
-                    \-- step [variable]
-                    \-- time [variable]
-                         +-- (unit)
-                    \-- value [variable][D]
-                         +-- (unit)
+               |    \-- step [variable]
+               |    \-- time [variable]
+               |    |    +-- (unit)
+               |    \-- value [variable][D]
+               |         +-- (unit)
                \-- offset
                     \-- step [variable]
                     \-- time [variable]
-                         +-- (unit)
+                    |    +-- (unit)
                     \-- value [variable][D]
                          +-- (unit)
 
@@ -401,7 +401,7 @@ would appear as:
                +-- dimension
                +-- boundary [D]
                \-- edges [D][D]
-                    +-- (unit)
+               |    +-- (unit)
                \-- offset [D]
                     +-- (unit)
 
@@ -430,24 +430,24 @@ The contents of the observables group has the following structure:
      |    +-- (particles)
      |    \-- step [variable]
      |    \-- time [variable]
-               +-- (unit)
+     |    |    +-- (unit)
      |    \-- value [variable]
-               +-- (unit)
+     |         +-- (unit)
      \-- <observable2>
      |    \-- (particles) [variable]
      |    \-- step [variable]
      |    \-- time [variable]
-               +-- (unit)
+     |    |    +-- (unit)
      |    \-- value [variable][D]
-               +-- (unit)
+     |         +-- (unit)
      \-- <group1>
      |    \-- <observable3>
      |         +-- (particles)
      |         \-- step [variable]
      |         \-- time [variable]
-                    +-- (unit)
+     |         |    +-- (unit)
      |         \-- value [variable][D][D]
-                    +-- (unit)
+     |              +-- (unit)
      \-- ...
 
 The following identifiers should be obeyed for the corresponding
