@@ -4,6 +4,38 @@ Data elements in discussion
 Extensions: Storage of time-dependent data
 ------------------------------------------
 
+### Time-dependent data with constant increments
+
+A time-dependent data group with `step` and `time` having constant increments,
+i.e., if the sampling occurs at constant rate _and_ the equations of motion are
+integrated at a fixed time step, may use the following structure:
+
+    <data_group>
+     \-- step
+     |    +-- (offset)
+     \-- time
+     |    +-- (offset)
+     |    +-- (unit)
+     \-- value [variable][...]
+          +-- (unit)
+
+`step`
+:   A compact dataset that holds the increment of the integration step between
+    two successive sampling events, stored as a scalar of integer type.
+
+`time`
+:   A compact dataset that holds the increment of the physical time between two
+    successive sampling events as a real-valued scalar.
+
+`value`
+:   A dataset that holds the data of the time series. It follows the same
+    specifications as for a general time-dependent data group.
+
+The datasets `step` and `time` may possess an optional attribute `offset`
+specifying the absolute step and time corresponding to the sample at index 0.
+If the attribute is absent, the respective offset equals to 0.
+
+
 ### Time-averaged data
 
 Time-averaged data are stored for some applications, for example the
