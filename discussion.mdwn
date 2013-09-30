@@ -40,40 +40,6 @@ Note that the statistical variance and the standard deviation are easily
 obtained from combining the datasets `error` and `count` and need not to
 be stored explicitly.
 
-Extensions: Observables group
------------------------------
-
-### Particle number
-
-The data stored in `/observables` represent averages over all particles
-or subsets thereof. The root group or each subgroup carries an integer
-attribute `particles` stating the number of particles involved in the
-average. If this number varies, the attribute is replaced by a group
-`particles` obeying the `value`, `step`, `time` scheme.
-
-The content of the observables group has the following structure :
-
-    observables
-     \-- box
-     \-- particles
-     |    \-- value [var]
-     |    \-- step [var]
-     |    \-- time [var]
-     \-- obs1
-     |    \-- value [var]
-     |    \-- step [var]
-     |    \-- time [var]
-     \-- obs2
-     |    \-- value [var][D]
-     |    \-- step [var]
-     |    \-- time [var]
-     \-- group1
-     |    +-- particles
-     |    \-- obs3
-     |         \-- value [var][D][D]
-     |         \-- step [var]
-     |         \-- time [var]
-     \-- ...
 
 Further suggestions
 -------------------
