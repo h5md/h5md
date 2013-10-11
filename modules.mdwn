@@ -22,16 +22,19 @@ For each subsystem stored in the `particles` group as `/particles/<group>`, the
 with one or more of the following *elements*:
 
 `dimension`
-  : The dimensionality of the coordinates of the subsystem.
+  : The dimension of the space embedding the subsystem.
 
 `particles`
   : The number of particles of the subsystem.
 
-`temperature`
-  : The instantaneous temperature of the subsystem.
+`volume`
+  : The volume of the subsystem.
 
 `pressure`
   : The pressure of the subsystem.
+
+`temperature`
+  : The instantaneous temperature of the subsystem.
 
 `potential_energy`
   : The potential energy of the subsystem.
