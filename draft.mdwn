@@ -1,5 +1,5 @@
-Specifications for the H5MD format version 1
-============================================
+Specifications for the H5MD format version 1.0.0
+================================================
 
 Objective
 ---------
@@ -195,8 +195,16 @@ A set of global metadata describing the H5MD structure is stored in the
           +-- version
 
 `version`
-:   An attribute that contains the version of the H5MD specification the
-    H5MD structure conforms to, as an integer of version number `1`.
+:   An attribute, of integer datatype, and of simple dataspace of rank 1 and
+    size 2, that contains the major version number and the minor version
+    number of the H5MD specification the H5MD structure conforms to.
+
+    The version *x.y.z* of the H5MD specification follows [semantic versioning].
+    A change of the major version number *x* indicates backwards-incompatible
+    changes to the file structure, a change of the minor version number *y*
+    indicates backwards-compatible changes to the file structure, and a change
+    of the patch version number *z* indicates changes that have no effect on
+    the file structure.
 
 `author`
 :   A group that contains metadata on the person responsible for the
@@ -223,6 +231,7 @@ A set of global metadata describing the H5MD structure is stored in the
     :   An attribute, of variable-length string datatype, and of scalar
         dataspace, that yields the version of the program.
 
+
 ### Modules
 
 The H5MD specification can be complemented by domain-specific modules,
@@ -232,7 +241,7 @@ can use multiple modules, as long as their prescriptions are not
 contradictory. Each module is identified by a name and a version number.
 
 The modules that apply to a specific H5MD file are stored as subgroups
-within the group `h5md/modules`. A module holds as an attribute the
+within the group `h5md/modules`: A module holds as an attribute the
 version number stored as an integer.
 
     h5md
@@ -242,6 +251,21 @@ version number stored as an integer.
           \-- <module2>
           |    +-- version
           \-- ...
+
+`version`
+:   An attribute, of integer datatype, and of simple dataspace of rank 1 and
+    size 2, that contains the major version number and the minor version number
+    of the H5MD specification the H5MD structure conforms to.
+
+    The version *x.y.z* of an H5MD module follows [semantic versioning].
+    A change of the major version number *x* indicates backwards-incompatible
+    changes to the file structure, a change of the minor version number *y*
+    indicates backwards-compatible changes to the file structure, and a change
+    of the patch version number *z* indicates changes that have no effect on
+    the file structure.
+
+[semantic versioning]: http://semver.org/spec/v2.0.0.html
+
 
 Particles group
 ---------------

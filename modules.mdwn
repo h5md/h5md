@@ -12,7 +12,7 @@ molecular simulation programs.
 
 ### Module name and version
 
-The name of this module is `thermodynamics`. The module version is `1`.
+The name of this module is `thermodynamics`. The module version is 1.0.0.
 
 
 ### Observables
