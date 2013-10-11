@@ -322,7 +322,7 @@ that different subgroups may be sampled at different time grids. This
 way, the box information remains associated to a group of particles.
 A specific requirement for `box` groups inside `particles` is that the
 `step` and `time` datasets exactly match those of the corresponding
-`position` groups, which may be accomplished by hard-linking the
+`position` groups, which must be accomplished by hard-linking the
 datasets.
 
 The spatial dimension and the boundary conditions of the box are stored
