@@ -27,8 +27,8 @@ structure. Attributes can be attached to each group or dataset. The
 following notation is used to depict the tree or its subtrees:
 
 `\-- item`
-:   An element of a group, that is either a dataset or a group. If it is
-    a group itself, the elements within the group are indented by five
+:   An object within a group, that is either a dataset or a group. If it is
+    a group itself, the objects within the group are indented by five
     spaces with respect to the group name.
 
 `+-- attribute`
@@ -38,10 +38,10 @@ following notation is used to depict the tree or its subtrees:
 :   A dataset with array dimensions `dim1` by `dim2`.
 
 `(identifier)`
-:   An optional element.
+:   An optional item.
 
 `<identifier>`
-:   An optional element with unspecified name.
+:   An optional item with unspecified name.
 
 General organization
 --------------------
@@ -90,13 +90,13 @@ of such a group is:
 :   A dataset with dimensions `[variable]` that contains the time steps
     at which the corresponding data were sampled. It is of integer data
     type to allow exact temporal matching of data from one data group to
-    another. The elements of the dataset are in monotonically increasing
+    another. The values of the dataset are in monotonically increasing
     order.
 
 `time`
 :   A dataset that is the same as the `step` dataset, except it is
     real-valued and contains the simulation time in simulation or
-    physical units. The elements of the dataset are in monotonically
+    physical units. The values of the dataset are in monotonically
     increasing order.
 
 `value`
@@ -342,7 +342,7 @@ as attributes to the `box` group, e.g., :
 `boundary`
 :   An attribute, of variable-length string datatype, and of simple
     dataspace of rank 1 and size `D`, that specifies the boundary
-    condition of the box along each dimension. The elements of
+    condition of the box along each dimension. The values in
     `boundary` are either `periodic` or `none`.
 
     `periodic` The simulation box is periodically continued along the
@@ -356,7 +356,7 @@ as attributes to the `box` group, e.g., :
 
 Information on the geometry of the box edges and on the coordinate
 offset is stored as datasets or as data groups, depending on whether the
-box is fixed in time or not. If all elements of `boundary` are `none`,
+box is fixed in time or not. If all values in `boundary` are `none`,
 `edges` and `offset` may be omitted.
 
 `edges`
