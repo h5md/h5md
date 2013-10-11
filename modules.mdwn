@@ -1,0 +1,52 @@
+Modules
+=======
+
+Thermodynamic observables
+-------------------------
+
+### Objective
+
+This module defines a set of thermodynamic observables commonly output by
+molecular simulation programs.
+
+
+### Module name and version
+
+The name of this module is `thermodynamics`. The module version is `1`.
+
+
+### Observables
+
+For each subsystem stored in the `particles` group as `/particles/<group>`, the
+`observables` group shall contain a corresponding group `/observables/<group>`
+with one or more of the following *elements*:
+
+`dimension`
+  : The dimensionality of the coordinates of the subsystem.
+
+`particles`
+  : The number of particles of the subsystem.
+
+`temperature`
+  : The instantaneous temperature of the subsystem.
+
+`pressure`
+  : The pressure of the subsystem.
+
+`potential_energy`
+  : The potential energy of the subsystem.
+
+`average_potential_energy`
+  : The potential energy of the subsystem, as an average per particle.
+
+`kinetic_energy`
+  : The kinetic energy of the subsystem.
+
+`average_kinetic_energy`
+  : The kinetic energy of the subsystem, as an average per particle.
+
+`total_energy`
+  : The total energy of the subsystem.
+
+`average_total_energy`
+  : The total energy of the subsystem, as an average per particle.

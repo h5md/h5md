@@ -415,23 +415,18 @@ appropriate subgroups similarly to the `particles` tree. Each observable
 is stored as a group obeying the `value`, `step`, `time` organization
 outlined above. As for all time-dependent data, the shape of `value`
 depends on the tensor rank of the observable prepended by a `[variable]`
-dimension. In addition, each group may carry an optional integer
-attribute `particles` stating the number of particles involved in the
-average. If this number varies, the attribute is replaced by a dataset
-`particles` of `[variable]` dimension.
+dimension.
 
 The contents of the observables group has the following structure:
 
     observables
      \-- <observable1>
-     |    +-- (particles)
      |    \-- step [variable]
      |    \-- time [variable]
      |    |    +-- (unit)
      |    \-- value [variable]
      |         +-- (unit)
      \-- <observable2>
-     |    \-- (particles) [variable]
      |    \-- step [variable]
      |    \-- time [variable]
      |    |    +-- (unit)
@@ -439,21 +434,12 @@ The contents of the observables group has the following structure:
      |         +-- (unit)
      \-- <group1>
      |    \-- <observable3>
-     |         +-- (particles)
      |         \-- step [variable]
      |         \-- time [variable]
      |         |    +-- (unit)
      |         \-- value [variable][D][D]
      |              +-- (unit)
      \-- ...
-
-The following identifiers should be obeyed for the corresponding
-thermodynamic observables: `total_energy`, `potential_energy`,
-`kinetic_energy`, `pressure`, and `temperature`. These quantities are
-understood as "per particle", i.e., they are intensive quantities in the
-thermodynamic limit. (Note that `temperature` refers to the
-instantaneous temperature as obtained from the kinetic energy, not to
-the thermodynamic variable.)
 
 Parameters group
 ----------------
