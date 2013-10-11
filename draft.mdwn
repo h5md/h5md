@@ -317,15 +317,13 @@ Simulation box
 
 The specification of the simulation box is stored in the group `box`,
 which must be contained within each of the subgroups of the `particles`
-group. The group `box` must further be stored in (or hard-linked to) the
-`observables` group, if present. Storing the box information at several
-places reflects the fact that all root groups are optional (except for
-`h5md`), and further that different subgroups may be sampled at
-different time grids. This way, the box information remains associated
-to a group of particles or the collection of observables. A specific
-requirement for `box` groups inside `particles` is that the `step` and
-`time` datasets exactly match those of the corresponding `position`
-groups, which may be accomplished by hard-linking the datasets.
+group. Storing the box information at several places reflects the fact
+that different subgroups may be sampled at different time grids. This
+way, the box information remains associated to a group of particles.
+A specific requirement for `box` groups inside `particles` is that the
+`step` and `time` datasets exactly match those of the corresponding
+`position` groups, which may be accomplished by hard-linking the
+datasets.
 
 The spatial dimension and the boundary conditions of the box are stored
 as attributes to the `box` group, e.g., :
@@ -425,7 +423,6 @@ average. If this number varies, the attribute is replaced by a dataset
 The contents of the observables group has the following structure:
 
     observables
-     \-- box
      \-- <observable1>
      |    +-- (particles)
      |    \-- step [variable]
