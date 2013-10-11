@@ -255,7 +255,7 @@ version number stored as an integer.
 `version`
 :   An attribute, of integer datatype, and of simple dataspace of rank 1 and
     size 2, that contains the major version number and the minor version number
-    of the H5MD specification the H5MD structure conforms to.
+    of the module.
 
     The version *x.y.z* of an H5MD module follows [semantic versioning].
     A change of the major version number *x* indicates backwards-incompatible
