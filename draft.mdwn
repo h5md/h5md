@@ -98,25 +98,23 @@ a group is:
 
 `step`
 :   A dataset with dimensions `[variable]` that contains the time steps
-    at which the corresponding data were sampled. It is of integer data
-    type to allow exact temporal matching of data from one `element` to
-    another. The values of the dataset are in monotonically increasing
-    order.
+    at which the corresponding data were sampled. It is of `Integer` type to
+    allow exact temporal matching of data from one `element` to another. The
+    values of the dataset are in monotonically increasing order.
 
 `time`
 :   A dataset that is the same as the `step` dataset, except it is
-    real-valued and contains the simulation time in simulation or
-    physical units. The values of the dataset are in monotonically
-    increasing order.
+    `Float`-valued and contains the simulation time in simulation or physical
+    units. The values of the dataset are in monotonically increasing order.
 
 `value`
-:   A dataset that holds the data of the time series. Its shape is the
-    shape of the stored data prepended by a `[variable]` dimension that
-    allows the accumulation of samples. (`[variable]` for scalars,
-    `[variable][D]` for `D`-dimensional vectors, etc.). The first
-    dimension of `value` must match the unique dimension of `step` and
-    `time`, and serves to accumulate samples during the course of the
-    simulation.
+:   A dataset that holds the data of the time series. It uses a simple
+    dataspace whose rank is given by 1 plus the tensor rank of the data stored.
+    Its shape is the shape of a single data element prepended by a `[variable]`
+    dimension that allows the accumulation of samples (`[variable]` for
+    scalars, `[variable][D]` for `D`-dimensional vectors, etc.). The first
+    dimension of `value` must match the unique dimension of `step` and `time`
+    and serves to accumulate samples during the course of the simulation.
 
 The datasets `time` and `value` may possess an optional attribute
 `unit`, of variable-length string datatype, and of scalar dataspace,
@@ -198,9 +196,9 @@ A set of global metadata describing the H5MD structure is stored in the
           +-- version: VL String[]
 
 `version`
-:   An attribute, of integer datatype, and of simple dataspace of rank 1 and
-    size 2, that contains the major version number and the minor version
-    number of the H5MD specification the H5MD structure conforms to.
+:   An attribute, of `Integer` datatype and of simple dataspace of rank 1 and
+    size 2, that contains the major version number and the minor version number
+    of the H5MD specification the H5MD structure conforms to.
 
     The version *x.y.z* of the H5MD specification follows [semantic versioning].
     A change of the major version number *x* indicates backwards-incompatible
@@ -256,7 +254,7 @@ version number stored as an integer.
           \-- ...
 
 `version`
-:   An attribute, of integer datatype, and of simple dataspace of rank 1 and
+:   An attribute, of `Integer` datatype and of simple dataspace of rank 1 and
     size 2, that contains the major version number and the minor version number
     of the module.
 
@@ -307,14 +305,15 @@ The following identifiers for `elements` are standardized:
 
 `position`
 :   An `element` that describes the particle positions within the simulation
-    box, as periodically wrapped or unwrapped coordinate vectors.
+    box, as periodically wrapped or unwrapped coordinate vectors of `Float`
+    or `Integer` type.
 
 `image`
 :   An `element` that represents the periodic image of the box in which each
     particle is actually located and allows one to unwrap periodically
     wrapped positions. For the case of time-dependent data, the
     `image/value` dataset is of the same shape as `position/value` and
-    is either of integer or real kind.
+    is either of `Float` or `Integer` type.
 
     For instance, given a cuboid box with periodic boundaries, let $\vec
     r_i$ be the reduced position of particle $i$ taken from `position`,
@@ -323,29 +322,32 @@ The following identifiers for `elements` are standardized:
     position $\vec R_i$ is given by $R_{ij} = r_{ij} + L_j a_{ij}$.
 
 `velocity`
-:   An `element` that contains the velocities for each particle as a vector.
+:   An `element` that contains the velocities for each particle as a vector
+    of `Float` or `Integer` type.
 
 `force`
 :   An `element` that contains the total forces (i.e., the accelerations
-    multiplied by the particle mass) for each particle as a vector.
+    multiplied by the particle mass) for each particle as a vector of `Float`
+    or `Integer` type.
 
 `mass`
-:   An `element` that holds the mass for each particle as a scalar.
+:   An `element` that holds the mass for each particle as a scalar of `Float`
+    type.
 
 `species`
 :   An `element` that describes the species of the particles, i.e., their
-    atomic or chemical identity, and is of scalar integer data type.
+    atomic or chemical identity, and is of scalar `Integer` data type.
     `species` is typically time-dependent if chemical reactions occur or
     in semi-grandcanonical Monte-Carlo simulations.
 
 `id`
 :   An `element` that holds a unique scalar identifier for each particle,
-    which is of integer kind. The `id` serves to identify particles over
-    the course of the simulation in the case when the order of the
-    particles changes, or when new particles are inserted and removed
-    (as e.g. in grand-canonical simulations). If `id` is absent, the
-    identity of the particles is given by their index in the `value`
-    datasets of the various `elements`.
+    which is of `Integer` type. The `id` serves to identify particles over the
+    course of the simulation in the case when the order of the particles
+    changes, or when new particles are inserted and removed (as e.g. in
+    grand-canonical simulations). If `id` is absent, the identity of the
+    particles is given by their index in the `value` datasets of the various
+    `elements`.
 
 Simulation box
 --------------
@@ -372,7 +374,7 @@ as attributes to the `box` group, e.g., :
 
 `dimension`
 :   An attribute that stores the spatial dimension `D` of the simulation
-    box and is of integer type.
+    box and is of `Integer` type.
 
 `boundary`
 :   An attribute, of variable-length string datatype, and of simple
@@ -395,15 +397,15 @@ box is fixed in time or not. If all values in `boundary` are `none`,
 `edges` and `offset` may be omitted.
 
 `edges`
-:   A `D`-dimensional vector, or a `D` × `D` matrix, depending on the
-    geometry of the box. If `edges` is a vector, it specifies the space
-    diagonal of a cuboid-shaped box. If `edges` is a matrix, the box is
-    of triclinic shape with the edge vectors given by the rows of the
-    matrix.
+:   A `D`-dimensional vector or a `D` × `D` matrix, depending on the geometry
+    of the box of `Float` or `Integer` type. If `edges` is a vector, it
+    specifies the space diagonal of a cuboid-shaped box. If `edges` is a
+    matrix, the box is of triclinic shape with the edge vectors given by the
+    rows of the matrix.
 
 `offset`
-:   A `D`-dimensional vector specifying the lower coordinate for all
-    directions.
+:   A `D`-dimensional vector of `Float` or `Integer` type specifying the lower
+    coordinate for all directions.
 
 For instance, a cuboid box that changes in time would appear as:
 
@@ -443,14 +445,14 @@ where `dimension` is equal to `D`.
 Observables group
 -----------------
 
-Macroscopic observables, or more generally, averages over many
-particles, are stored as time series in the root group `observables`.
-Observables representing only a subset of the particles may be stored in
-appropriate subgroups similarly to the `particles` tree. Each observable
-is stored as a `H5MD element`.
-The shape of the corresponding dataset (the `element` itself for time-indepent
-data and `value` for time-dependent data) is the tensor rank of the observable
-prepended by a `[variable]` dimension for for time-dependent data.
+Macroscopic observables, or more generally, averages over many particles, are
+stored as time series in the root group `observables`.  Observables
+representing only a subset of the particles may be stored in appropriate
+subgroups similarly to the `particles` tree. Each observable is stored as a
+`H5MD element`. The shape of the corresponding dataset (the `element` itself
+for time-indepent data and `value` for time-dependent data) is the tensor shape
+of the observable prepended by a `[variable]` dimension for time-dependent
+data.
 
 The contents of the observables group has the following structure:
 
