@@ -90,9 +90,7 @@ integer time step and on the physical time. The structure of such a group is:
     <element>
      \-- step: Integer[variable]
      \-- time: Float[variable]
-     |    +-- (unit: VL String[])
      \-- value: <type>[variable][...]
-          +-- (unit: VL String[])
 
 `step`
 :   A dataset with dimensions `[variable]` that contains the time steps at
@@ -102,8 +100,8 @@ integer time step and on the physical time. The structure of such a group is:
 
 `time`
 :   A dataset that is the same as the `step` dataset, except it is
-    `Float`-valued and contains the simulation time in simulation or physical
-    units. The values of the dataset are in monotonically increasing order.
+    `Float`-valued and contains the simulation time in physical units. The
+    values of the dataset are in monotonically increasing order.
 
 `value`
 :   A dataset that holds the data of the time series. It uses a simple
@@ -113,11 +111,6 @@ integer time step and on the physical time. The structure of such a group is:
     scalars, `[variable][D]` for `D`-dimensional vectors, etc.). The first
     dimension of `value` must match the unique dimension of `step` and `time`
     and serves to accumulate samples during the course of the simulation.
-
-The datasets `time` and `value` may possess an optional attribute `unit`, of
-variable-length string datatype and of scalar dataspace, that gives the
-physical unit of their respective data (`nm` for the position, for instance).
-In the case of time-independent data, `unit` is attached to the dataset itself.
 
 If several `elements` are sampled at equal times, `step` and `time` of one
 `element` may be hard links to the `step` and `time` datasets of a different
@@ -130,7 +123,6 @@ unique to each `element`.
 H5MD defines a time-independent `H5MD element` as a dataset. As for the `value`
 dataset in the case of time-dependent data, data type and array shape are
 implied by the stored data, where the `[variable]` dimension is omitted.
-Further, the optional attribute `unit` may be attached.
 
 ### Storage order of arrays
 
@@ -238,6 +230,9 @@ their semantic interpretation. Multiple modules may be present, as long as
 their prescriptions are not contradictory. Each module is identified by a name
 and a version number.
 
+The modules `thermodynamics` and `units` are part of the H5MD specification and
+are described in the appendix.
+
 The modules that apply to a specific H5MD structure are stored as subgroups
 within the group `h5md/modules`: Each module holds its version number as an
 attribute, further module-specific information may be stored.
@@ -286,13 +281,10 @@ space is the following:
           \-- (position)
           |    \-- step: Integer[variable]
           |    \-- time: Float[variable]
-          |    |    +-- (unit: VL String[])
           |    \-- value: <type>[variable][N][D]
-          |    |    +-- (unit: VL String[])
           \-- (image)
           |    \-- step: Integer[variable]
           |    \-- time: Float[variable]
-          |    |    +-- (unit: VL String[])
           |    \-- value: <type>[variable][N][D]
           \-- (species: Integer[N])
           \-- ...
@@ -409,15 +401,11 @@ For instance, a cuboid box that changes in time would appear as:
                \-- edges
                |    \-- step: Integer[variable]
                |    \-- time: Float[variable]
-               |    |    +-- (unit: VL String[])
                |    \-- value: <type>[variable][D]
-               |         +-- (unit: VL String[])
                \-- offset
                     \-- step: Integer[variable]
                     \-- time: Float[variable]
-                    |    +-- (unit: VL String[])
                     \-- value: <type>[variable][D]
-                         +-- (unit: VL String[])
 
 where `dimension` is equal to `D`. A triclinic box that is fixed in time would
 appear as:
@@ -428,9 +416,7 @@ appear as:
                +-- dimension: Integer[]
                +-- boundary: VL String[D]
                \-- edges: <type>[D][D]
-               |    +-- (unit: VL String[])
                \-- offset: <type>[D]
-                    +-- (unit: VL String[])
 
 where `dimension` is equal to `D`.
 
@@ -451,22 +437,16 @@ The contents of the observables group has the following structure:
      \-- <observable1>
      |    \-- step: Integer[variable]
      |    \-- time: Float[variable]
-     |    |    +-- (unit: VL String[])
      |    \-- value: <type>[variable]
-     |         +-- (unit: VL String[])
      \-- <observable2>
      |    \-- step: Integer[variable]
      |    \-- time: Float[variable]
-     |    |    +-- (unit: VL String[])
      |    \-- value: <type>[variable][D]
-     |         +-- (unit: VL String[])
      \-- <group1>
      |    \-- <observable3>
      |         \-- step: Integer[variable]
      |         \-- time: Float[variable]
-     |         |    +-- (unit: VL String[])
      |         \-- value: <type>[variable][D][D]
-     |              +-- (unit: VL String[])
      \-- ...
 
 Parameters group
