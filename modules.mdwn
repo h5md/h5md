@@ -17,25 +17,38 @@ The name of this module is `thermodynamics`. The module version is 1.0.0.
 
 ### Observables
 
-For each subsystem stored in the `particles` group as `/particles/<group>`, the
-`observables` group shall contain a corresponding group `/observables/<group>`
-with one or more of the following *elements*:
+Thermodynamic observables are stored in the `observables` group for global
+properties or in `observables/<group>` for subsystems, similarly to the
+`particles` group. The groups have the following contents:
+
+    observables
+     \-- <group>
+          +-- dimension: Integer[]
+          \-- particles
+          \-- volume
+          \-- (pressure)
+          \-- (temperature)
+          \-- ...
 
 `dimension`
-  : The dimension of the space embedding the subsystem.
+  : A scalar attribute of `Integer` type that gives the dimension of the space
+    embedding the subsystem.
 
 `particles`
-  : The number of particles of the subsystem.
+  : The number of particles in the subsystem stored as `Integer` datatype.
 
 `volume`
-  : The volume of the subsystem.
+  : The volume of the subsystem stored as `Float` or `Integer` datatype.
+
+The following H5MD elements are optional, of scalar character, and use the
+`Float` datatype.
 
 `pressure`
   : The pressure of the subsystem.
 
 `temperature`
-  : The instantaneous temperature of the subsystem as inferred from the kinetic
-    energy.
+  : The (instantaneous) temperature of the subsystem as inferred from the
+    kinetic energy.
 
 `potential_energy`
   : The potential energy of the subsystem.
