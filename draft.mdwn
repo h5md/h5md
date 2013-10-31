@@ -437,10 +437,10 @@ where `dimension` is equal to `D`.
 Observables group
 -----------------
 
-Macroscopic observables, or more generally, averages over many particles, are
-stored as time series in the root group `observables`. Observables representing
+Macroscopic observables, or more generally, averages of some property over many
+particles, are stored in the root group `observables`. Observables representing
 only a subset of the particles may be stored in appropriate subgroups similarly
-to the `particles` tree. Each observable is stored as a `H5MD element`. The
+to the `particles` tree. Each observable is stored as an `H5MD element`. The
 shape of the corresponding dataset (the `element` itself for time-indepent data
 and `value` for time-dependent data) is the tensor shape of the observable
 prepended by a `[variable]` dimension for time-dependent data.
