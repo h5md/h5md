@@ -197,7 +197,7 @@ group as attributes. The contents of the group is:
     of the H5MD specification the H5MD structure conforms to.
 
     The version *x.y.z* of the H5MD specification follows [semantic
-    versioning].  A change of the major version number *x* indicates
+    versioning]: A change of the major version number *x* indicates
     backwards-incompatible changes to the file structure, a change of the minor
     version number *y* indicates backwards-compatible changes to the file
     structure, and a change of the patch version number *z* indicates changes
@@ -231,15 +231,16 @@ group as attributes. The contents of the group is:
 
 ### Modules
 
-The H5MD specification can be complemented by domain-specific modules, which
-add conditions that the data in the H5MD file must satisfy, and rules for the
-semantic interpretation of the data. A single trajectory can use multiple
-modules, as long as their prescriptions are not contradictory. Each module is
-identified by a name and a version number.
+The H5MD specification can be complemented by modules specific for a certain
+domain of research.  A module may define additional data elements within the
+H5MD structure, add conditions that the data must satisfy, or define rules for
+their semantic interpretation. Multiple modules may be present, as long as
+their prescriptions are not contradictory. Each module is identified by a name
+and a version number.
 
-The modules that apply to a specific H5MD file are stored as subgroups within
-the group `h5md/modules`: A module holds as an attribute the version number
-stored as an integer.
+The modules that apply to a specific H5MD structure are stored as subgroups
+within the group `h5md/modules`: Each module holds its version number as an
+attribute, further module-specific information may be stored.
 
     h5md
      \-- (modules)
@@ -254,7 +255,7 @@ stored as an integer.
     size 2, that contains the major version number and the minor version number
     of the module.
 
-    The version *x.y.z* of an H5MD module follows [semantic versioning].  A
+    The version *x.y.z* of an H5MD module follows [semantic versioning]: A
     change of the major version number *x* indicates backwards-incompatible
     changes to the file structure, a change of the minor version number *y*
     indicates backwards-compatible changes to the file structure, and a change
