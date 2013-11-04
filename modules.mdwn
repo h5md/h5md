@@ -24,7 +24,7 @@ properties or in `observables/<group>` for subsystems, similarly to the
     observables
      \-- <group>
           +-- dimension: Integer[]
-          \-- particles
+          \-- particle_number
           \-- volume
           \-- (pressure)
           \-- (temperature)
@@ -34,7 +34,7 @@ properties or in `observables/<group>` for subsystems, similarly to the
   : A scalar attribute of `Integer` type that gives the dimension of the space
     embedding the subsystem.
 
-`particles`
+`particle_number`
   : The number of particles in the subsystem stored as `Integer` datatype.
 
 `volume`
@@ -63,9 +63,10 @@ The following H5MD elements are optional, of scalar character, and use the
 `enthalpy`
   : The enthalpy of the subsystem.
 
-The latter 4 elements are stored as extensive quantities (proportional to the
-number of particles). The corresponding intensive quantities are obtained by
-normalization, e.g., with the number of particles or the volume.
+The latter 4 quantities are stored as per-particle averages. The corresponding
+extensive quantities (scaling linearly with the system size) are obtained by
+multiplication with the number of particles. Per-volume averages follow by
+multiplication with the number density of particles.
 
 
 Units
