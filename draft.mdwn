@@ -190,10 +190,11 @@ group as attributes. The contents of the group is:
 
     The version *x.y.z* of the H5MD specification follows [semantic
     versioning]: A change of the major version number *x* indicates
-    backwards-incompatible changes to the file structure, a change of the minor
+    backwards-incompatible changes to the file structure. A change of the minor
     version number *y* indicates backwards-compatible changes to the file
-    structure, and a change of the patch version number *z* indicates changes
-    that have no effect on the file structure.
+    structure. A change of the patch version number *z* indicates changes that
+    have no effect on the file structure, this component is not present in the
+    attribute `version`.
 
 `author`
 :   A group that contains metadata on the person responsible for the simulation
@@ -252,10 +253,10 @@ attribute, further module-specific information may be stored.
 
     The version *x.y.z* of an H5MD module follows [semantic versioning]: A
     change of the major version number *x* indicates backwards-incompatible
-    changes to the file structure, a change of the minor version number *y*
-    indicates backwards-compatible changes to the file structure, and a change
-    of the patch version number *z* indicates changes that have no effect on
-    the file structure.
+    changes to the file structure. A change of the minor version number *y*
+    indicates backwards-compatible changes to the file structure. A change of
+    the patch version number *z* indicates changes that have no effect on the
+    file structure, this component is not present in the attribute `version`.
 
 [semantic versioning]: http://semver.org/spec/v2.0.0.html
 
