@@ -39,6 +39,8 @@ used to depict the tree or its subtrees:
     type is taken from `Integer`, `Float` or `String` and follows the HDF5
     Datatype classes. If the type is not mandated by H5MD, `<type>` is
     indicated. A scalar dataspace is indicated by `[]`.
+    A `VL` in front of the type indicates a Variable-length datatype (see
+    [§ 6.1.2](http://www.hdfgroup.org/HDF5/doc/UG/11_Datatypes.html#Intro)).
 
 `(identifier)`
 :   An optional item.
