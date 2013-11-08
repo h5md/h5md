@@ -25,9 +25,9 @@ properties or in `observables/<group>` for subsystems, similarly to the
      \-- <group>
           +-- dimension: Integer[]
           \-- particle_number
-          \-- volume
           \-- (pressure)
           \-- (temperature)
+          \-- (density)
           \-- ...
 
 `dimension`
@@ -36,9 +36,6 @@ properties or in `observables/<group>` for subsystems, similarly to the
 
 `particle_number`
   : The number of particles in the subsystem stored as `Integer` datatype.
-
-`volume`
-  : The volume of the subsystem stored as `Float` or `Integer` datatype.
 
 The following H5MD elements are optional, of scalar character, and use the
 `Float` datatype.
@@ -49,6 +46,10 @@ The following H5MD elements are optional, of scalar character, and use the
 `temperature`
   : The (instantaneous) temperature of the subsystem as inferred from the
     kinetic energy.
+
+`density`
+  : The number density of the subsystem stored as `Float` or `Integer`
+    datatype.
 
 `potential_energy`
   : The potential energy of the subsystem.
@@ -66,7 +67,7 @@ The following H5MD elements are optional, of scalar character, and use the
 The latter 4 quantities are stored as per-particle averages. The corresponding
 extensive quantities (scaling linearly with the system size) are obtained by
 multiplication with the number of particles. Per-volume averages follow by
-multiplication with the number density of particles.
+multiplication with the number density if present.
 
 
 Units
