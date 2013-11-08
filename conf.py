@@ -232,7 +232,7 @@ def setup(app):
   def pandoc(app, docname, source):
     args = ["pandoc", "-f", "markdown", "-t", "rst"]
     if docname == app.config.master_doc:
-      args += ["-A", "README.mdwn"]
+      args += ["-A", "contents.rst"]
     proc = Popen(args, stdin=PIPE, stdout=PIPE)
     indata = source[0].encode(app.config.source_encoding)
     outdata, _ = proc.communicate(indata)
