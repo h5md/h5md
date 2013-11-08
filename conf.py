@@ -222,7 +222,7 @@ latex_preamble = r"""
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'h5md', u'H5MD',
+    ('README', 'h5md', u'H5MD',
      [u'Pierre de Buyl, Peter Colberg, Felix Höfling'], 1)
 ]
 
@@ -232,7 +232,7 @@ def setup(app):
   def pandoc(app, docname, source):
     args = ["pandoc", "-f", "markdown", "-t", "rst"]
     if docname == app.config.master_doc:
-      args += ["-A", "contents.rst"]
+      args += ["-A", "README.mdwn"]
     proc = Popen(args, stdin=PIPE, stdout=PIPE)
     indata = source[0].encode(app.config.source_encoding)
     outdata, _ = proc.communicate(indata)
