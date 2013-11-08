@@ -193,8 +193,11 @@ group as attributes. The contents of the group is:
     backwards-incompatible changes to the file structure. A change of the minor
     version number *y* indicates backwards-compatible changes to the file
     structure. A change of the patch version number *z* indicates changes that
-    have no effect on the file structure, this component is not present in the
-    attribute `version`.
+    have no effect on the file structure and serves to allow for clarifications
+    or minor text editing of the specification.
+
+    As the z component has no impact on the content of a H5MD file, it is not
+    present in the `version` attribute that contains only *x* and *y*.
 
 `author`
 :   A group that contains metadata on the person responsible for the simulation
