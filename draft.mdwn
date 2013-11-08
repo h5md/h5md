@@ -53,8 +53,7 @@ this naming in H5MD.
 
 H5MD defines a structure called a `H5MD element` (or `element` whenever there
 is no confusion). An `element` is either a time-dependent group or a single
-dataset (see time-dependent data below) depending on the situation containing
-the data.
+dataset (see time-dependent data below) depending on the situation.
 
 General organization
 --------------------
