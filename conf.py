@@ -178,7 +178,7 @@ htmlhelp_basename = 'h5md'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'h5md.tex', u'H5MD',
+  ('README', 'h5md.tex', u'H5MD',
    u'Pierre de Buyl, Peter Colberg, Felix Höfling', 'manual'),
 ]
 
@@ -197,7 +197,18 @@ latex_documents = [
 #latex_show_urls = False
 
 # Additional stuff for the LaTeX preamble.
-#latex_preamble = ''
+latex_preamble = r"""
+\DeclareUnicodeCharacter{2070}{$^{0}$}
+\DeclareUnicodeCharacter{2071}{$^{i}$}
+\DeclareUnicodeCharacter{2074}{$^{4}$}
+\DeclareUnicodeCharacter{2075}{$^{5}$}
+\DeclareUnicodeCharacter{2076}{$^{6}$}
+\DeclareUnicodeCharacter{2077}{$^{7}$}
+\DeclareUnicodeCharacter{2078}{$^{8}$}
+\DeclareUnicodeCharacter{2079}{$^{9}$}
+\DeclareUnicodeCharacter{207A}{$^{+}$}
+\DeclareUnicodeCharacter{207B}{$^{-}$}
+"""
 
 # Documents to append as an appendix to all manuals.
 #latex_appendices = []
