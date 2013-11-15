@@ -365,7 +365,7 @@ attributes to the `box` group, e.g., :
 
 `dimension`
 :   An attribute that stores the spatial dimension `D` of the simulation box
-    and is of `Integer` type.
+    and is of `Integer` datatype and scalar dataspace.
 
 `boundary`
 :   An attribute, of variable-length string datatype and of simple dataspace of
