@@ -392,6 +392,14 @@ may be omitted.
     matrix, the box is of triclinic shape with the edge vectors given by the
     rows of the matrix.
 
+    For a time-dependent box, a cuboid geometry is encoded by a dataset `value`
+    (within the `H5MD element`) of rank 2 (1 dimension for the time and 1 for
+    the vector) and a triclinic geometry by a dataset `value` of rank 3 (1
+    dimension for the time and 2 for the matrix).
+
+    For a time-independent box, a cuboid geometry is encoded by a dataset
+    `edges` of rank 1 and a triclinic geometry by a dataset of rank 2.
+
 `offset`
 :   A `D`-dimensional vector of `Float` or `Integer` type specifying the lower
     coordinate for all dimensions.
