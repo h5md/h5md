@@ -452,6 +452,7 @@ The contents of the observables group has the following structure:
      |         \-- step: Integer[variable]
      |         \-- time: Float[variable]
      |         \-- value: <type>[variable][D][D]
+     \-- <observable4>: <type>[]
      \-- ...
 
 Parameters group
