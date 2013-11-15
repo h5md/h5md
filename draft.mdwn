@@ -394,7 +394,7 @@ may be omitted.
 
 `offset`
 :   A `D`-dimensional vector of `Float` or `Integer` type specifying the lower
-    coordinate for all directions.
+    coordinate for all dimensions.
 
 For instance, a cuboid box that changes in time would appear as:
 
