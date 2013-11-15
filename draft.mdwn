@@ -381,7 +381,7 @@ attributes to the `box` group, e.g., :
     along this dimension are irrelevant.
 
 Information on the geometry of the box edges and on the coordinate offset is
-stored as datasets or as `H5MD elements`, depending on whether the box is fixed
+stored as `H5MD elements`, allowing for the box to be fixed
 in time or not. If all values in `boundary` are `none`, `edges` and `offset`
 may be omitted.
 
