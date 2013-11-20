@@ -220,6 +220,7 @@ units:
 |                         | °, deg        | arc degree               | 180 deg = π                              |
 +-------------------------+---------------+--------------------------+------------------------------------------+
 
+Table: Unit symbols, names and conversion rules.
 
 +-----------------+--------------------------+------------------------------------------+
 | constant symbol | name                     | value                                    |
@@ -239,6 +240,7 @@ units:
 | me              | electron mass            | m<sub>e</sub> = 9.10938215 × 10⁻³¹ kg    |
 +-----------------+--------------------------+------------------------------------------+
 
+Table: Constants.
 
 ### Unit prefixes
 
@@ -280,3 +282,4 @@ A unit symbol may include an SI prefix from the following list:
 | atto-  | a             | 10⁻¹⁸  |
 +--------+---------------+--------+
 
+Table: SI prefixes.
