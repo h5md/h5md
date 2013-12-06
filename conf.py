@@ -236,6 +236,7 @@ def setup(app):
     proc = Popen(args, stdin=PIPE, stdout=PIPE)
     indata = source[0].encode(app.config.source_encoding)
     outdata, _ = proc.communicate(indata)
+    outdata = outdata.replace(".. code::", ".. code-block::")
     source[0] = outdata.decode(app.config.source_encoding)
 
   app.connect('source-read', pandoc)
