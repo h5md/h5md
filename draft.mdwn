@@ -255,12 +255,9 @@ attribute, further module-specific information may be stored.
     size 2, that contains the major version number and the minor version number
     of the module.
 
-    The version *x.y.z* of an H5MD module follows [semantic versioning]: A
-    change of the major version number *x* indicates backwards-incompatible
-    changes to the file structure. A change of the minor version number *y*
-    indicates backwards-compatible changes to the file structure. A change of
-    the patch version number *z* indicates changes that have no effect on the
-    file structure, this component is not present in the attribute `version`.
+    The version *x.y.z* of an H5MD module follows [semantic versioning] and
+    again only the components *x* and *y* are stored, see `h5md/version` in
+    [H5MD metadata].
 
 [semantic versioning]: http://semver.org/spec/v2.0.0.html
 
