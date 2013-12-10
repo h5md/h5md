@@ -101,6 +101,8 @@ the datasets `value` and `time` in the time-dependent case:
 The attribute `unit` is of scalar dataspace and variable-length `String`
 datatype using the ASCII character set.
 
+### Unit string
+
 The `unit` string consists of a sequence of unit factors separated by a space.
 A unit factor is either a number (an integer or a decimal fraction) or a unit
 symbol optionally followed by a non-zero, signed integer indicating the power
@@ -118,10 +120,9 @@ Examples:
   - "10+3 m" stands for a kilometer
 
 
-### Unit symbols
-
-Allowed unit symbols include a subset of the SI units plus some common non-SI
-units:
+Allowed unit symbols include all SI base units, a subset of derived SI units
+plus some common non-SI units and constants. A unit symbol may include an SI
+prefix as listed below.
 
 +---------------------+--------+--------------------------+--------------------------------+
 | dimension           | symbol | unit name                | conversion                     |
@@ -212,10 +213,6 @@ Table: Unit symbols, names and conversion rules.
 +--------+----------------------+--------------------------------------+
 
 Table: Constants.
-
-### Unit prefixes
-
-A unit symbol may include an SI prefix from the following list:
 
 +--------+--------+--------+
 | prefix | symbol | factor |
