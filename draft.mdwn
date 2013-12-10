@@ -22,9 +22,10 @@ file and of each of its objects.
 Notation and naming
 -------------------
 
-HDF5 files are organized into groups and datasets, which form a tree structure.
-Attributes can be attached to each group or dataset. The following notation is
-used to depict the tree or its subtrees:
+HDF5 files are organized into groups and datasets, summarized as *objects*,
+which form a tree structure with the datasets as leaves. Attributes can be
+attached to each object. The H5MD specification adopts this naming and uses the
+following notation to depict the tree or its subtrees:
 
 `\-- item`
 :   An object within a group, that is either a dataset or a group. If it is a
@@ -48,12 +49,9 @@ used to depict the tree or its subtrees:
 `<identifier>`
 :   An optional item with unspecified name.
 
-HDF5 files contain *objects* that are themselves groups or datasets. We
-follow this naming in H5MD.
-
-H5MD defines a structure called a *H5MD element* (or *element* whenever
-there is no confusion). An element is either a time-dependent group or a single
-dataset (see time-dependent data below) depending on the situation.
+H5MD defines a structure called a *H5MD element* (or *element* whenever there
+is no confusion). An element is either a time-dependent group or a single
+dataset (see time-dependent data below), depending on the situation.
 
 General organization
 --------------------
@@ -65,7 +63,7 @@ number of groups are defined at the H5MD root level. Several levels of
 subgroups may exist inside the H5MD structure, allowing the storage and
 description of subsystems.
 
-The H5MD structure is allowed to possess non-specified groups, datasets or
+The H5MD structure is allowed to possess non-specified groups, datasets, or
 attributes that contain additional information such as application-specific
 parameters or data structures, leaving scope for future extensions. Only the
 `h5md` group is mandatory at the H5MD root level. All other root groups are
@@ -108,10 +106,10 @@ integer time step and on the physical time. The structure of such a group is:
 :   A dataset that holds the data of the time series. It uses a simple
     dataspace whose rank is given by 1 plus the tensor rank of the data stored.
     Its shape is the shape of a single data item prepended by a `[variable]`
-    dimension that allows the accumulation of samples (`[variable]` for
-    scalars, `[variable][D]` for `D`-dimensional vectors, etc.). The first
-    dimension of `value` must match the unique dimension of `step` and `time`
-    and serves to accumulate samples during the course of the simulation.
+    dimension that allows the accumulation of samples during the course of
+    time. For instance, the data shape of scalars has the form `[variable]`
+    `D`-dimensional vectors use `[variable][D]`, etc. The first dimension of
+    `value` must match the unique dimension of `step` and `time`.
 
 If several H5MD elements are sampled at equal times, `step` and `time` of one
 element may be hard links to the `step` and `time` datasets of a different
@@ -153,8 +151,8 @@ as follows:
 `particles`
 :   An optional group that contains information on each particle in the system,
     e.g., a snapshot of the positions or the full trajectory in phase space.
-    The size of stored data scales linearly with the number of particles under
-    consideration.
+    The size of the stored data scales linearly with the number of particles
+    under consideration.
 
 `observables`
 :   An optional group that contains other quantities of interest, e.g.,
@@ -239,8 +237,8 @@ The modules `thermodynamics` and `units` are part of the H5MD specification and
 are described in the appendix.
 
 The modules that apply to a specific H5MD structure are stored as subgroups
-within the group `h5md/modules`: Each module holds its version number as an
-attribute, further module-specific information may be stored.
+within the group `h5md/modules`. Each module holds its version number as an
+attribute, further module-specific information may be stored:
 
     h5md
      \-- (modules)
@@ -257,7 +255,7 @@ attribute, further module-specific information may be stored.
 
     The version *x.y.z* of an H5MD module follows [semantic versioning] and
     again only the components *x* and *y* are stored, see `h5md/version` in
-    [H5MD metadata].
+    "[H5MD metadata]."
 
 [semantic versioning]: http://semver.org/spec/v2.0.0.html
 
@@ -369,7 +367,7 @@ attributes to the `box` group, e.g., :
 `boundary`
 :   An attribute, of variable-length string datatype and of simple dataspace of
     rank 1 and size `D`, that specifies the boundary condition of the box along
-    each dimension. The values in `boundary` are either `periodic` or `none`.
+    each dimension. The values in `boundary` are either `periodic` or `none`:
 
     `periodic` The simulation box is periodically continued along the given
     dimension and serves as the unit cell for an infinite tiling of space.
@@ -466,7 +464,7 @@ Parameters group
 
 The `parameters` group stores application-specific, custom data such as control
 parameters or simulation scripts. The group consists of groups, datasets, and
-attributes. However, the detailed structure of the group is left unspecified.
+attributes; the detailed structure, however, is left unspecified.
 
 The contents of the `parameters` group could be the following:
 
