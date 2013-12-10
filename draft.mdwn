@@ -397,8 +397,8 @@ all values in `boundary` are `none`, `edges` and `offset` may be omitted.
     `edges` of rank 1 and a triclinic geometry by a dataset of rank 2.
 
 `offset`
-:   A `D`-dimensional vector of `Float` or `Integer` type specifying the lower
-    coordinate for all dimensions.
+:   A `D`-dimensional vector of `Float` or `Integer` type specifying the
+    minimal (lower left) coordinate for each dimension.
 
 For instance, a cuboid box that changes in time would appear as:
 
