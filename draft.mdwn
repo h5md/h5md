@@ -378,8 +378,10 @@ attributes to the `box` group, e.g., :
     along this dimension are irrelevant.
 
 Information on the geometry of the box edges and on the coordinate offset is
-stored as H5MD elements, allowing for the box to be fixed in time or not. If
-all values in `boundary` are `none`, `edges` and `offset` may be omitted.
+stored as H5MD elements, allowing for the box to be fixed in time or not.
+Supported box shapes are the cuboid and triclinic unit cell, for other shapes a
+transformation to the triclinic shape may be considered [@Bekker:1997]. If all
+values in `boundary` are `none`, `edges` and `offset` may be omitted.
 
 `edges`
 :   A `D`-dimensional vector or a `D` × `D` matrix, depending on the geometry
