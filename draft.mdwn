@@ -6,8 +6,8 @@ Objective
 
 H5MD stands for "HDF5 for molecular data". H5MD is a specification to store
 molecular simulation data and is based on the
-[HDF5](http://www.hdfgroup.org/HDF5/) file format. The primary goal is to
-facilitate the portability of said data amongst scientific simulation and
+[HDF5](http://www.hdfgroup.org/HDF5/) file format [@HDF5]. The primary goal is
+to facilitate the portability of said data amongst scientific simulation and
 analysis programs.
 
 File format
@@ -41,7 +41,8 @@ following notation to depict the tree or its subtrees:
     Datatype classes. If the type is not mandated by H5MD, `<type>` is
     indicated. A scalar dataspace is indicated by `[]`.
     A `VL` in front of the type indicates a Variable-length datatype (see
-    [§ 6.1.2](http://www.hdfgroup.org/HDF5/doc/UG/11_Datatypes.html#Intro)).
+    [§ 6.1.2](http://www.hdfgroup.org/HDF5/doc/UG/11_Datatypes.html#Intro) in
+    [@HDF5_users_guide]).
 
 `(identifier)`
 :   An optional item.
@@ -126,9 +127,9 @@ are implied by the stored data, where the `[variable]` dimension is omitted.
 ### Storage order of arrays
 
 All arrays are stored in C-order as enforced by the HDF5 file format (see
-[§ 3.2.5](http://www.hdfgroup.org/HDF5/doc/UG/12_Dataspaces.html#ProgModel)).
-A C or C++ program may thus declare `r[N][D]` for the array of particle
-coordinates while the Fortran program will declare a `r(D,N)` array
+[§ 3.2.5](http://www.hdfgroup.org/HDF5/doc/UG/12_Dataspaces.html#ProgModel) in
+[@HDF5_users_guide]).  A C or C++ program may thus declare `r[N][D]` for the array
+of particle coordinates while the Fortran program will declare a `r(D,N)` array
 (appropriate index ordering for a system of `N` particles in `D` spatial
 dimensions) and the HDF5 file will be the same.
 
@@ -187,13 +188,14 @@ group as attributes. The contents of the group is:
     size 2, that contains the major version number and the minor version number
     of the H5MD specification the H5MD structure conforms to.
 
-    The version *x.y.z* of the H5MD specification follows [semantic
-    versioning]: A change of the major version number *x* indicates
-    backwards-incompatible changes to the file structure. A change of the minor
-    version number *y* indicates backwards-compatible changes to the file
-    structure. A change of the patch version number *z* indicates changes that
-    have no effect on the file structure and serves to allow for clarifications
-    or minor text editing of the specification.
+    The version *x.y.z* of the H5MD specification follows
+    [semantic versioning][semver] [@semantic_versioning]: A change of the major
+    version number *x* indicates backwards-incompatible changes to the file
+    structure. A change of the minor version number *y* indicates
+    backwards-compatible changes to the file structure. A change of the patch
+    version number *z* indicates changes that have no effect on the file
+    structure and serves to allow for clarifications or minor text editing of
+    the specification.
 
     As the z component has no impact on the content of a H5MD file, it is not
     present in the `version` attribute that contains only *x* and *y*.
@@ -253,11 +255,11 @@ attribute, further module-specific information may be stored:
     size 2, that contains the major version number and the minor version number
     of the module.
 
-    The version *x.y.z* of an H5MD module follows [semantic versioning] and
-    again only the components *x* and *y* are stored, see `h5md/version` in
-    "[H5MD metadata]."
+    The version *x.y.z* of an H5MD module follows [semantic versioning][semver]
+    [@semantic_versioning] and again only the components *x* and *y* are
+    stored, see `h5md/version` in "[H5MD metadata]."
 
-[semantic versioning]: http://semver.org/spec/v2.0.0.html
+[semver]: http://semver.org/spec/v2.0.0.html
 
 
 Particles group
@@ -338,12 +340,12 @@ The following identifiers for H5MD elements are standardized:
     identity of the particles is given by their index in the `value` datasets
     of the various H5MD elements.
 
-    When the identifier of a particle is equal to the user-defined [fill value]
-    of the `id/value` dataset, the particle is considered a placeholder. This
-    permits the storage of particle trajectories of a subsystem whose number of
-    particles varies in time.
-
-    [fill value]: http://www.hdfgroup.org/HDF5/doc/UG/11_Datatypes.html#Fvalues
+    A *fill value* (see
+    [§ 6.6](http://www.hdfgroup.org/HDF5/doc/UG/11_Datatypes.html#Fvalues) in
+    [@HDF5_users_guide]) may be defined for `id/value` upon dataset creation.
+    When the identifier of a particle is equal to this value, the particle is
+    considered non-existing, the entry merely serves as a placeholder. This
+    permits the storage of subsystems whose number of particles varies in time.
 
 Simulation box
 --------------
