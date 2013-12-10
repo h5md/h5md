@@ -268,11 +268,13 @@ Particles group
 Information on each particle, i.e., particle trajectories, is stored in the
 `particles` group. The `particles` group is a container for subgroups that
 represent different subsets of the system under consideration, and it may hold
-one or several subgroups, as needed.  These subgroups contain the trajectory
-data per particle as time-dependent or time-independent data, depending on the
-situation.  Each subgroup contains a specification of the simulation box, see
-below.  For each dataset, the particle index is accommodated by the second
-(first, in the case of time-independence) array dimension.
+one or several subgroups, as needed. These subsets may overlap and their union
+may be incomplete, i.e., not represent all particles of the simulation volume.
+The subgroups contain the trajectory data per particle as time-dependent or
+time-independent data, depending on the situation. Each subgroup contains a
+specification of the simulation box, see below. For each dataset, the particle
+index is accommodated by the second (first, in the case of time-independence)
+array dimension.
 
 The contents of the `particles` group assuming `N` particles in `D`-dimensional
 space is the following:
