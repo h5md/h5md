@@ -327,16 +327,14 @@ The following identifiers for H5MD elements are standardized:
 `species`
 :   An element that describes the species of the particles, i.e., their
     atomic or chemical identity, and is of scalar `Integer` data type.
-    `species` is typically time-dependent if chemical reactions occur or in
-    semi-grandcanonical Monte-Carlo simulations.
 
 `id`
 :   An element that holds a unique scalar identifier for each particle, which
     is of `Integer` type. The `id` serves to identify particles over the course
     of the simulation in the case when the order of the particles changes, or
-    when new particles are inserted and removed (as e.g. in grand-canonical
-    simulations). If `id` is absent, the identity of the particles is given by
-    their index in the `value` datasets of the various H5MD elements.
+    when new particles are inserted and removed. If `id` is absent, the
+    identity of the particles is given by their index in the `value` datasets
+    of the various H5MD elements.
 
 Simulation box
 --------------
