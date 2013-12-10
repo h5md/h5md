@@ -16,7 +16,7 @@ import sys, os
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-#sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.abspath('.'))
 
 # -- General configuration -----------------------------------------------------
 
@@ -228,14 +228,29 @@ man_pages = [
 
 def setup(app):
   from subprocess import Popen, PIPE
+  from json import loads, dumps
+  from pandocfilters import walk
+  from urllib import quote
+
+  def escape_link(key, value, format, meta):
+    if key == "Link":
+      url = value[1][0].replace("<", quote("<"))
+      value[1][0] = url.replace(">", quote(">"))
 
   def pandoc(app, docname, source):
-    args = ["pandoc", "-f", "markdown", "-t", "rst"]
+    args = ["pandoc", "-f", "markdown", "-t", "json", "--bibliography=h5md.bib"]
+    proc = Popen(args, stdin=PIPE, stdout=PIPE)
+    indata = source[0].encode(app.config.source_encoding)
+    outdata, _ = proc.communicate(indata)
+    outdata = loads(outdata)
+    outdata = walk(outdata, escape_link, None, None)
+    outdata = dumps(outdata)
+    args = ["pandoc", "-f", "json", "-t", "rst"]
     if docname == app.config.master_doc:
       args += ["-A", "contents.rst"]
     proc = Popen(args, stdin=PIPE, stdout=PIPE)
     indata = source[0].encode(app.config.source_encoding)
-    outdata, _ = proc.communicate(indata)
+    outdata, _ = proc.communicate(outdata)
     outdata = outdata.replace(".. code::", ".. code-block::")
     source[0] = outdata.decode(app.config.source_encoding)
 

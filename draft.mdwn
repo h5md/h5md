@@ -477,3 +477,6 @@ The contents of the `parameters` group could be the following:
      |    \-- <user_data2>
      |    \-- ...
      \-- ...
+
+References
+----------
