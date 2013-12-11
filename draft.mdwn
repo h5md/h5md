@@ -288,7 +288,7 @@ space is the following:
           |    \-- step: Integer[variable]
           |    \-- time: Float[variable]
           |    \-- value: <type>[variable][N][D]
-          \-- (species: Integer[N])
+          \-- (species: Enumeration[N])
           \-- ...
 
 The following identifiers for H5MD elements are standardized:
@@ -326,9 +326,9 @@ The following identifiers for H5MD elements are standardized:
 
 `species`
 :   An element that describes the species of the particles, i.e., their
-    atomic or chemical identity, and is of scalar `Integer` data type.
-    Particles of the same species are assumed to be identical with respect to
-    their properties and unbonded interactions.
+    atomic or chemical identity, and is of scalar `Enumeration` or `Integer`
+    data type. Particles of the same species are assumed to be identical with
+    respect to their properties and unbonded interactions.
 
 `id`
 :   An element that holds a unique scalar identifier for each particle, which
