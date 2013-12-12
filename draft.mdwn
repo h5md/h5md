@@ -343,9 +343,11 @@ The following identifiers for H5MD elements are standardized:
     A *fill value* (see
     [§ 6.6](http://www.hdfgroup.org/HDF5/doc/UG/11_Datatypes.html#Fvalues) in
     [@HDF5_users_guide]) may be defined for `id/value` upon dataset creation.
-    When the identifier of a particle is equal to this value, the particle is
-    considered non-existing, the entry merely serves as a placeholder. This
-    permits the storage of subsystems whose number of particles varies in time.
+    When the identifier of a particle is equal to this user-defined value,
+    the particle is considered non-existing, the entry merely serves as a
+    placeholder. This permits the storage of subsystems whose number of
+    particles varies in time. For the case of varying particle number, the
+    dimension denoted with `[N]` above may be variable.
 
 Simulation box
 --------------
