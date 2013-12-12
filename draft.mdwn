@@ -333,12 +333,12 @@ The following identifiers for H5MD elements are standardized:
     respect to their properties and unbonded interactions.
 
 `id`
-:   An element that holds a unique scalar identifier for each particle, which
-    is of `Integer` type. The `id` serves to identify particles over the course
-    of the simulation in the case when the order of the particles changes, or
-    when new particles are inserted and removed. If `id` is absent, the
-    identity of the particles is given by their index in the `value` datasets
-    of the various H5MD elements.
+:   An element that holds a scalar identifier for each particle of `Integer`
+    type, which is unique within the given particle subgroup. The `id` serves
+    to identify particles over the course of the simulation in the case when
+    the order of the particles changes, or when new particles are inserted and
+    removed. If `id` is absent, the identity of the particles is given by their
+    index in the `value` datasets of the various H5MD elements.
 
     A *fill value* (see
     [§ 6.6](http://www.hdfgroup.org/HDF5/doc/UG/11_Datatypes.html#Fvalues) in
