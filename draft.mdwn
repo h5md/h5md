@@ -1,5 +1,5 @@
-Specifications for the H5MD format version 1.0.0
-================================================
+H5MD format specification version 1.0.0
+=======================================
 
 Objective
 ---------
