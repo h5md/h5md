@@ -5,7 +5,7 @@ Contents
    :maxdepth: 2
 
    draft
-   modules
+   modules/index
    discussion
    implementation
    software

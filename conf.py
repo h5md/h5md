@@ -246,8 +246,8 @@ def setup(app):
     outdata = walk(outdata, escape_link, None, None)
     outdata = dumps(outdata)
     args = ["pandoc", "-f", "json", "-t", "rst"]
-    if docname == app.config.master_doc:
-      args += ["-A", "contents.rst"]
+    if os.path.exists(docname + ".rst"):
+      args += ["-A", docname + ".rst"]
     proc = Popen(args, stdin=PIPE, stdout=PIPE)
     indata = source[0].encode(app.config.source_encoding)
     outdata, _ = proc.communicate(outdata)
