@@ -17,13 +17,30 @@ H5MD is developed by Pierre de Buyl, Peter Colberg and Felix Höfling and
 is available under the [GNU General Public License] version 3, or any
 later version.
 
-The draft represents the current state of the specification.
+[H5MD]: http://h5md.nongnu.org/
+[HDF5]: http://www.hdfgroup.org/HDF5/
+[GNU General Public License]: https://www.gnu.org/licenses/gpl.html
+
+
+Getting the specification
+-------------------------
+
+The H5MD format specification is maintained in a [git repository]:
+
+~~~
+git clone http://git.savannah.gnu.org/r/h5md.git
+~~~
+
+[git repository]: http://git.savannah.gnu.org/cgit/h5md.git
+
+
+Contributing
+------------
 
 If you want to know more about or contribute to H5MD, please visit the
-[project page] of H5MD or join the [mailing list].
+[project page] of H5MD or join the [mailing list]. An archive of
+previous posts can be searched in the [mailing list archive].
 
-[H5MD]: http://http://h5md.nongnu.org/
-[HDF5]: http://www.hdfgroup.org/HDF5/
 [project page]: https://savannah.nongnu.org/p/h5md/
 [mailing list]: https://lists.nongnu.org/mailman/listinfo/h5md-user
-[GNU General Public License]: https://www.gnu.org/licenses/gpl.html
+[mailing list archive]: http://news.gmane.org/gmane.science.simulation.h5md.user
