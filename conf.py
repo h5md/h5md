@@ -37,7 +37,7 @@ source_suffix = '.mdwn'
 #source_encoding = 'utf-8-sig'
 
 # The master toctree document.
-master_doc = 'README'
+master_doc = 'index'
 
 # General information about the project.
 project = u'H5MD'
@@ -178,7 +178,7 @@ htmlhelp_basename = 'h5md'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('README', 'h5md.tex', u'H5MD',
+  ('index', 'h5md.tex', u'H5MD',
    u'Pierre de Buyl, Peter Colberg, Felix Höfling', 'manual'),
 ]
 
@@ -222,7 +222,7 @@ latex_preamble = r"""
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('README', 'h5md', u'H5MD',
+    ('index', 'h5md', u'H5MD',
      [u'Pierre de Buyl, Peter Colberg, Felix Höfling'], 1)
 ]
 
