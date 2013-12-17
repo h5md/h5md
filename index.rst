@@ -4,7 +4,7 @@ Contents
 .. toctree::
    :maxdepth: 2
 
-   draft
+   h5md
    modules/index
    discussion
    implementation
