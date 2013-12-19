@@ -33,6 +33,8 @@ git clone http://git.savannah.gnu.org/r/h5md.git
 
 [git repository]: http://git.savannah.gnu.org/cgit/h5md.git
 
+The latest revision is also available in [PDF][h5md.pdf].
+
 
 Contributing
 ------------

@@ -23,17 +23,22 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = _build
+PANDOC        = pandoc
+PANDOCOPTS    = -V geometry:a4paper -N
+PANDOCFILES   = h5md.mdwn modules/index.mdwn modules/thermodynamics.mdwn modules/units.mdwn
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
 PAPEROPT_letter = -D latex_paper_size=letter
 ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
+ALLPANDOCOPTS   = --bibliography=h5md.bib --latex-engine=xelatex $(PANDOCOPTS) $(PANDOCFILES)
 
 .PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  html       to make standalone HTML files"
+	@echo "  pdf        to make PDF file using pandoc"
 	@echo "  dirhtml    to make HTML files named index.html in directories"
 	@echo "  singlehtml to make a single large HTML file"
 	@echo "  pickle     to make pickle files"
@@ -57,6 +62,12 @@ html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
+
+pdf:
+	@mkdir -p $(BUILDDIR)/pdf
+	$(PANDOC) -o $(BUILDDIR)/pdf/h5md.pdf $(ALLPANDOCOPTS)
+	@echo
+	@echo "Build finished. The PDF file is in $(BUILDDIR)/pdf."
 
 dirhtml:
 	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) $(BUILDDIR)/dirhtml
