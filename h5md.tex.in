@@ -1,0 +1,14 @@
+\usepackage{newunicodechar}
+\newunicodechar{⁰}{\ensuremath{^0}}
+\newunicodechar{¹}{\ensuremath{^1}}
+\newunicodechar{²}{\ensuremath{^2}}
+\newunicodechar{³}{\ensuremath{^3}}
+\newunicodechar{⁴}{\ensuremath{^4}}
+\newunicodechar{⁵}{\ensuremath{^5}}
+\newunicodechar{⁶}{\ensuremath{^6}}
+\newunicodechar{⁷}{\ensuremath{^7}}
+\newunicodechar{⁸}{\ensuremath{^8}}
+\newunicodechar{⁹}{\ensuremath{^9}}
+\newunicodechar{⁻}{\ensuremath{^-}}
+\newunicodechar{π}{\ensuremath{\pi}}
+\newunicodechar{Ω}{\ensuremath{\Omega}}
