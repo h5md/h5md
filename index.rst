@@ -9,3 +9,4 @@ Contents
    discussion
    implementation
    software
+   AUTHORS

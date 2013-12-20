@@ -7,7 +7,7 @@ H5MD has been started by
   - Peter Colberg
   - Felix Höfling
 
-Further developments being brought in by other developers, "H5MD Developers"
+With further developments being brought in by other developers, "H5MD Developers"
 refers to the three above developers and to:
 
   - Olaf Lenz
