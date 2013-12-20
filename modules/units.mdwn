@@ -11,6 +11,11 @@ elements.
 
 The name of this module is `units`. The module version is 1.0.0.
 
+### Unit system definition
+
+The `units` group possesses, in addition to the `version` attribute, a `system`
+attribute that defines the unit system in use. `system` is of scalar dataspace
+and variable-length string datatype.
 
 ### Unit attribute
 
@@ -47,6 +52,11 @@ Examples:
 
   - "10+3 m" stands for a kilometer
 
+### The "SI" unit system
+
+The following unit definition are part of the "SI" unit system for H5MD. This
+list is a light superset of the International System of Units: additional units
+and constants have been added for the convenience of H5MD users.
 
 Allowed unit symbols include all SI base units, a subset of derived SI units
 plus some common non-SI units and constants. A unit symbol may include an SI
@@ -63,10 +73,6 @@ prefix as listed below.
 +---------------------+--------+--------------------------+--------------------------------+
 | time                | s      | second                   | SI base unit                   |
 +---------------------+--------+--------------------------+--------------------------------+
-|                     | min    | minute                   | 1 min = 60 s                   |
-+---------------------+--------+--------------------------+--------------------------------+
-|                     | h      | hour                     | 1 h = 60 min                   |
-+---------------------+--------+--------------------------+--------------------------------+
 | frequency           | Hz     | hertz                    | 1 Hz = 1 s⁻¹                   |
 +---------------------+--------+--------------------------+--------------------------------+
 | mass                | kg     | kilogram                 | SI base unit                   |
@@ -74,8 +80,6 @@ prefix as listed below.
 |                     | g      | gram                     | 1 g = 10⁻³ kg                  |
 +---------------------+--------+--------------------------+--------------------------------+
 |                     | u      | unified atomic mass unit | 1 u = 1.6605402 × 10⁻²⁷ kg     |
-+---------------------+--------+--------------------------+--------------------------------+
-|                     | Da     | dalton                   | 1 Da = 1 u                     |
 +---------------------+--------+--------------------------+--------------------------------+
 | force               | N      | newton                   | 1 N = 1 kg m s⁻²               |
 +---------------------+--------+--------------------------+--------------------------------+
@@ -87,7 +91,7 @@ prefix as listed below.
 +---------------------+--------+--------------------------+--------------------------------+
 |                     | atm    | atmosphere               | 1 atm = 101.325 kPa            |
 +---------------------+--------+--------------------------+--------------------------------+
-| viscosity           | P      | poise                    | 1 poise = 0.1 Pa s             |
+| viscosity           | poise  | poise                    | 1 poise = 0.1 Pa s             |
 +---------------------+--------+--------------------------+--------------------------------+
 | energy/work         | J      | joule                    | 1 J = 1 N m                    |
 +---------------------+--------+--------------------------+--------------------------------+
@@ -101,10 +105,6 @@ prefix as listed below.
 +---------------------+--------+--------------------------+--------------------------------+
 | temperature         | K      | kelvin                   | SI base unit                   |
 +---------------------+--------+--------------------------+--------------------------------+
-|                     | degC   | degree celsius           | x / K = (x / °C + 273.15)      |
-+---------------------+--------+--------------------------+--------------------------------+
-|                     | degF   | degree fahrenheit        | x / °C = 5 / 9 × (x / °F – 32) |
-+---------------------+--------+--------------------------+--------------------------------+
 | amount of substance | mol    | mole                     | SI base unit                   |
 +---------------------+--------+--------------------------+--------------------------------+
 | electric current    | A      | ampere                   | SI base unit                   |
@@ -117,7 +117,7 @@ prefix as listed below.
 +---------------------+--------+--------------------------+--------------------------------+
 | angle               | rad    | radian                   | dimensionless                  |
 +---------------------+--------+--------------------------+--------------------------------+
-|                     | deg    | arc degree               | 180 deg = π                    |
+|                     | degree | arc degree               | 180 degree = π                 |
 +---------------------+--------+--------------------------+--------------------------------+
 
 Table: Unit symbols, names and conversion rules.
@@ -133,11 +133,7 @@ Table: Unit symbols, names and conversion rules.
 +--------+----------------------+--------------------------------------+
 | c      | speed of light       | c = 299792458 m s⁻¹                  |
 +--------+----------------------+--------------------------------------+
-| h      | Planck's constant    | h = 6.62606957 × 10⁻³⁴ J s           |
-+--------+----------------------+--------------------------------------+
 | e      | electron charge      | e = 1.602176487 × 10⁻¹⁹ A s          |
-+--------+----------------------+--------------------------------------+
-| me     | electron mass        | m~e~ = 9.10938215 × 10⁻³¹ kg         |
 +--------+----------------------+--------------------------------------+
 
 Table: Constants.
