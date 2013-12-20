@@ -41,7 +41,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'H5MD'
-copyright = u'2011—2013, Pierre de Buyl, Peter Colberg, Felix Höfling'
+copyright = u'The H5MD Developers'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -179,7 +179,7 @@ htmlhelp_basename = 'h5md'
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'h5md.tex', u'H5MD',
-   u'Pierre de Buyl, Peter Colberg, Felix Höfling', 'manual'),
+   u'The H5MD Developers', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -223,7 +223,7 @@ latex_preamble = r"""
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'h5md', u'H5MD',
-     [u'Pierre de Buyl, Peter Colberg, Felix Höfling'], 1)
+     [u'The H5MD Developers'], 1)
 ]
 
 def setup(app):

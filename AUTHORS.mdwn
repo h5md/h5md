@@ -1,0 +1,15 @@
+H5MD Developers
+===============
+
+H5MD has been started by
+
+  - Pierre de Buyl
+  - Peter Colberg
+  - Felix Höfling
+
+Further developments being brought in other developers, "H5MD Developers"
+refers to the three above developers and to:
+
+  - Olaf Lenz
+  - Konrad Hinsen
+
