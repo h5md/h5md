@@ -296,13 +296,15 @@ space is the following:
 The following identifiers for H5MD elements are standardized:
 
 `position`
-:   An element that describes the particle positions within the simulation box,
-    as periodically wrapped or unwrapped coordinate vectors of `Float` or
-    `Integer` type.
+:   An element that describes the particle positions as coordinate vectors of
+    `Float` or `Integer` type. If the element `image` is present as well, the
+    data are interpreted as periodically reduced coordinates along the periodic
+    directions of the simulation box. Otherwise, the data indicate the absolute
+    position in space.
 
 `image`
 :   An element that represents the periodic image of the box in which each
-    particle is actually located and allows one to unwrap periodically wrapped
+    particle is actually located and allows one to unfold periodically reduced
     positions. For the case of time-dependent data, the `image/value` dataset
     is of the same shape as `position/value` and is either of `Float` or
     `Integer` type.
@@ -310,7 +312,7 @@ The following identifiers for H5MD elements are standardized:
     For instance, given a cuboid box with periodic boundaries, let $\vec r_i$
     be the reduced position of particle $i$ taken from `position`, $\vec a_i$
     its image vector from `image`, and $\vec L$ the space diagonal of the box,
-    then component $j$ of the extended particle position $\vec R_i$ is given by
+    then component $j$ of the absolute position $\vec R_i$ is given by
     $R_{ij} = r_{ij} + L_j a_{ij}$.
 
 `velocity`
