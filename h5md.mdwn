@@ -309,11 +309,15 @@ The following identifiers for H5MD elements are standardized:
     is of the same shape as `position/value` and is either of `Float` or
     `Integer` type.
 
-    For instance, given a cuboid box with periodic boundaries, let $\vec r_i$
-    be the reduced position of particle $i$ taken from `position`, $\vec a_i$
-    its image vector from `image`, and $\vec L$ the space diagonal of the box,
-    then component $j$ of the absolute position $\vec R_i$ is given by
-    $R_{ij} = r_{ij} + L_j a_{ij}$.
+    If the component $k$ of `box/boundary` is set to `none` (see below) and
+    `image` is present, the value of the corresponding component $k$ of `image`
+    has to be silently ignored. If the component $k$ of `box/boundary` is set
+    to `periodic`, this does neither mean that the element `image` has to exist
+    nor that the position has to be within the primary box. For a cuboid box,
+    the component $k$ of the absolute position of particle $i$ is then computed
+    as $R_{ik} = r_{ik} + L_k a_{ik}$, where $\vec r_i$ is taken from
+    `position`, $\vec a_i$ is taken from `image`, and $\vec L$ from
+    `box/edges`.
 
 `velocity`
 :   An element that contains the velocities for each particle as a vector of
@@ -387,8 +391,9 @@ attributes to the `box` group, e.g., :
 
     `none` No boundary condition is imposed. This summarizes the situations of
     open systems (i.e., an infinitely large box) and closed systems (e.g., due
-    to an impenetrable wall). In both cases, the offset and the edge length
-    along this dimension are irrelevant.
+    to an impenetrable wall). For those components where `boundary` is set to
+    `none`, any value of `edges` or `offset` must be silently ignored.
+
 
 Information on the geometry of the box edges and on the coordinate offset is
 stored as H5MD elements, allowing for the box to be fixed in time or not.
