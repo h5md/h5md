@@ -299,8 +299,8 @@ The following identifiers for H5MD elements are standardized:
 :   An element that describes the particle positions as coordinate vectors of
     `Float` or `Integer` type. If the element `image` is present as well, the
     data are interpreted as periodically reduced coordinates along the periodic
-    directions of the simulation box. Otherwise, the data indicate the absolute
-    position in space.
+    directions of the simulation box. Otherwise, the data indicate absolute
+    positions in space.
 
 `image`
 :   An element that represents the periodic image of the box in which each
