@@ -303,14 +303,18 @@ The following identifiers for H5MD elements are standardized:
     directions of the simulation box. Otherwise, the data indicate absolute
     positions in space.
 
-    This element may be supplemented by an optional attribute `bounding_box`,
-    which describes a cuboid-shaped, not necessarily tight bounding box on the
-    data stored in `position`. The attribute holds a simple dataspace of rank 2
-    with extents `[2][D]` and is of the same type as `position`. The two matrix
-    rows give the componentwise, lower and upper bounds on the coordinates,
-    respectively. Specifically, for $(b_{ij})$ taken from `bounding_box`, all
-    position vectors $\vec r(t) = (r_1(t),\dots,r_D(t))$ are guaranteed to obey
-    $b_{0j} \leq r_{j}(t) \leq b_{1j}$ for all $j$ and $t$.
+    This element may be supplemented by an optional attribute, which describes
+    a cuboid, not necessarily tight bounding box on the data stored in
+    `position`:
+
+    `bounding_box`
+    :   An attribute that provides lower and upper bounds on the coordinates
+        found in `position`. It holds a simple dataspace of rank 2 with extents
+        `[2][D]` and is of the same type as `position`. The two matrix rows
+        give the lower and upper bounds, respectively. Specifically, for
+        $(b_{ij})$ taken from `bounding_box`, all position vectors $\vec r(t) =
+        (r_1(t),\dots,r_D(t))$ are guaranteed to obey $b_{0j} \leq r_{j}(t)
+        \leq b_{1j}$ for all $j$ and $t$.
 
 `image`
 :   An element that represents the periodic image of the box in which each
