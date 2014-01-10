@@ -375,7 +375,7 @@ attributes to the `box` group, e.g., :
           \-- box
                +-- dimension: Integer[]
                +-- boundary: VL String[D]
-               \-- ...
+               \-- (edges)
 
 `dimension`
 :   An attribute that stores the spatial dimension `D` of the simulation box
@@ -392,14 +392,13 @@ attributes to the `box` group, e.g., :
     `none` No boundary condition is imposed. This summarizes the situations of
     open systems (i.e., an infinitely large box) and closed systems (e.g., due
     to an impenetrable wall). For those components where `boundary` is set to
-    `none`, any value of `edges` or `offset` must be silently ignored.
+    `none`, any value of `edges` must be silently ignored.
 
-
-Information on the geometry of the box edges and on the coordinate offset is
-stored as H5MD elements, allowing for the box to be fixed in time or not.
-Supported box shapes are the cuboid and triclinic unit cell, for other shapes a
-transformation to the triclinic shape may be considered [@Bekker:1997]. If all
-values in `boundary` are `none`, `edges` and `offset` may be omitted.
+Information on the geometry of the box edges is stored as an H5MD element,
+allowing for the box to be fixed in time or not.  Supported box shapes are the
+cuboid and triclinic unit cell, for other shapes a transformation to the
+triclinic shape may be considered [@Bekker:1997]. If all values in `boundary`
+are `none`, `edges` may be omitted.
 
 `edges`
 :   A `D`-dimensional vector or a `D` × `D` matrix, depending on the geometry
@@ -416,10 +415,6 @@ values in `boundary` are `none`, `edges` and `offset` may be omitted.
     For a time-independent box, a cuboid geometry is encoded by a dataset
     `edges` of rank 1 and a triclinic geometry by a dataset of rank 2.
 
-`offset`
-:   A `D`-dimensional vector of `Float` or `Integer` type specifying the
-    minimal (lower left) coordinate for each dimension.
-
 For instance, a cuboid box that changes in time would appear as:
 
     particles
@@ -428,10 +423,6 @@ For instance, a cuboid box that changes in time would appear as:
                +-- dimension: Integer[]
                +-- boundary: VL String[D]
                \-- edges
-               |    \-- step: Integer[variable]
-               |    \-- time: Float[variable]
-               |    \-- value: <type>[variable][D]
-               \-- offset
                     \-- step: Integer[variable]
                     \-- time: Float[variable]
                     \-- value: <type>[variable][D]
@@ -445,7 +436,6 @@ appear as:
                +-- dimension: Integer[]
                +-- boundary: VL String[D]
                \-- edges: <type>[D][D]
-               \-- offset: <type>[D]
 
 where `dimension` is equal to `D`.
 
