@@ -39,6 +39,14 @@ the memory datatype. For writing, however, the memory datatype needs to
 be an enumerated type. A program extending an existing enumerated-type
 dataset needs to be aware of this.
 
+### Using udunits2 for units interpretation
+
+The [udunits2](http://www.unidata.ucar.edu/software/udunits/) software from
+[Unidata](http://www.unidata.ucar.edu/) can be of help to interpret the units
+system `SI` from the `units` module. While all units in `SI` are present as a
+subset of the default udunits2 database, a database containing only the units
+from `SI` is available upon request.
+
 C
 -
 
