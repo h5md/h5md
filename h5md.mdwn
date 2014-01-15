@@ -304,7 +304,7 @@ The following identifiers for H5MD elements are standardized:
 
 `image`
 :   An element that represents the periodic image of the box in which each
-    particle is actually located and allows one to unfold periodically reduced
+    particle is located and allows one to unfold periodically reduced
     positions. For the case of time-dependent data, the `image/value` dataset
     is of the same shape as `position/value` and is either of `Float` or
     `Integer` type.
