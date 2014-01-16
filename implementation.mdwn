@@ -45,7 +45,8 @@ The [udunits2](http://www.unidata.ucar.edu/software/udunits/) software from
 [Unidata](http://www.unidata.ucar.edu/) can be of help to interpret the units
 system `SI` from the `units` module. While all units in `SI` are present as a
 subset of the default udunits2 database, a database containing only the units
-from `SI` is available upon request.
+from `SI` is available as a
+[xml file](http://download.savannah.gnu.org/releases/h5md/modules/units/h5md_units_SI.xml).
 
 C
 -
