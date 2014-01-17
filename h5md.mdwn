@@ -228,7 +228,7 @@ group as attributes. The contents of the group is:
 
 ### Modules
 
-The H5MD specification can be complemented by modules specific for a certain
+The H5MD specification can be complemented by modules specific to a
 domain of research.  A module may define additional data elements within the
 H5MD structure, add conditions that the data must satisfy, or define rules for
 their semantic interpretation. Multiple modules may be present, as long as
