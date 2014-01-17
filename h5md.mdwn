@@ -294,26 +294,28 @@ The following identifiers for H5MD elements are standardized:
 
 `position`
 :   An element that describes the particle positions as coordinate vectors of
-    `Float` or `Integer` type. If the element `image` is present as well, the
-    data are interpreted as periodically reduced coordinates along the periodic
-    directions of the simulation box. Otherwise, the data indicate absolute
-    positions in space.
+    `Float` or `Integer` type.
+
+    If the component $k$ of `box/boundary` (see [below](#simulation-box)) is set
+    to `none`, the data indicate for each particle the component $k$ of its
+    absolute position in space. If the component $k$ of `box/boundary` is set to
+    `periodic`, the data indicate for each particle the component $k$ of the
+    absolute position in space of an *arbitrary* periodic image of that particle.
 
 `image`
-:   An element that represents the periodic image of the box in which each
-    particle is located and allows one to unfold periodically reduced
-    positions. For the case of time-dependent data, the `image/value` dataset
-    is of the same shape as `position/value` and is either of `Float` or
-    `Integer` type.
+:   An element that represents periodic images of the box as coordinates vectors
+    of `Float` or `Integer` type and allows one to compute for each particle its
+    absolute position in space. If `image` is present, `position` must be
+    present as well. For time-dependent data, the `step` and `time` datasets of
+    `image` must equal those of `position`, which must be accomplished by
+    hard-linking the respective datasets.
 
-    If the component $k$ of `box/boundary` is set to `none` (see below) and
-    `image` is present, the value of the corresponding component $k$ of `image`
-    has to be silently ignored. If the component $k$ of `box/boundary` is set
-    to `periodic`, this does neither mean that the element `image` has to exist
-    nor that the position has to be within the primary box. For a cuboid box,
-    the component $k$ of the absolute position of particle $i$ is then computed
-    as $R_{ik} = r_{ik} + L_k a_{ik}$, where $\vec r_i$ is taken from
-    `position`, $\vec a_i$ is taken from `image`, and $\vec L$ from
+    If the component $k$ of `box/boundary` (see [below](#simulation-box)) is set
+    to `none`, the values of the corresponding component $k$ of `image` serve as
+    placeholders. If the component $k$ of `box/boundary` is set to `periodic`,
+    for a cuboid box, the component $k$ of the absolute position of particle $i$
+    is computed as $R_{ik} = r_{ik} + L_k a_{ik}$, where $\vec r_i$ is taken
+    from `position`, $\vec a_i$ is taken from `image`, and $\vec L$ from
     `box/edges`.
 
 `velocity`
@@ -347,7 +349,7 @@ The following identifiers for H5MD elements are standardized:
     [§ 6.6](http://www.hdfgroup.org/HDF5/doc/UG/11_Datatypes.html#Fvalues) in
     [@HDF5_users_guide]) may be defined for `id/value` upon dataset creation.
     When the identifier of a particle is equal to this user-defined value,
-    the particle is considered non-existing, the entry merely serves as a
+    the particle is considered non-existing, the entry serves as a
     placeholder. This permits the storage of subsystems whose number of
     particles varies in time. For the case of varying particle number, the
     dimension denoted with `[N]` above may be variable.
@@ -362,7 +364,7 @@ subgroups may be sampled at different time grids. This way, the box information
 remains associated to a group of particles.  A specific requirement for `box`
 groups inside `particles` is that the `step` and `time` datasets exactly match
 those of the corresponding `position` groups, which must be accomplished by
-hard-linking the datasets.
+hard-linking the respective datasets.
 
 The spatial dimension and the boundary conditions of the box are stored as
 attributes to the `box` group, e.g., :
