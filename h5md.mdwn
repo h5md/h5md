@@ -197,8 +197,8 @@ group as attributes. The contents of the group is:
     structure and serves to allow for clarifications or minor text editing of
     the specification.
 
-    As the z component has no impact on the content of a H5MD file, it is not
-    present in the `version` attribute that contains only *x* and *y*.
+    As the *z* component has no impact on the content of a H5MD file, the
+    `version` attribute contains only *x* and *y*.
 
 `author`
 :   A group that contains metadata on the person responsible for the simulation
