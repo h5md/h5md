@@ -343,7 +343,7 @@ The following identifiers for H5MD elements are standardized:
     to identify particles over the course of the simulation in the case when
     the order of the particles changes, or when new particles are inserted and
     removed. If `id` is absent, the identity of the particles is given by their
-    index in the `value` datasets of the various H5MD elements.
+    index in the `value` datasets of the elements within the same subgroup.
 
     A *fill value* (see
     [§ 6.6](http://www.hdfgroup.org/HDF5/doc/UG/11_Datatypes.html#Fvalues) in
