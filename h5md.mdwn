@@ -131,7 +131,7 @@ All arrays are stored in C-order as enforced by the HDF5 file format (see
 [@HDF5_users_guide]).  A C or C++ program may thus declare `r[N][D]` for the array
 of particle coordinates while the Fortran program will declare a `r(D,N)` array
 (appropriate index ordering for a system of `N` particles in `D` spatial
-dimensions) and the HDF5 file will be the same.
+dimensions), and the HDF5 file will be the same.
 
 H5MD root level
 ---------------
