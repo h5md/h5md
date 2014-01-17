@@ -235,9 +235,6 @@ their semantic interpretation. Multiple modules may be present, as long as
 their prescriptions are not contradictory. Each module is identified by a name
 and a version number.
 
-The modules `thermodynamics` and `units` are part of the H5MD specification and
-are described in the appendix.
-
 The modules that apply to a specific H5MD structure are stored as subgroups
 within the group `h5md/modules`. Each module holds its version number as an
 attribute, further module-specific information may be stored:
