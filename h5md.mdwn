@@ -332,8 +332,8 @@ The following identifiers for H5MD elements are standardized:
     type.
 
 `species`
-:   An element that describes the species of the particles, i.e., their
-    atomic or chemical identity, and is of scalar `Enumeration` or `Integer`
+:   An element that describes the species for each particle, i.e., its
+    atomic or chemical identity, as a scalar of `Enumeration` or `Integer`
     data type. Particles of the same species are assumed to be identical with
     respect to their properties and unbonded interactions.
 
