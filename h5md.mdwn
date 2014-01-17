@@ -399,7 +399,7 @@ are `none`, `edges` may be omitted.
 
 `edges`
 :   A `D`-dimensional vector or a `D` × `D` matrix, depending on the geometry
-    of the box of `Float` or `Integer` type. If `edges` is a vector, it
+    of the box, of `Float` or `Integer` type. If `edges` is a vector, it
     specifies the space diagonal of a cuboid-shaped box. If `edges` is a
     matrix, the box is of triclinic shape with the edge vectors given by the
     rows of the matrix.
