@@ -391,7 +391,7 @@ attributes to the `box` group, e.g., :
     `none` No boundary condition is imposed. This summarizes the situations of
     open systems (i.e., an infinitely large box) and closed systems (e.g., due
     to an impenetrable wall). For those components where `boundary` is set to
-    `none`, any value of `edges` must be silently ignored.
+    `none`, the corresponding values of `edges` serve as placeholders.
 
 Information on the geometry of the box edges is stored as an H5MD element,
 allowing for the box to be fixed in time or not.  Supported box shapes are the
