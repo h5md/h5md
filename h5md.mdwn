@@ -303,7 +303,7 @@ The following identifiers for H5MD elements are standardized:
     absolute position in space of an *arbitrary* periodic image of that particle.
 
 `image`
-:   An element that represents periodic images of the box as coordinates vectors
+:   An element that represents periodic images of the box as coordinate vectors
     of `Float` or `Integer` type and allows one to compute for each particle its
     absolute position in space. If `image` is present, `position` must be
     present as well. For time-dependent data, the `step` and `time` datasets of
