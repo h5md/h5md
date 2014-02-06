@@ -40,9 +40,6 @@ following notation to depict the tree or its subtrees:
     type is taken from `Enumeration`, `Integer`, `Float` or `String` and follows
     the HDF5 Datatype classes. If the type is not mandated by H5MD, `<type>` is
     indicated. A scalar dataspace is indicated by `[]`.
-    A `VL` in front of the type indicates a Variable-length datatype (see
-    [§ 6.1.2](http://www.hdfgroup.org/HDF5/doc/UG/11_Datatypes.html#Intro) in
-    [@HDF5_users_guide]).
 
 `(identifier)`
 :   An optional item.
@@ -177,11 +174,11 @@ group as attributes. The contents of the group is:
     h5md
      +-- version: Integer[2]
      \-- author
-     |    +-- name: VL String[]
-     |    +-- (email: VL String[])
+     |    +-- name: String[]
+     |    +-- (email: String[])
      \-- creator
-          +-- name: VL String[]
-          +-- version: VL String[]
+          +-- name: String[]
+          +-- version: String[]
 
 `version`
 :   An attribute, of `Integer` datatype and of simple dataspace of rank 1 and
@@ -205,11 +202,11 @@ group as attributes. The contents of the group is:
     (or the experiment) as follows:
 
     `name`
-    :   An attribute, of variable-length string datatype and of scalar
+    :   An attribute, of fixed-length string datatype and of scalar
         dataspace, that holds the author's real name.
 
     `email`
-    :   An optional attribute, of variable-length string datatype and
+    :   An optional attribute, of fixed-length string datatype and
         of scalar dataspace, that holds the author's email address of
         the form `email@domain.tld`.
 
@@ -218,11 +215,11 @@ group as attributes. The contents of the group is:
     structure as follows:
 
     `name`
-    :   An attribute, of variable-length string datatype and of scalar
+    :   An attribute, of fixed-length string datatype and of scalar
         dataspace, that stores the name of the program.
 
     `version`
-    :   An attribute, of variable-length string datatype and of scalar
+    :   An attribute, of fixed-length string datatype and of scalar
         dataspace, that yields the version of the program.
 
 
@@ -373,7 +370,7 @@ attributes to the `box` group, e.g., :
      \-- <group1>
           \-- box
                +-- dimension: Integer[]
-               +-- boundary: VL String[D]
+               +-- boundary: String[D]
                \-- (edges)
 
 `dimension`
@@ -381,7 +378,7 @@ attributes to the `box` group, e.g., :
     and is of `Integer` datatype and scalar dataspace.
 
 `boundary`
-:   An attribute, of variable-length string datatype and of simple dataspace of
+:   An attribute, of fixed-length string datatype and of simple dataspace of
     rank 1 and size `D`, that specifies the boundary condition of the box along
     each dimension. The values in `boundary` are either `periodic` or `none`:
 
@@ -420,7 +417,7 @@ For instance, a cuboid box that changes in time would appear as:
      \-- <group1>
           \-- box
                +-- dimension: Integer[]
-               +-- boundary: VL String[D]
+               +-- boundary: String[D]
                \-- edges
                     \-- step: Integer[variable]
                     \-- time: Float[variable]
@@ -433,7 +430,7 @@ appear as:
      \-- <group1>
           \-- box
                +-- dimension: Integer[]
-               +-- boundary: VL String[D]
+               +-- boundary: String[D]
                \-- edges: <type>[D][D]
 
 where `dimension` is equal to `D`.
