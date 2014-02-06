@@ -15,7 +15,7 @@ The name of this module is `units`. The module version is 1.0.0.
 
 The `units` group possesses, in addition to the `version` attribute, a `system`
 attribute that defines the unit system in use. `system` is of scalar dataspace
-and variable-length string datatype.
+and fixed-length string datatype.
 
 ### Unit attribute
 
@@ -27,11 +27,11 @@ the datasets `value` and `time` in the time-dependent case:
     <element>
      \-- step: Integer[variable]
      \-- time: Float[variable]
-     |    +-- (unit: VL String[])
+     |    +-- (unit: String[])
      \-- value: <type>[variable][...]
-          +-- (unit: VL String[])
+          +-- (unit: String[])
 
-The attribute `unit` is of scalar dataspace and variable-length `String`
+The attribute `unit` is of scalar dataspace and fixed-length `String`
 datatype using the ASCII character set.
 
 ### Unit string
