@@ -32,7 +32,8 @@ properties or in `observables/<group>` for subsystems, similarly to the
     embedding the subsystem.
 
 `particle_number`
-  : The number of particles in the subsystem stored as `Integer` datatype.
+  : The number of particles in the subsystem stored as scalar H5MD element of
+    `Integer` datatype.
 
 The following H5MD elements are optional, of scalar character, and use the
 `Float` datatype.

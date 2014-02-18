@@ -47,7 +47,7 @@ following notation to depict the tree or its subtrees:
 `<identifier>`
 :   An optional item with unspecified name.
 
-H5MD defines a structure called a *H5MD element* (or *element* whenever there
+H5MD defines a structure called *H5MD element* (or *element* whenever there
 is no confusion). An element is either a time-dependent group or a single
 dataset (see time-dependent data below), depending on the situation.
 
@@ -105,7 +105,7 @@ integer time step and on the physical time. The structure of such a group is:
     dataspace whose rank is given by 1 plus the tensor rank of the data stored.
     Its shape is the shape of a single data item prepended by a `[variable]`
     dimension that allows the accumulation of samples during the course of
-    time. For instance, the data shape of scalars has the form `[variable]`
+    time. For instance, the data shape of scalars has the form `[variable]`,
     `D`-dimensional vectors use `[variable][D]`, etc. The first dimension of
     `value` must match the unique dimension of `step` and `time`.
 
@@ -264,14 +264,14 @@ Information on each particle, i.e., particle trajectories, is stored in the
 represent different subsets of the system under consideration, and it may hold
 one or several subgroups, as needed. These subsets may overlap and their union
 may be incomplete, i.e., not represent all particles of the simulation volume.
-The subgroups contain the trajectory data per particle as time-dependent or
-time-independent data, depending on the situation. Each subgroup contains a
+The subgroups contain the trajectory data for each particle as time-dependent
+or time-independent data, depending on the situation. Each subgroup contains a
 specification of the simulation box, see below. For each dataset, the particle
 index is accommodated by the second (first, in the case of time-independence)
 array dimension.
 
 The contents of the `particles` group assuming `N` particles in `D`-dimensional
-space is the following:
+space could be the following:
 
     particles
      \-- <group1>
@@ -349,7 +349,7 @@ The following identifiers for H5MD elements are standardized:
     the particle is considered non-existing, the entry serves as a
     placeholder. This permits the storage of subsystems whose number of
     particles varies in time. For the case of varying particle number, the
-    dimension denoted with `[N]` above may be variable.
+    dimension denoted by `[N]` above may be variable.
 
 Simulation box
 --------------
@@ -443,7 +443,7 @@ particles, are stored in the root group `observables`. Observables representing
 only a subset of the particles may be stored in appropriate subgroups similarly
 to the `particles` tree. Each observable is stored as an H5MD element. The
 shape of the corresponding dataset (the element itself for time-independent data
-and `value` for time-dependent data) is the tensor shape of the observable
+and `value` for time-dependent data) is the tensor shape of the observable,
 prepended by a `[variable]` dimension for time-dependent data.
 
 The contents of the observables group has the following structure:
