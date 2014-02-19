@@ -24,7 +24,7 @@ SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = _build
 PANDOC        = pandoc
-PANDOCOPTS    = -V geometry:a4paper -N -H h5md.tex.in
+PANDOCOPTS    = -V geometry:a4paper -V geometry:scale=0.85 -V fontsize=12pt -N -H h5md.tex.in
 PANDOCFILES   = h5md.mdwn modules/index.mdwn modules/thermodynamics.mdwn modules/units.mdwn AUTHORS.mdwn
 
 # Internal variables.
