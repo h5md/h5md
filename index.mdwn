@@ -16,6 +16,9 @@ on the basis of discussion with users of H5MD.
 The development of H5MD was started by Pierre de Buyl, Peter Colberg and Felix
 Höfling. H5MD now includes contributions by other developers. H5MD is available
 under the [GNU General Public License] version 3, or any later version.
+H5MD is presented in P. de Buyl, P. Colberg and F. Höfling,
+[H5MD: A structured, efficient, and portable file format for molecular data](http://dx.doi.org/10.1016/j.cpc.2014.01.018),
+Comp. Phys. Comm. (2014) - [[arXiv:1308.6382]](http://arxiv.org/abs/1308.6382).
 
 [H5MD]: http://h5md.nongnu.org/
 [HDF5]: http://www.hdfgroup.org/HDF5/
