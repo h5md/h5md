@@ -127,6 +127,20 @@ f = h5py.File("name.h5", libver="18")
 Note that h5py up to version 2.1.3 lacks a binding for the `H5F_LIBVER_18`
 constant.
 
+### Dataset index lookup at a given step
+
+The function [numpy.searchsorted] may be used to perform a binary search:
+
+~~~ {.python}
+""" Returns value of H5MD element at given step. """
+def read_step(group, step):
+  index = np.searchsorted(group["step"], step)
+  assert(group["step"][index] == step)
+  return group["value"][index]
+~~~
+
+[numpy.searchsorted]: http://docs.scipy.org/doc/numpy/reference/generated/numpy.searchsorted.html
+
 ### Object time tracking
 
 The low-level function
