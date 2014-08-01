@@ -1,0 +1,78 @@
+H5MD - P002: Particles and tuples lists
+---------------------------------------
+
+### Objective
+
+Define a consistent scheme to store lists of particles and particle tuples
+(pairs, triples, etc.) in a H5MD file.
+This is of importance to define arbitrary groups of particles or connectivity
+among particles.
+
+### Motivations
+
+http://article.gmane.org/gmane.science.simulation.h5md.user/604
+
+    The group I work with does a fair amount of analysis on bond lengths, angle
+    distributions and dihedral angle distributions as validation for force field
+    development. So our main use case for a 'topology' module would be to store
+    the pairs, 3- and 4-tuples of atoms that define the bonds, angles and
+    dihedrals.
+
+    That said, I have use cases for wanting to store lists of non-bonded pairs
+    of atoms such as opposing carbons on a ring or designated 'endpoint' atoms
+    that can be used to represent the overall orientation of a larger molecule,
+    and in this use case a specific 'bond' list would not really be appropriate.
+ 
+	(...)
+ 
+    I would definitely agree that a standard storage scheme, would be useful,
+    even if the structure of a 'topology' section varies by module. That way,
+    even if the location of the lists varies, at least the same routines can be
+    used to read/write the data when it is located. As a possible example:
+
+        <tuple-list>
+          +-- type:  String
+          +-- dimension:  Integer[]
+          \--  values: Integer[n-tuples][D]
+
+    Where a pair list would be dimension(D) = 2, and the values in list would be
+    the particle IDs. Given what Konrad pointed out about flexibility
+    vs. specificity ,the "type" string could have specific list of acceptable
+    values, much like the boundary attribute in the 'box' item. For my
+    particular use cases, I can see the following types of atom-tuple lists
+    being useful as topology/connectivity information: bonds, angles, dihedrals,
+    chains, and 'other'.
+
+http://article.gmane.org/gmane.science.simulation.h5md.user/637
+
+    A specific problem of 2) is that for non-trivial forcefields (proteins
+    etc.), a simple bond list is not of much use. What you want is *all*
+    forcefield terms. I can't think of any practical use for just the bonds.
+
+### Storage of a list of particles
+
+A list of particles is a H5MD element:
+
+    <list_name>: Integer[N]
+      +-- particles_group: String[]
+
+where `N` is the length of the list and `particles_group` is the name of a group
+within `/particles`.
+
+If the corresponding `particles_group` does not possess the `id` element, the
+values in `list_name` correspond to the indexing of the elements in
+`particles_group`. Else, the values in `list_name` must be put in correspondence
+with the equal values in the `id` element.
+
+### Storage of tuples
+
+A list of tuples is a H5MD element:
+
+    <tuples_list_name>: Integer[N,T]
+      +-- particles_group: String[]
+
+where `N` is the length of the list, `T` is the length of a tuple and
+`particles_group` is the name of a group within `/particles`.
+
+The interpretation of the values within the tuples is done similarly to the case
+of a list of particles.

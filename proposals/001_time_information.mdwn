@@ -1,0 +1,99 @@
+H5MD - P001: Storage of time information
+----------------------------------------
+
+### Objective
+
+This proposal aims at enhancing the storage of time information. Some reasonable
+use cases are not covered in H5MD 1.0, such as equal time steps.
+
+### Motivations
+
+A few excerpts from the h5md-user mailing list.
+
+http://article.gmane.org/gmane.science.simulation.h5md.user/640
+
+    Now that I have started to use H5MD seriously, I also start to notice problems
+    with it. One of them is the obligatory presence of a "time" dataset. I want
+    to store a Monte-Carlo trajectory which consists of a sequence of
+    configurations, but without any associated time values.  If I want to
+    respect the H5MD specification, I have to make up numbers, which is not a
+    good habit to take.
+
+    Is there any reason why "time" was made obligatory?
+
+http://article.gmane.org/gmane.science.simulation.h5md.user/641
+
+    ...and adding to that, can we also make the "step" optional? Weird as this
+    may sound, we would also have to invent step numbers.
+
+http://article.gmane.org/gmane.science.simulation.h5md.user/651
+
+    > In a more general idea about step/time, I have an idea since a long
+    > time. I didn't want it for H5MD 1.0 to avoid any confusion. But storing
+    > step and time when step is simply step[i] = STEP_SIZE*i and time[i] =
+    > STEP_SIZE*DT*i is a bit of a waste. We could define a proper setup for
+    > regularly sampled data, for which step[0], STEP_SIZE, time[0] and DT
+    > should be given.
+
+    Good idea, and not just to avoid wasting space. It would also contain the
+    message to the reader "this is regularly sampled data". For some analyses
+    this makes a big difference. For example, computing time correlation
+    functions of regularly sampled data is straightforward and efficient,
+    whereas it is cumbersome, slow, and imprecise for irregular time series.
+
+    Right now, the only way to check if a time series is regular is to check all
+    the time labels. However, these are floats and thus subject to round-off
+    error. I'll bet that in practice, analysis software will simply assume the
+    time series to be equally spaced and not bother to check. I'll also bet that
+    sooner or later this will lead to wrong results being published.
+
+See also http://nongnu.org/h5md/discussion.html#extensions-storage-of-time-dependent-data
+
+### Relax datatype of `time`
+
+Whereas the `Integer` character of `step` plays a role in the identification of
+time frames, `time` could be relaxed to "`Integer` or `Real`".
+
+### Optional use of `time`
+
+As, e.g., Monte-Carlo simulations may not possess a well-defined time, it is
+proposed that only `step` is mandatory in a time-dependent H5MD element.
+
+### Linearly spaced `step` and `time`
+
+When the increase in `step` and `time` is equal between time frames, the
+interpretation `step[i]=step0+i*dstep` and `time[i]=time0+i*dtime` holds.
+This change would remove the need to store unneeded data but also facilitate the
+analysis, as many algorithm work only with fixed-spacing of data.
+
+The content of a time-dependent H5MD element needs an update to allow for the
+absence of `step` and `time`.
+
+#### Proposition to use scalar datasets.
+
+The structure of a time-dependent H5MD element is
+
+    <element>
+     \-- step: Integer[]
+     \-- (step0): Integer[]
+     \-- (time): Float[]
+     \-- (time0): Float[]
+     \-- value: <type>[variable][...]
+
+This structure matches closely the existing one. The use of scalar datasets
+allows to (i) keep the status of `step` (etc.) a HDF5 dataset and not an
+attribute (ii) to distinguish clearly from the current structure by using scalar
+datasets.
+
+While not a requirement, it would be encouraged to use compact datasets here.
+
+#### Proposition to use attributes
+
+The structure of a time-dependent H5MD element is
+
+    <element>: <type>[variable][...]
+     +-- step: Integer[]
+     +-- (step0): Integer[]
+     +-- (time): Float[]
+     +-- (time0): Float[]
+

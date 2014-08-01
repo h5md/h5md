@@ -9,4 +9,5 @@ Contents
    discussion
    implementation
    software
+   proposals/index
    AUTHORS
