@@ -1,0 +1,23 @@
+H5MD - proposal 1: H5MD proposals
+---------------------------------
+
+**status:** draft
+
+### Objective
+
+H5MD proposals represent a way to discuss modifications of improvements to H5MD.
+
+### Motivations
+
+The development of H5MD relies on discussions on the mailing list. This presents
+a few shortcomings, notably the absence of a comprehensive source of information
+on any given topic.
+
+### Guidelines
+
+H5MD proposals consist of [markdown] formatted files.
+The status (draft, implemented, rejected) must be indicated.
+Regular H5MD proposals are numbered sequentially, starting at 100.
+H5MD proposals below 100 concern the development process of H5MD.
+
+[markdown]: http://daringfireball.net/projects/markdown/

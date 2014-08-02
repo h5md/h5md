@@ -1,5 +1,5 @@
-H5MD - P001: Storage of time information
-----------------------------------------
+H5MD - proposal 100: Storage of time information
+------------------------------------------------
 
 ### Objective
 
