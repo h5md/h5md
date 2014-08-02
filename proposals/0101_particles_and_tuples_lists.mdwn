@@ -22,9 +22,9 @@ http://article.gmane.org/gmane.science.simulation.h5md.user/604
     of atoms such as opposing carbons on a ring or designated 'endpoint' atoms
     that can be used to represent the overall orientation of a larger molecule,
     and in this use case a specific 'bond' list would not really be appropriate.
- 
+
 	(...)
- 
+
     I would definitely agree that a standard storage scheme, would be useful,
     even if the structure of a 'topology' section varies by module. That way,
     even if the location of the lists varies, at least the same routines can be
