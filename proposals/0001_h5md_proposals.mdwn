@@ -16,15 +16,19 @@ be based on H5MD proposals.
 
 ### Guidelines
 
-H5MD proposals consist of [markdown] formatted files.
-The status (draft, implemented, rejected) must be indicated.
-Regular H5MD proposals are numbered sequentially, starting at 100.
-H5MD proposals below 100 concern the development process of H5MD.
+Formatting and numbering:
 
-A H5MD proposal must propose an explicit change in the H5MD specification, along
-with background information.
-H5MD proposals that change the content of a H5MD file must consider the
-technical specificities of HDF5.
+- H5MD proposals consist of [markdown] formatted files.
+- The status (draft, implemented, rejected) must be indicated.
+- Regular H5MD proposals are numbered sequentially, starting at 100.
+  H5MD proposals below 100 concern the development process of H5MD.
+
+Content:
+
+- A H5MD proposal must propose an explicit change in the H5MD specification,
+  along with background information.
+- H5MD proposals that change the content of a H5MD file must consider the
+  technical specificities of HDF5.
 
 [Python Enhancement Proposals]: http://legacy.python.org/dev/peps/
 [markdown]: http://daringfireball.net/projects/markdown/
