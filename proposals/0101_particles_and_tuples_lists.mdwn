@@ -1,6 +1,8 @@
 H5MD - proposal 1001: Particles and tuples lists
 ------------------------------------------------
 
+**status:** draft
+
 ### Objective
 
 Define a consistent scheme to store lists of particles and particle tuples

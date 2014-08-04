@@ -1,6 +1,8 @@
 H5MD - proposal 100: Storage of time information
 ------------------------------------------------
 
+**status:** draft
+
 ### Objective
 
 This proposal aims at enhancing the storage of time information. Some reasonable
