@@ -6,7 +6,7 @@ H5MD - proposal 1: H5MD proposals
 ### Introduction
 
 H5MD proposals represent a way to discuss modifications of improvements to H5MD.
-They are directly inspired by the [Python Enhancement Proposals](http://legacy.python.org/dev/peps/).
+They are directly inspired by the [Python Enhancement Proposals].
 
 The development of H5MD relies on discussions on the mailing list. This presents
 a few shortcomings, notably the absence of a comprehensive source of information
@@ -26,4 +26,5 @@ with background information.
 H5MD proposals that change the content of a H5MD file must consider the
 technical specificities of HDF5.
 
+[Python Enhancement Proposals]: http://legacy.python.org/dev/peps/
 [markdown]: http://daringfireball.net/projects/markdown/
