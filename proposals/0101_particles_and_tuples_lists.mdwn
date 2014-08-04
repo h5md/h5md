@@ -1,5 +1,5 @@
-H5MD - proposal 1001: Particles and tuples lists
-------------------------------------------------
+H5MD - proposal 101: Particles and tuples lists
+-----------------------------------------------
 
 **status:** draft
 
