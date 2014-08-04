@@ -25,7 +25,7 @@ Formatting and numbering:
 
 Content:
 
-- A H5MD proposal must propose an explicit change in the H5MD specification,
+- A H5MD proposal must propose an explicit change to the H5MD specification,
   along with background information.
 - H5MD proposals that change the content of a H5MD file must consider the
   technical specificities of HDF5.
