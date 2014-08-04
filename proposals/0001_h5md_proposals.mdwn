@@ -30,5 +30,12 @@ Content:
 - H5MD proposals that change the content of a H5MD file must consider the
   technical specificities of HDF5.
 
+Process:
+
+- A proposal may be submitted via the mailing list of H5MD. Discussion of a
+  proposal on this mailing list is encouraged prior to its full elaboration.
+- After discussion, the proposal may be submitted either as a patch to the
+  mailing list or as a pull request on github.
+
 [Python Enhancement Proposals]: http://legacy.python.org/dev/peps/
 [markdown]: http://daringfireball.net/projects/markdown/
