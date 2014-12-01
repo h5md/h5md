@@ -34,6 +34,6 @@ common interpretations.
     (see <http://en.wikipedia.org/wiki/Formal_charge>) and must of the
     `Integer` type.
     This corresponds to the entries in PDB files (see definition in the
-    DBx/mmCIF dictionary
+    PDBx/mmCIF dictionary
     <http://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v40.dic/Items/_atom_site.pdbx_formal_charge.html>).
 
