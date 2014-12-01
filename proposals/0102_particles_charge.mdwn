@@ -19,6 +19,24 @@ http://thread.gmane.org/gmane.science.simulation.h5md.user/685
 This proposal does not list explicitly all use cases but clarifies the most
 common interpretations.
 
+### Comparison to other file formats
+
+#### PDB
+
+PDB stores integer atomic charge
+<http://www.wwpdb.org/documentation/format33/sect9.html#ATOM>.
+
+### MOSAIC
+
+The [Mosaic format](http://mosaic-data-model.github.io/) relies on so-called
+conventions to clarify the interpretation of data elements. See the article on
+MOSAIC <http://dx.doi.org/10.1021/ci400599y> and the
+[Mosaic PDB convention](http://mosaic-data-model.github.io/mosaic-specification/pdb_convention.html).
+
+### Other file formats
+
+Currently, no other file format clarifies the meaning of the `charge` data element.
+
 ### Data in particles group
 
 `charge`
