@@ -1,14 +1,22 @@
-H5MD - proposal 101: Particles and tuples lists
------------------------------------------------
+H5MD - proposal 103: Connectivity group
+---------------------------------------
 
 **status:** draft
 
 ### Objective
 
-Define a consistent scheme to store lists of particles and particle tuples
-(pairs, triples, etc.) in a H5MD file.
-This is of importance to define arbitrary groups of particles or connectivity
-among particles.
+Define a root group that contains the connectivity of a system of particles.
+This proposal builds on proposal 101 *Particles and tuples lists* for the
+storage of tuples.
+The interpretation of the information will be left to users and can be made more
+formal later with modules, for instance.
+
+This proposal is intended to allow, among other uses, the storage of bonded
+interactions, in the case of force-field based simulations, or of distance
+constraints.
+The complexity of representing the details of force fields is such that it
+cannot be encoded in a generic manner here but the definition of the storage
+elements in this proposal lay a common basis.
 
 ### Motivations
 
@@ -51,56 +59,23 @@ http://article.gmane.org/gmane.science.simulation.h5md.user/637
     etc.), a simple bond list is not of much use. What you want is *all*
     forcefield terms. I can't think of any practical use for just the bonds.
 
-### Storage of a list of particles
+### Storage of connectivity information
+
+The connectivity information is stored as tuples in the group
+`/connectivity`. The tuples are pairs, triples, etc depending on the need.
 
 A list of particles is a H5MD element:
 
-    <list_name>: Integer[N]
-      +-- particles_group: String[]
+    /connectivity
+        <name>: Integer[N]
+          +-- particles_group: String[]
 
 where `N` is the length of the list and `particles_group` is the name of a group
 within `/particles`.
+Several connectivity elements may be defined for any particles group but a
+connectivity element may only refer to a single particle group.
 
 If the corresponding `particles_group` does not possess the `id` element, the
 values in `list_name` correspond to the indexing of the elements in
 `particles_group`. Else, the values in `list_name` must be put in correspondence
 with the equal values in the `id` element.
-
-If a *fill value* (see
-[§ 6.6](http://www.hdfgroup.org/HDF5/doc/UG/11_Datatypes.html#Fvalues) in
-[@HDF5_users_guide]) is defined, entries whose value is set to this value are
-ignored.
-
-### Storage of tuples
-
-A list of tuples is a H5MD element:
-
-    <tuples_list_name>: Integer[N,T]
-      +-- particles_group: String[]
-
-where `N` is the length of the list, `T` is the length of a tuple and
-`particles_group` is the name of a group within `/particles`.
-
-The interpretation of the values within the tuples is done similarly to the case
-of a list of particles.
-
-If a *fill value* (see
-[§ 6.6](http://www.hdfgroup.org/HDF5/doc/UG/11_Datatypes.html#Fvalues) in
-[@HDF5_users_guide]) is defined, entries in which at least one of the values is
-set to this value are ignored.
-
-### Time-dependence
-
-As the lists of particles and tuples above are H5MD elements, they can be stored
-either as time-dependent groups or time-independent datasets.
-
-As an exemple, a time-dependent list of pairs is stored as:
-
-    <pair_list_name>
-       +-- particles_group: String[]
-       \-- value: Integer[variable,N,2]
-       \-- step: Integer[variable]
-       \-- time: Float[variable]
-
-In the case of a time-dependent H5MD element, the dimension denoted by `N` may
-be variable.
