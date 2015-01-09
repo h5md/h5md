@@ -10,4 +10,5 @@ Contents
    implementation
    software
    proposals/index
+   releases/index
    AUTHORS

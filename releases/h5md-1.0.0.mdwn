@@ -1,5 +1,5 @@
-H5MD format specification version (work version) {#h5md}
-================================================
+H5MD format specification version 1.0.0 {#h5md}
+=======================================
 
 Objective
 ---------
