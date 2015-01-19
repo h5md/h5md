@@ -19,6 +19,9 @@ HDF5 binary data format.
 [pyh5md](https://github.com/pdebuyl/pyh5md) is a Python module that facilitate
 reading and writing H5MD files.
 
+[ch5md](https://github.com/pdebuyl/ch5md) is a set of C routines to read and
+write H5MD files.
+
 Simulation
 ----------
 
