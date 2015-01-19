@@ -37,3 +37,6 @@ molecular simulations stored in the H5MD file format.
 [VMD-h5mdplugin](https://github.com/jonaslandsgesell/VMD-h5mdplugin.git),
 an H5MD file reader plugin for VMD, is being developed by Olaf Lenz,
 Sascha Ehrhardt and Jonas Landsgesell.
+
+[VOTCA](http://www.votca.org/) is an analysis package for molecular dynamics
+data that focuses on systematic coarse-graining and microscopic charge transport.
