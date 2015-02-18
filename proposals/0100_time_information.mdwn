@@ -63,8 +63,8 @@ proposed that only `step` is mandatory in a time-dependent H5MD element.
 
 ### Linearly spaced `step` and `time`
 
-When the increase in `step` and `time` is equal between time frames, the
-interpretation `step[i]=step0+i*dstep` and `time[i]=time0+i*dtime` holds.
+When the increments of `step` and/or `time` are constant, the interpretation
+`step[i]=step0+i*delta_step` and `time[i]=time0+i*delta_time` holds.
 This change would remove the need to store unneeded data but also facilitate the
 analysis, as many algorithm work only with fixed-spacing of data.
 
@@ -98,4 +98,19 @@ The structure of a time-dependent H5MD element is
      +-- (step0): Integer[]
      +-- (time): Float[]
      +-- (time0): Float[]
+
+#### Proposition to mix scalar datasets and attributes
+
+This structure matches closely the existing one. The use of scalar datasets
+allows us to (i) keep the status of `step` and `time` as HDF5 datasets and (ii)
+to distinguish clearly from the current structure by using scalar datasets,
+i.e., the distinction is _after_ reading the shape of the dataset. (iii) Using
+HDF5 attributes for the offset allows for a single generic identifier `offset`
+and avoids cluttering of the HDF5 group forming the H5MD element.
+
+    <element>: <type>[variable][...]
+     \-- step: Integer[]
+         +-- (offset): Integer[]
+     \-- (time): Float[]
+         +-- (offset): Float[]
 
