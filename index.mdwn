@@ -8,10 +8,10 @@ a variety of computational problems, e.g., molecular simulation using
 molecular dynamics, or computational fluid dynamics using multi-particle
 collision dynamics.
 
-The first official release of the specification, H5MD 1.0.0, contains particle
-trajectories (positions, velocities, forces and species) as well as
-thermodynamical observables. In the future, extensions will be considered
-on the basis of discussion with users of H5MD.
+The first release of the specification, H5MD 1.0.0, describes the storage of
+particle trajectories (positions, velocities, forces and species) as well as
+thermodynamical observables. Future extensions will be considered on the basis
+of discussion with users of H5MD.
 
 The development of H5MD was started by Pierre de Buyl, Peter Colberg and Felix
 Höfling. H5MD now includes contributions by other developers. H5MD is available

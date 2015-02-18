@@ -11,8 +11,8 @@ They are directly inspired by the [Python Enhancement Proposals].
 The development of H5MD relies on discussions on the mailing list. This presents
 a few shortcomings, notably the absence of a comprehensive source of information
 on any given topic.
-Starting from the released 1.0.0 specification, significant changes to H5MD will
-be based on H5MD proposals.
+Starting from release 1.0.0 of the specification, significant changes to H5MD
+will be based on H5MD proposals.
 
 ### Guidelines
 
@@ -25,9 +25,9 @@ Formatting and numbering:
 
 Content:
 
-- A H5MD proposal must propose an explicit change to the H5MD specification,
+- Each H5MD proposal must propose an explicit change to the H5MD specification,
   along with background information.
-- H5MD proposals that change the content of a H5MD file must consider the
+- H5MD proposals that change the content of an H5MD file must consider the
   technical specificities of HDF5.
 
 Process:
