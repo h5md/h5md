@@ -62,9 +62,9 @@ http://article.gmane.org/gmane.science.simulation.h5md.user/637
 ### Storage of connectivity information
 
 The connectivity information is stored as tuples in the group
-`/connectivity`. The tuples are pairs, triples, etc depending on the need.
+`/connectivity`. The tuples are pairs, triples, etc. as needed.
 
-A list of particles is a H5MD element:
+A list of particles is an H5MD element:
 
     /connectivity
         <name>: Integer[N]
