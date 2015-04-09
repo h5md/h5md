@@ -6,7 +6,7 @@ H5MD - proposal 101: Particles and tuples lists
 ### Objective
 
 Define a consistent scheme to store lists of particles and particle tuples
-(pairs, triples, etc.) in a H5MD file.
+(pairs, triples, etc.) in an H5MD file.
 This is of importance to define arbitrary groups of particles or connectivity
 among particles.
 
@@ -53,13 +53,18 @@ http://article.gmane.org/gmane.science.simulation.h5md.user/637
 
 ### Storage of a list of particles
 
-A list of particles is a H5MD element:
+A list of particles is an H5MD element:
 
     <list_name>: Integer[N]
       +-- particles_group: String[]
 
-where `N` is the length of the list and `particles_group` is the name of a group
-within `/particles`.
+where `N` is the length of the list and `particles_group` is the name of an
+existing group within `/particles`.
+
+    **Note:**
+
+    Alternatively, let `particles_group` point to the respective group in
+    `/particles` using a hard/soft link, which ensures that this group exists.
 
 If the corresponding `particles_group` does not possess the `id` element, the
 values in `list_name` correspond to the indexing of the elements in
@@ -73,28 +78,35 @@ ignored.
 
 ### Storage of tuples
 
-A list of tuples is a H5MD element:
+A list of tuples is an H5MD element:
 
     <tuples_list_name>: Integer[N,T]
       +-- particles_group: String[]
 
-where `N` is the length of the list, `T` is the length of a tuple and
-`particles_group` is the name of a group within `/particles`.
+where `N` is the length of the list, `T` is the size of the tuples and
+`particles_group` is the name an existing group within `/particles`. Both `N`
+and `T` may indicate variable dimensions.
 
-The interpretation of the values within the tuples is done similarly to the case
-of a list of particles.
+The interpretation of the values stored within the tuples is done as for a list
+of particles.
 
 If a *fill value* (see
 [§ 6.6](http://www.hdfgroup.org/HDF5/doc/UG/11_Datatypes.html#Fvalues) in
-[@HDF5_users_guide]) is defined, entries in which at least one of the values is
-set to this value are ignored.
+[@HDF5_users_guide]) is defined, tuples with all entries set to this value are
+ignored. If only certain entries within a tuple are set to the fill value,
+these entries are ignored decreasing the size of this tuple.
+
+    **Note:**
+
+    The scheme should also allow for the storage of neighbour lists, i.e., the
+    size of the tuples is not fixed.
 
 ### Time-dependence
 
 As the lists of particles and tuples above are H5MD elements, they can be stored
 either as time-dependent groups or time-independent datasets.
 
-As an exemple, a time-dependent list of pairs is stored as:
+As an example, a time-dependent list of pairs is stored as:
 
     <pair_list_name>
        +-- particles_group: String[]
@@ -102,5 +114,4 @@ As an exemple, a time-dependent list of pairs is stored as:
        \-- step: Integer[variable]
        \-- time: Float[variable]
 
-In the case of a time-dependent H5MD element, the dimension denoted by `N` may
-be variable.
+The dimension denoted by `N` may be variable.
