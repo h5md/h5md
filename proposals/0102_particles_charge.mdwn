@@ -56,4 +56,5 @@ Currently, no other file format clarifies the meaning of the `charge` data eleme
     definition in the PDBx/mmCIF dictionary
     <http://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v40.dic/Items/_atom_site.pdbx_formal_charge.html>).
 
-    **Note:** What is the interpretation if `type` is absent?
+	If none of `effective` or `formal` describes the data properly, the
+    attribute `type` may be omitted.
