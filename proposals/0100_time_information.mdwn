@@ -108,9 +108,9 @@ i.e., the distinction is _after_ reading the shape of the dataset. (iii) Using
 HDF5 attributes for the offset allows for a single generic identifier `offset`
 and avoids cluttering of the HDF5 group forming the H5MD element.
 
-    <element>: <type>[variable][...]
+    <element>:
      \-- step: Integer[]
          +-- (offset): Integer[]
      \-- (time): Float[]
          +-- (offset): Float[]
-
+     \-- value: <type>[variable][...]
