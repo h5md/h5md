@@ -61,10 +61,11 @@ A list of particles is an H5MD element:
 where `N` is the length of the list and `particles_group` is the name of an
 existing group within `/particles`.
 
-    **Note:**
+**Note:** Alternatives to store `particles_group`
 
-    Alternatively, let `particles_group` point to the respective group in
-    `/particles` using a hard/soft link, which ensures that this group exists.
+- Let `particles_group` point to the respective group in `/particles` using a
+hard/soft link, which ensures that this group exists.
+- Use an object reference to point to the appropriate particle group.
 
 If the corresponding `particles_group` does not possess the `id` element, the
 values in `list_name` correspond to the indexing of the elements in
