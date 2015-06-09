@@ -66,6 +66,8 @@ existing group within `/particles`.
 - Let `particles_group` point to the respective group in `/particles` using a
 hard/soft link, which ensures that this group exists.
 - Use an object reference to point to the appropriate particle group.
+  The reference must be an "Object reference" and not a "Dataset region
+  reference" (see <https://www.hdfgroup.org/HDF5/doc/RM/RM_H5R.html#Reference-Create>).
 
 If the corresponding `particles_group` does not possess the `id` element, the
 values in `list_name` correspond to the indexing of the elements in
