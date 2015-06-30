@@ -85,20 +85,9 @@ contains, in addition to the actual data, information on the corresponding
 integer time step and on the physical time. The structure of such a group is:
 
     <element>
-     \-- step: Integer[variable]
-     \-- time: Float[variable]
+     \-- step
+     \-- (time)
      \-- value: <type>[variable][...]
-
-`step`
-:   A dataset with dimensions `[variable]` that contains the time steps at
-    which the corresponding data were sampled. It is of `Integer` type to allow
-    exact temporal matching of data from one H5MD element to another. The
-    values of the dataset are in monotonically increasing order.
-
-`time`
-:   A dataset that is the same as the `step` dataset, except it is
-    `Float`-valued and contains the simulation time in physical units. The
-    values of the dataset are in monotonically increasing order.
 
 `value`
 :   A dataset that holds the data of the time series. It uses a simple
@@ -114,6 +103,60 @@ element may be hard links to the `step` and `time` datasets of a different
 element. If two elements are sampled at different times (for instance, if one
 needs the positions more frequently than the velocities), `step` and `time` are
 unique to each of them.
+
+The storage of step and time information follows one of the two modes below,
+depending on the dataset layout of `step`.
+
+#### Explicit step and time storage
+
+    <element>
+     \-- step: Integer[variable]
+     \-- (time: type[variable])
+     \-- value: <type>[variable][...]
+
+`step`
+:   A dataset with dimensions `[variable]` that contains the time steps at
+    which the corresponding data were sampled. It is of `Integer` type to allow
+    exact temporal matching of data from one H5MD element to another. The
+    values of the dataset are in monotonically increasing order.
+
+`time`
+:   An optional dataset that is the same as the `step` dataset, except it is
+    `Float` or `Integer`-valued and contains the simulation time in physical units. The
+    values of the dataset are in monotonically increasing order.
+
+#### Fixed step and time storage
+
+    <element>
+     \-- step: Integer[]
+	     +-- (offset: type[])
+     \-- (time: type[])
+	     +-- (offset: type[])
+     \-- value: <type>[variable][...]
+
+`step`
+:   A scalar dataset of `Integer` type that contains the increment of the
+    time step between two successive rows of data in `value`.
+
+    `offset`
+	: A scalar attribute of type `Integer` corresponding to the first sampled
+    value of `step`.
+
+`time`
+:   An optional scalar dataset that is the same as the `step` dataset, except that
+    it is `Float` or `Integer`-valued and contains the increment in simulation
+    time, in physical units.
+
+    `offset`
+	: A scalar attribute of the same type as `time` corresponding to the first
+    sampled value of `time`.
+
+For this storage mode, the explicit value $s(i)$ of the step corresponding to
+the $i$-th row of the dataset `value` is $s(i) = i\times\mathrm{step} +
+\mathrm{offset}$ where $\mathrm{offset}$ is set to zero if absent.
+The corresponding formula for the time $t(i)$ is identical: $t(i) =
+i\times\mathrm{time} + \mathrm{offset}$.
+The index $i$ is zero-based.
 
 ### Time-independent data
 
