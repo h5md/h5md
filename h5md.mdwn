@@ -394,6 +394,25 @@ The following identifiers for H5MD elements are standardized:
     particles varies in time. For the case of varying particle number, the
     dimension denoted by `[N]` above may be variable.
 
+`charge`
+:   An element that contains the charge associated to each particle as a
+    scalar, of `Integer` or `Float` type.
+
+    `charge` has the optional attribute `type` of fixed-length string datatype
+    and of scalar dataspace, possible values are `effective` and `formal`. In
+    the case `effective`, the charge is part of an effective description of the
+    interactions with the precise meaning depending on the underlying empirical
+    force fields or coarse-grained models.
+
+    In the case `formal`, the charge is the so-called "formal charge" assigned
+    to an atom (see <http://en.wikipedia.org/wiki/Formal_charge>) and must be
+    of `Integer` type. This case corresponds to the entries in PDB files (see
+    definition in the PDBx/mmCIF dictionary
+    <http://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v40.dic/Items/_atom_site.pdbx_formal_charge.html>).
+
+	If none of `effective` or `formal` describes the data properly, the
+    attribute `type` may be omitted.
+
 Simulation box
 --------------
 
