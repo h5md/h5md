@@ -243,6 +243,7 @@ as follows:
      \-- h5md
      \-- (particles)
      \-- (observables)
+     \-- (connectivity)
      \-- (parameters)
 
 `h5md`
@@ -260,6 +261,9 @@ as follows:
     physical observables that are derived from the system state at given points
     in time. The size of stored data is typically independent of the system
     size.
+
+`connectivity`
+:   An optional group that contains the connectivity between particles.
 
 `parameters`
 :   An optional group that contains application-specific, custom data such as
@@ -586,6 +590,18 @@ The contents of the observables group has the following structure:
      |         \-- value: <type>[variable][D][D]
      \-- <observable4>: <type>[]
      \-- ...
+
+Connectivity group
+------------------
+
+The connectivity information is stored as tuples in the group
+`/connectivity`. The tuples are pairs, triples, etc. as needed and may be either
+time-independent or time-dependent.
+Several connectivity elements may be defined for any particles group.
+A connectivity element may only refer to a single particle group.
+
+The tuples of particles are interpreted according to the section
+[Storage of particles and tuples lists](#storage-of-particles-and-tuples-lists).
 
 Parameters group
 ----------------
