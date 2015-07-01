@@ -173,6 +173,66 @@ of particle coordinates while the Fortran program will declare a `r(D,N)` array
 (appropriate index ordering for a system of `N` particles in `D` spatial
 dimensions), and the HDF5 file will be the same.
 
+## Storage of particles and tuples lists
+
+### Storage of a list of particles
+
+A list of particles is an H5MD element:
+
+    <list_name>: Integer[N]
+     +-- particles_group: Object reference
+
+where `list_name` is a dataset of `Integer` type and dimensions `[N]`, N being
+the number of particle indices stored in the list. `particles_group` is an
+attribute containing an HDF5 Object Reference as defined by the HDF5 file format
+(see
+[§ 6.5.2](https://www.hdfgroup.org/HDF5/doc/UG/11_Datatypes.html#NonNumDtypes)). `particles_group`
+must refer to one of the groups in `/particles`.
+
+If a *fill value* (see
+[§ 6.6](http://www.hdfgroup.org/HDF5/doc/UG/11_Datatypes.html#Fvalues) in
+[@HDF5_users_guide]) is defined for `list_name`, the particles indices in
+`list_name` set to this value are ignored.
+
+If the corresponding `particles_group` does not possess the `id` element, the
+values in `list_name` correspond to the indexing of the elements in
+`particles_group`. Else, the values in `list_name` must be put in correspondence
+with the equal values in the `id` element.
+
+### Storage of tuples
+
+A list of tuples is an H5MD element:
+
+    <tuples_list_name>: Integer[N,T]
+     +-- particles_group: Object reference
+
+where `N` is the length of the list and `T` is the size of the tuples.  Both `N`
+and `T` may indicate variable dimensions. `particles_group` is an attribute
+containing an HDF5 Object Reference, obeying the same rules as for the lists of
+particles.
+
+The interpretation of the values stored within the tuples is done as for a list
+of particles.
+
+If a *fill value* (see
+[§ 6.6](http://www.hdfgroup.org/HDF5/doc/UG/11_Datatypes.html#Fvalues) in
+[@HDF5_users_guide]) is defined, tuples with at least one entry set to this
+value are ignored.
+
+### Time-dependence
+
+As the lists of particles and tuples above are H5MD elements, they can be stored
+either as time-dependent groups or time-independent datasets.
+
+As an example, a time-dependent list of pairs is stored as:
+
+    <pair_list_name>
+       +-- particles_group: Object reference
+       \-- value: Integer[variable,N,2]
+       \-- step: Integer[variable]
+
+The dimension denoted by `N` may be variable.
+
 H5MD root level
 ---------------
 
