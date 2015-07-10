@@ -1,0 +1,30 @@
+Changes in the H5MD file format
+-------------------------------
+
+### Changes in H5MD 1.1
+
+1. The development process for H5MD is based on proposals
+
+	Proposals are motivated and present a change to the file format in detail. A
+	change should be accompanied by sample code to test the viability of an
+	idea. This change is formalised in proposal 1.
+
+2. Proposal 100: Storage of time information
+
+	Several changes are made: The `time` dataset can be left out if it is not
+    needed. The `step` and `time` datasets can be scalar, in which case the data
+    is mandatorily sampled at equal time intervals.
+
+3. Proposal 101: Particles and tuples lists
+
+	A storage layout is defined for lists of particles and lists of tuples of
+    particles.
+
+4. Proposal 102: Storage of charges
+
+	Charges can be stored in a `particles` group along other per-particle data.
+
+5. proposal 103: Connectivity group
+
+	The storage layout defined in proposal 101 is used to unify the storage of
+    connectivity information, i.e. lists of pairs (or bonds), etc.

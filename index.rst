@@ -11,4 +11,5 @@ Contents
    software
    proposals/index
    releases/index
+   changes
    AUTHORS
