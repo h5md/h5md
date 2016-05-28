@@ -226,6 +226,7 @@ man_pages = [
      [u'The H5MD Developers'], 1)
 ]
 
+# Translate Markdown sources to reStructuredText using pandoc.
 def setup(app):
   from subprocess import Popen, PIPE
   from json import loads, dumps
@@ -234,8 +235,8 @@ def setup(app):
 
   def escape_link(key, value, format, meta):
     if key == "Link":
-      url = value[1][0].replace("<", quote("<"))
-      value[1][0] = url.replace(">", quote(">"))
+      url = value[-1][0].replace("<", quote("<"))
+      value[-1][0] = url.replace(">", quote(">"))
 
   def pandoc(app, docname, source):
     args = ["pandoc", "-f", "markdown", "-t", "json", "--bibliography=h5md.bib"]
