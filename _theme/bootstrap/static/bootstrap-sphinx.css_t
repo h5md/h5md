@@ -1,50 +1,64 @@
 /*
-* bootstrap-sphinx.css
-* ~~~~~~~~~~~~~~~~~~~~
-*
-* Sphinx stylesheet -- Twitter Bootstrap theme.
-*/
+ * bootstrap-sphinx.css
+ * ~~~~~~~~~~~~~~~~~~~~
+ *
+ * Sphinx stylesheet -- Bootstrap theme.
+ */
 
 .navbar-inverse .brand {
   color: #FFF;
+}
+
+/*
+ * Reset navbar styles from overrides in:
+ * https://bitbucket.org/birkenfeld/sphinx/commits/78d8ebf76b630ab4073a7328af9d91e8123b8d96
+ */
+.navbar .container {
+  padding-top: 0;
 }
 
 .page-top {
   top: 0px;
 }
 
-{% if theme_navbar_fixed_top == 'true' %}
-body {
-{% if theme_bootswatch_theme %}
-  padding-top: 50px;
-{% else %}
-  padding-top: 40px;
+{% if theme_navbar_fixed_top|tobool %}
+
+{% if theme_bootstrap_version == "2" %}
+@media (min-width: 980px) {
 {% endif %}
+
+  body {
+    {% if theme_bootswatch_theme and theme_bootswatch_theme != "\"\"" %}
+      padding-top: 60px;
+    {% else %}
+      padding-top: 40px;
+    {% endif %}
+  }
+  .page-top {
+    {% if theme_bootswatch_theme and theme_bootswatch_theme != "\"\"" %}
+      top: 60px;
+    {% else %}
+      top: 40px;
+    {% endif %}
+  }
+
+{% if theme_bootstrap_version == "2" %}
 }
-.page-top {
-{% if theme_bootswatch_theme %}
-  top: 50px;
-{% else %}
-  top: 40px;
 {% endif %}
-}
 
 .navbar-inner {
   padding-left:  12px !important;
   padding-right: 12px !important;
 }
-{% endif %}
-
-{%- block sidebarlogo %}
-  {%- if logo %}
+{% else %}
+{% if theme_bootstrap_version == "2" %}
 @media (min-width: 980px) {
-  .navbar h3 a, .navbar .brand {
-    background: transparent url("{{ logo }}") no-repeat 22px 3px;
-    padding-left: 62px;
+  .navbar .container {
+    width: 940px;
   }
 }
-  {%- endif %}
-{%- endblock %}
+{% endif %}
+{% endif %}
 
 table {
   border: 0;
@@ -61,6 +75,23 @@ table {
 
 div.highlight {
   background: none;
+}
+
+a.footnote-reference {
+  vertical-align: super;
+  font-size: 75%;
+}
+
+table.footnote td.label {
+  font-size: 100%;
+  display: block;
+  line-height: normal;
+  background: inherit;
+}
+
+table.footnote {
+  width: auto;
+  margin-bottom: 0px;
 }
 
 table.field-list {
@@ -150,7 +181,6 @@ table.field-list {
   }
   .bs-sidenav.affix {
     position: fixed; /* Undo the static from mobile first approach */
-    top: 80px;
   }
   .bs-sidenav.affix-bottom {
     position: absolute; /* Undo the static from mobile first approach */
