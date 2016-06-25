@@ -54,6 +54,7 @@ help:
 	@echo "  changes    to make an overview of all changed/added/deprecated items"
 	@echo "  linkcheck  to check all external links for integrity"
 	@echo "  doctest    to run all doctests embedded in the documentation (if enabled)"
+	@echo "  upload     to upload HTML and PDF files to savannah"
 
 clean:
 	-rm -rf $(BUILDDIR)/*
@@ -156,3 +157,21 @@ doctest:
 	$(SPHINXBUILD) -b doctest $(ALLSPHINXOPTS) $(BUILDDIR)/doctest
 	@echo "Testing of doctests in the sources finished, look at the " \
 	      "results in $(BUILDDIR)/doctest/output.txt."
+
+# To upload the website to savannah, you need to install
+# the package git-cvs, and set your user in ~/.ssh/config:
+#
+# Host *.savannah.nongnu.org
+# User robertbrown
+#
+upload: clean html pdf
+	mkdir -p $(BUILDDIR)/upload
+	cd $(BUILDDIR)/upload && git init
+	cd $(BUILDDIR)/upload && echo CVS > .git/info/exclude
+	cd $(BUILDDIR)/upload && cvs -z3 -d:ext:cvs.savannah.nongnu.org:/web/h5md co h5md
+	cd $(BUILDDIR)/upload && git --work-tree=h5md add .
+	cd $(BUILDDIR)/upload && git commit -m "cvs checkout"
+	cd $(BUILDDIR)/upload && git --work-tree=../html add --all .
+	cd $(BUILDDIR)/upload && git --work-tree=../pdf add --ignore-removal .
+	cd $(BUILDDIR)/upload && git commit -m "H5MD version $(shell git describe)"
+	cd $(BUILDDIR)/upload && git cvsexportcommit -w h5md -p -c HEAD
