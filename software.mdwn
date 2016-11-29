@@ -28,6 +28,10 @@ Simulation
 [HAL's MD package](http://halmd.org/) is a high-precision molecular dynamics
 package for the large-scale simulation of simple and complex liquids.
 
+[ESPResSo](http://espressomd.org/) is a highly versatile software package for
+scientific molecular dynamics simulations of coarse-grained atomistic or
+bead-spring models for soft matter research.
+
 Analysis and plotting
 ---------------------
 
