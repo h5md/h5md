@@ -32,6 +32,11 @@ package for the large-scale simulation of simple and complex liquids.
 scientific molecular dynamics simulations of coarse-grained atomistic or
 bead-spring models for soft matter research.
 
+[LAMMPS](https://lammps.sandia.gov) is a classical molecular dynamics code with
+a focus on materials modeling. It's an acronym for Large-scale Atomic/Molecular
+Massively Parallel Simulator. See command [dump h5md](https://lammps.sandia.gov/doc/dump_h5md.html).
+
+
 Analysis and plotting
 ---------------------
 
