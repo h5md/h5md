@@ -32,12 +32,12 @@ package for the large-scale simulation of simple and complex liquids.
 scientific molecular dynamics simulations of coarse-grained atomistic or
 bead-spring models for soft matter research.
 
+[ESPResSo++](http://www.espresso-pp.de/) is a software package for the scientific simulation and 
+analysis of coarse-grained atomistic or bead-spring models as they are used in soft matter research.
+
 [LAMMPS](https://lammps.sandia.gov) is a classical molecular dynamics code with
 a focus on materials modeling. It's an acronym for Large-scale Atomic/Molecular
 Massively Parallel Simulator. See command [dump h5md](https://lammps.sandia.gov/doc/dump_h5md.html).
-
-[ESPResSo++](http://www.espresso-pp.de/) is a software package for the scientific simulation and 
-analysis of coarse-grained atomistic or bead-spring models as they are used in soft matter research.
 
 
 Analysis and plotting
