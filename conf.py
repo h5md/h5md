@@ -25,7 +25,7 @@ sys.path.insert(0, os.path.abspath('_extensions'))
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['mathml']
+extensions = []
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -171,6 +171,7 @@ htmlhelp_basename = 'h5md'
 
 # The paper size ('letter' or 'a4').
 #latex_paper_size = 'letter'
+latex_engine = 'xelatex'
 
 # The font size ('10pt', '11pt' or '12pt').
 #latex_font_size = '10pt'
@@ -231,7 +232,7 @@ def setup(app):
   from subprocess import Popen, PIPE
   from json import loads, dumps
   from pandocfilters import walk
-  from urllib import quote
+  from urllib.parse import quote
 
   def escape_link(key, value, format, meta):
     if key == "Link":
@@ -245,14 +246,14 @@ def setup(app):
     outdata, _ = proc.communicate(indata)
     outdata = loads(outdata)
     outdata = walk(outdata, escape_link, None, None)
-    outdata = dumps(outdata)
+    outdata = dumps(outdata).encode(app.config.source_encoding)
     args = ["pandoc", "-f", "json", "-t", "rst"]
     if os.path.exists(docname + ".rst"):
       args += ["-A", docname + ".rst"]
     proc = Popen(args, stdin=PIPE, stdout=PIPE)
     indata = source[0].encode(app.config.source_encoding)
     outdata, _ = proc.communicate(outdata)
-    outdata = outdata.replace(".. code::", ".. code-block::")
+    outdata = outdata.replace(b".. code::", b".. code-block::")
     source[0] = outdata.decode(app.config.source_encoding)
 
   app.connect('source-read', pandoc)
