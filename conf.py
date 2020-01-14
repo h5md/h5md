@@ -232,7 +232,10 @@ def setup(app):
   from subprocess import Popen, PIPE
   from json import loads, dumps
   from pandocfilters import walk
-  from urllib.parse import quote
+  try:
+    from urllib.parse import quote
+  except:
+    from urllib import quote
 
   def escape_link(key, value, format, meta):
     if key == "Link":
