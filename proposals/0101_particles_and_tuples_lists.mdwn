@@ -1,7 +1,7 @@
 H5MD - proposal 101: Particles and tuples lists
 -----------------------------------------------
 
-**status:** draft
+**status:** Accepted in H5MD 1.1
 
 ### Objective
 
