@@ -1,0 +1,61 @@
+H5MD - proposal 104: Storage of quaternions
+-------------------------------------------
+
+**status:** draft
+
+### Objective
+
+This proposal aims at defining the storage of a quaternion associated with each particle.
+
+### Motivations
+
+Quaternions are useful for coarse-grained simulations in which the quaternion represents the
+orientation of a particle.
+
+A quaternion encodes the full rotation in 3D for a rigid body, represents a robust
+alternative to Euler angles, and is used as the actual simulation variable in several MD
+codes.
+
+The interpretation of the value depends however on the situation.
+
+Current simulation software that could benefit directly from quaternions:
+
+- LAMMPS uses quaternions for the ["ellipsoid" atom
+  style](https://lammps.sandia.gov/doc/atom_style.html), in relation with several optional
+  [quaternion aware integrators](https://lammps.sandia.gov/doc/Howto_spherical.html).
+- ESPResSo optionally integration quaternion degrees of freedom with the ["ROTATION"
+  feature](http://espressomd.org/html/doc/running.html#rotational-degrees-of-freedom-and-particle-anisotropy).
+- RMPCDMD implements a quaternion integrator to model rigid bead assemblies
+  http://lab.pdebuyl.be/rmpcdmd/algorithms/quaternions.html
+
+
+### Comparison to other file formats
+
+There is no generic file format such as PDB that encodes quaternions. LAMMPS and HOOMD-blue
+can store quaternions in their custom file formats:
+
+#### LAMMPS
+
+LAMMPS: see the command "read_data" for a description of the file format
+<https://lammps.sandia.gov/doc/read_data.html>. Atoms of stype "ellipsoid" store the four
+components of the quaternions. The storage order is user-defined by using a "dump custom"
+entry in the simulation script.
+
+
+#### HOOMD-blue
+
+HOOMD-blue uses the custom file format [GSD](https://gsd.readthedocs.io/en/stable/). Every
+particle in a GSD file may contain a property "orientation" that is a unit quaternion. The
+storage order is scalar first, the vector.
+
+### Data in particles group
+
+`quaternion`
+:   An element that contains the quaternion associated to each particle as a vector of
+    `Float` type. The quaternion vector length is 4 and the storage order is "scalar
+    vector": $(s, x, y, z)$ or $(w, i, j, k)$, depending on the notation.
+
+	The quaternions are normalized.
+
+	The specific meaning of the quaternion depends on the creator of the data.
+
