@@ -1,13 +1,17 @@
-H5MD - proposal 104: Storage of quaternions
--------------------------------------------
+H5MD - proposal 104: Storage of orientation and quaternions
+-----------------------------------------------------------
 
 **status:** draft
 
 ### Objective
 
-This proposal aims at defining the storage of a quaternion associated with each particle.
+This proposal aims at defining the storage of the orientation associated with each particle,
+either as a real-space vector or as a quaternion.
 
 ### Motivations
+
+The motivations below cover the use of quaternions, which requires a non-ambiguous
+definition of the orientation.
 
 Quaternions are useful for coarse-grained simulations in which the quaternion represents the
 orientation of a particle.
@@ -50,12 +54,21 @@ storage order is scalar first, the vector.
 
 ### Data in particles group
 
-`quaternion`
-:   An element that contains the quaternion associated to each particle as a vector of
-    `Float` type. The quaternion vector length is 4 and the storage order is "scalar
-    vector": $(s, x, y, z)$ or $(w, i, j, k)$, depending on the notation.
+`orientation`
+:   An element that contains the orientation associated to each particle as a vector of
+    `Float` type. A length-4 vector implies a quaternion storage (see *add
+    cross-reference*). Else, the vector is the normalized orientation with the same
+    dimensionality as the position element.
 
-	The quaternions are normalized.
 
-	The specific meaning of the quaternion depends on the creator of the data.
+There will be an extra note in the specification for the storage of quaternions:
 
+A quaternion is stored as a vector of length 4. The storage order is "scalar vector": $(s,
+x, y, z)$ or $(w, i, j, k)$, depending on the notation. Quaternions are normalized.
+
+A quaternion defines the orientation of a particle as follows: Any point on the body
+represented by the particle, and located at $p_0$ at an arbitrary reference in time, is
+located at the time corresponding to quaternion $q_1$ at $p_1 = q_1\ p_0\ q_1^\ast$ where
+$q_1^\ast$ is the conjugated quaternion to $q_1$ and the multiplications in the formula are
+quaternion products. The position of the point so defined is always relative to the position
+of the particle.
