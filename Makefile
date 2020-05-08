@@ -31,7 +31,7 @@ PANDOCFILES   = h5md.mdwn modules/index.mdwn modules/thermodynamics.mdwn modules
 PAPEROPT_a4     = -D latex_paper_size=a4
 PAPEROPT_letter = -D latex_paper_size=letter
 ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
-ALLPANDOCOPTS   = --bibliography=h5md.bib --latex-engine=xelatex $(PANDOCOPTS) $(PANDOCFILES)
+ALLPANDOCOPTS   = --bibliography=h5md.bib --pdf-engine=xelatex $(PANDOCOPTS) $(PANDOCFILES)
 
 .PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest
 
