@@ -13,6 +13,9 @@ for C, Fortran, C++, and Java.
 [HDF5 for Python](http://www.h5py.org/) provides a Pythonic interface to the
 HDF5 binary data format.
 
+[h5xx](https://github.com/h5md/h5xx) is a thin C++ wrapper to ease reading and
+writing of HDF5 files.
+
 [f90h5md](http://homepages.ulb.ac.be/~pdebuyl/code/f90h5md.html) is a Fortran
 90 implementation of H5MD.
 
