@@ -50,6 +50,11 @@ Analysis and plotting
 analysing, plotting, and manipulating data of molecular simulations stored
 in the H5MD file format.
 
+[MDAnalysis](https://www.mdanalysis.org) is a Python library for analysing
+trajectories from molecular simulations, including the H5MD file format. Version
+2.0.0 features parallel I/O using MPI, see [Jakupovic \& Beckstein,
+2021](http://conference.scipy.org/proceedings/scipy2021/edis_jakupovic.html).
+
 [VMD-h5mdplugin](https://github.com/jonaslandsgesell/VMD-h5mdplugin.git)
 is a H5MD file reader plugin for the molecular visualization program
 [VMD](http://www.ks.uiuc.edu/Research/vmd/).
