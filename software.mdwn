@@ -61,3 +61,16 @@ is a H5MD file reader plugin for the molecular visualization program
 
 [VOTCA](http://www.votca.org/) is an analysis package for molecular dynamics
 data that focuses on systematic coarse-graining and microscopic charge transport.
+
+Native support of H5MD in the Open Visualization Tool [OVITO](https://www.ovito.org)
+is in the making. Please contact Felix Höfling if you are interested.
+
+
+Conversion to and from other file formats
+-----------------------------------------
+
+[ZnH5MD](https://github.com/zincware/ZnH5MD) interfaces between H5MD files and
+the [Atomic Simulation Environment (ASE)](https://wiki.fysik.dtu.dk/ase/).
+It is part of [IPSuite](https://ipsuite.readthedocs.io/en/latest/_get_started/ips.html)
+for working with machine-learned interatomic potentials.
+
